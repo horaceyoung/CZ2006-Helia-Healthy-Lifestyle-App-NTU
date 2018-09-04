@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomePageFragment"
-    android:background="@color/colorPrimaryDark">
+    tools:context=".HomePageFragment">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="272dp"
