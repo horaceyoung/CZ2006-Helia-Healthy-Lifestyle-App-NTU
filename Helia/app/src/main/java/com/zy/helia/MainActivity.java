@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity{
         });
         mainNav = findViewById(R.id.main_navigation);
         mainNav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-
         toggleHideyBar();
     }
 
@@ -75,6 +73,7 @@ public class MainActivity extends AppCompatActivity{
     protected void onResume() {
         super.onResume();
     }
+
 
     /**
      * Detects and toggles immersive mode (also known as "hidey bar" mode).
