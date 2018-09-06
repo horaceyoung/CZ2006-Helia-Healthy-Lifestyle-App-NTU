@@ -1,25 +1,75 @@
 package com.zy.helia;
 
 import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
     private static final String TAG = "MainActivity";
+    private ViewPager mainViewPager;
+    private BottomNavigationView mainNav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ViewPager mainViewPager = (ViewPager) findViewById(R.id.main_view_pager);
+        mainViewPager = (ViewPager) findViewById(R.id.main_view_pager);
         MainPageAdapter mainPageAdapter = new MainPageAdapter(getSupportFragmentManager());
         mainViewPager.setAdapter(mainPageAdapter);
+        mainViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                mainNav.getMenu().getItem(position).setChecked(true);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
+        mainNav = findViewById(R.id.main_navigation);
+        mainNav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
 
         toggleHideyBar();
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()){
+                case R.id.mainNav_Discover:
+                    mainViewPager.setCurrentItem(0);
+                    return true;
+                case R.id.mainNav_Health:
+                    mainViewPager.setCurrentItem(1);
+                    return true;
+                case R.id.mainNav_Event:
+                    mainViewPager.setCurrentItem(2);
+                    return true;
+                case R.id.mainNav_Me:
+                    mainViewPager.setCurrentItem(3);
+                    return true;
+                default:
+                    return true;
+            }
+        }
+
+    };
+
 
     @Override
     protected void onResume() {

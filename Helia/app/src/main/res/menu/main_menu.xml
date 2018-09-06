@@ -3,12 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:enabled="true"
-        android:icon="@mipmap/ic_launcher"
-        android:title="Health"
-        android:visible="true"
-        app:showAsAction="withText" />
-    <item
+        android:id="@+id/mainNav_Discover"
         android:checkable="false"
         android:enabled="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,6 +11,14 @@
         android:visible="true"
         app:showAsAction="withText" />
     <item
+        android:id="@+id/mainNav_Health"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Health"
+        android:visible="true"
+        app:showAsAction="withText" />
+    <item
+        android:id="@+id/mainNav_Event"
         android:checkable="false"
         android:enabled="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,6 +26,7 @@
         android:visible="true"
         app:showAsAction="withText" />
     <item
+        android:id="@+id/mainNav_Me"
         android:enabled="true"
         android:icon="@mipmap/ic_launcher"
         android:title="Me"
