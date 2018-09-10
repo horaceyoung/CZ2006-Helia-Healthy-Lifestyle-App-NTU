@@ -4,6 +4,7 @@ package com.zy.helia;
 import android.*;
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,9 +14,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 /**
  * Created by User on 10/2/2017.
@@ -28,6 +35,7 @@ public class HealthierEateriesActivity extends AppCompatActivity implements OnMa
         Toast.makeText(this, "Map is Ready", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "onMapReady: map is ready");
         mMap = googleMap;
+        getDeviceLocation();
     }
 
     private static final String TAG = "MapActivity";
@@ -39,6 +47,7 @@ public class HealthierEateriesActivity extends AppCompatActivity implements OnMa
     //vars
     private Boolean mLocationPermissionsGranted = false;
     private GoogleMap mMap;
+    private FusedLocationProviderClient mFusedLocationProviderClient;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +56,33 @@ public class HealthierEateriesActivity extends AppCompatActivity implements OnMa
 
         getLocationPermission();
     }
+
+    public void getDeviceLocation(){
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        try{
+            final Task location = mFusedLocationProviderClient.getLastLocation();
+            location.addOnCompleteListener(new OnCompleteListener() {
+                @Override
+                public void onComplete(@NonNull Task task) {
+                    if(task.isSuccessful()){
+                        Log.d(TAG, "onComplete: found location!");
+                        Location currentLocation = (Location) task.getResult();
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), 15f));
+                    } else{
+                        Log.d(TAG, "onComplete: current location is null");
+                    }
+                }
+            });
+
+        }
+        catch(SecurityException e){
+            Log.e(TAG, "getDeviceLocation: SecurityException: " + e.getMessage() );
+        }
+    }
+
+    /*private void moveCamera(LatLng latlng, float zoom){
+
+    }*/
 
     private void initMap(){
         Log.d(TAG, "initMap: initializing map");
@@ -65,6 +101,7 @@ public class HealthierEateriesActivity extends AppCompatActivity implements OnMa
             if(ContextCompat.checkSelfPermission(this.getApplicationContext(),
                     COURSE_LOCATION) == PackageManager.PERMISSION_GRANTED){
                 mLocationPermissionsGranted = true;
+                initMap();
             }else{
                 ActivityCompat.requestPermissions(this,
                         permissions,
