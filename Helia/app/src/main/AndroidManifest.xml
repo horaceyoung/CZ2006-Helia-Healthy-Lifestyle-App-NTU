@@ -30,7 +30,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HealthierEateriesActivity" />
+        <activity android:name=".HealthierEatActivity" />
     </application>
 
 </manifest>
