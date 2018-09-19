@@ -22,22 +22,7 @@ public class MainActivity extends AppCompatActivity{
         mainViewPager = (ViewPager) findViewById(R.id.main_view_pager);
         MainPageAdapter mainPageAdapter = new MainPageAdapter(getSupportFragmentManager());
         mainViewPager.setAdapter(mainPageAdapter);
-        mainViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i1) {
 
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                mainNav.getMenu().getItem(position).setChecked(true);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-
-            }
-        });
         mainNav = findViewById(R.id.main_navigation);
         mainNav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         toggleHideyBar();
