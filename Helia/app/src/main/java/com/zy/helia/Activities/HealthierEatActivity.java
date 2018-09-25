@@ -1,7 +1,6 @@
-package com.zy.helia;
+package com.zy.helia.Activities;
 
 
-import android.*;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -16,8 +15,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -32,23 +29,15 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.maps.android.data.kml.KmlContainer;
 import com.google.maps.android.data.kml.KmlLayer;
-import com.google.maps.android.data.kml.KmlPlacemark;
+import com.zy.helia.R;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import de.micromata.opengis.kml.v_2_2_0.Coordinate;
-import de.micromata.opengis.kml.v_2_2_0.Kml;
-import de.micromata.opengis.kml.v_2_2_0.Placemark;
-import de.micromata.opengis.kml.v_2_2_0.Point;
 
 /**
  * Created by User on 10/2/2017.
@@ -75,8 +64,8 @@ public class HealthierEatActivity extends AppCompatActivity implements OnMapRead
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_healthier_eateries);
-        mSearchText = findViewById(R.id.search_text);
+        setContentView(com.zy.helia.R.layout.activity_healthier_eateries);
+        mSearchText = findViewById(com.zy.helia.R.id.search_text);
 
         getLocationPermission();
 
@@ -123,7 +112,7 @@ public class HealthierEatActivity extends AppCompatActivity implements OnMapRead
 
             init();
             try{
-                KmlLayer layer = new KmlLayer(mMap,R.raw.healthier_eateries_kml, getApplicationContext());
+                KmlLayer layer = new KmlLayer(mMap, com.zy.helia.R.raw.healthier_eateries_kml, getApplicationContext());
                 layer.addLayerToMap();
             } catch(Exception e){
                 Toast.makeText(this, "The location is currently unavailable", Toast.LENGTH_SHORT);
