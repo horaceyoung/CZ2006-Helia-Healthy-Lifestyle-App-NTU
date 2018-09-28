@@ -15,10 +15,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.104"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameRegi" />
+        app:layout_constraintTop_toBottomOf="@+id/usernameLogin" />
 
     <EditText
-        android:id="@+id/PasswordRegi"
+        android:id="@+id/passwordLogin"
         android:layout_width="318dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@+id/textView3"
@@ -38,7 +38,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <EditText
-        android:id="@+id/usernameRegi"
+        android:id="@+id/usernameLogin"
         android:layout_width="319dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@+id/textView2"
@@ -71,7 +71,7 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -79,7 +79,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/registerButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PasswordRegi" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordLogin" />
 
     <Button
         android:id="@+id/registerButton"
@@ -90,6 +90,6 @@
         android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PasswordRegi" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordLogin" />
 
 </android.support.constraint.ConstraintLayout>
