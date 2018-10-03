@@ -7,6 +7,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.content.Intent;
 
 
 /**
@@ -17,7 +20,7 @@ import android.view.ViewGroup;
  * Use the {@link MeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MeFragment extends Fragment {
+public class MeFragment extends Fragment implements View.OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -26,7 +29,10 @@ public class MeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    public Button Personal;
+    public Button MyEvents;
+    public Button IREvents;
+    public Button LogOut;
     private OnFragmentInteractionListener mListener;
 
     public MeFragment() {
@@ -60,11 +66,15 @@ public class MeFragment extends Fragment {
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_me, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle args) {
+        View view = inflater.inflate(R.layout.fragment_me, container, false);
+        Personal = view.findViewById(R.id.Personal);
+        Personal.setOnClickListener(this);
+        IREvents =  view.findViewById(R.id.IREvents);
+        IREvents.setOnClickListener(this);
+        MyEvents = view.findViewById(R.id.MyEvents);
+        MyEvents.setOnClickListener(this);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -96,4 +106,32 @@ public class MeFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.Personal:
+                Intent startNewActivity = new Intent(getContext(),ME_ChangePersonalInfo.class);
+                startActivity(startNewActivity);
+                break;
+
+            case R.id.IREvents:
+                Intent startNewActivity2 = new Intent(getContext(),ME_IREvents.class);
+                startActivity(startNewActivity2);
+                break;
+
+            case R.id.MyEvents:
+                Intent startNewActivity3 = new Intent(getContext(),ME_MyEvents.class);
+                startActivity(startNewActivity3);
+                break;
+
+            default:
+                break;
+        }
+
+
+    }
 }
+

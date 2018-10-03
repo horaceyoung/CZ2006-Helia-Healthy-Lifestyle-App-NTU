@@ -34,7 +34,10 @@
         </activity>
         <activity android:name=".Activities.HealthierEatActivity" />
         <activity android:name=".Activities.RegistrationActivity" />
-        <activity android:name=".Activities.MainActivity"></activity>
+        <activity android:name=".Activities.MainActivity" />
+        <activity android:name=".ME_ChangePersonalInfo" />
+        <activity android:name=".ME_IREvents" />
+        <activity android:name=".ME_MyEvents"></activity>
     </application>
 
 </manifest>
