@@ -1,14 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Me Fragment" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="407dp"
+        android:layout_height="623dp">
+
+        <Button
+            android:id="@+id/Personal"
+            android:layout_width="325dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="236dp"
+            android:text="@string/change_personal_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/MyEvents"
+            android:layout_width="325dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/my_events"
+            app:layout_constraintTop_toBottomOf="@+id/IREvents"
+            tools:layout_editor_absoluteX="28dp" />
+
+        <Button
+            android:id="@+id/IREvents"
+            android:layout_width="325dp"
+            android:layout_height="46dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/interested_registered_events"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.303"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Personal" />
+
+        <ImageView
+            android:id="@+id/UserDp"
+            android:layout_width="155dp"
+            android:layout_height="124dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/download"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.084"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="48dp" />
+
+        <TextView
+            android:id="@+id/UserId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/userid"
+            tools:layout_editor_absoluteX="209dp"
+            tools:layout_editor_absoluteY="78dp" />
+
+        <TextView
+            android:id="@+id/UserEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/user_email_address"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.738"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/UserId" />
+
+        <Button
+            android:id="@+id/LogOut"
+            android:layout_width="86dp"
+            android:layout_height="42dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/log_out"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.455"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="506dp" />
+    </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>

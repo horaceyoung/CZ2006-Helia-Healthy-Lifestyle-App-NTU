@@ -3,4 +3,13 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="me_fragment">Me Fragment</string>
+    <string name="change_personal_info">Change Personal Info</string>
+    <string name="my_events">My Events</string>
+    <string name="interested_registered_events"><![CDATA[Interested & registered events]]></string>
+    <string name="userid">UserId</string>
+    <string name="user_email_address">User email address</string>
+    <string name="log_out">Log out</string>
+    <string name="interested_eevents">Interested Eevents</string>
+    <string name="slidingtabs_using_viewpager">SlidingTabs Using ViewPager</string>
 </resources>

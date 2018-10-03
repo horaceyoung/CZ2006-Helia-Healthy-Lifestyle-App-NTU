@@ -21,7 +21,9 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -31,6 +33,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".HealthierEatActivity" />
+        <activity android:name=".ChangePersonalInfo" />
+        <activity android:name=".IandREvents" />
+        <activity android:name=".MyEvents"></activity>
     </application>
 
 </manifest>
