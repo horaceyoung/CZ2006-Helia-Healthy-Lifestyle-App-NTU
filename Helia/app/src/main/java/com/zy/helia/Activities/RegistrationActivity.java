@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.zy.helia.Account_Data.AccountContract;
 import com.zy.helia.Account_Data.AccountContract.AccountEntry;
 import com.zy.helia.Account_Data.AccountDBHelper;
 import com.zy.helia.R;
@@ -18,17 +19,14 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText mPassword;
     private EditText mEmail;
     private Button mRegiterSubmitBtn;
-    private Button mCancelBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         mUsername = findViewById(R.id.usernameRegi);
-        mPassword = findViewById(R.id.passwordRegi);
+        mPassword = findViewById(R.id.PasswordRegi);
         mEmail = findViewById(R.id.EmailRegi);
-
         mRegiterSubmitBtn = findViewById(R.id.registerButton);
-        mCancelBtn = findViewById(R.id.cancelButton);
 
 
         mRegiterSubmitBtn.setOnClickListener(new View.OnClickListener() {
@@ -40,13 +38,6 @@ public class RegistrationActivity extends AppCompatActivity {
                 if(checkAccountInfoEligibility(username, password, email)){
                     createNewAccount(username, password, email);
                 }
-            }
-        });
-
-        mCancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
             }
         });
     }
