@@ -3,6 +3,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+<<<<<<< HEAD
     <string name="me_fragment">Me Fragment</string>
     <string name="change_personal_info">Change Personal Info</string>
     <string name="my_events">My Events</string>
@@ -12,4 +13,10 @@
     <string name="log_out">Log out</string>
     <string name="interested_eevents">Interested Eevents</string>
     <string name="slidingtabs_using_viewpager">SlidingTabs Using ViewPager</string>
+=======
+    <string name="Helia">Helia</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+>>>>>>> d447a5c888f7b0c8113a14738b9ef974e6efb548
 </resources>

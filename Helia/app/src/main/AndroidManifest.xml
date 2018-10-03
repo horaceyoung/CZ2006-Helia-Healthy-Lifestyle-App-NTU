@@ -25,17 +25,23 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name=".HealthierEatActivity" />
         <activity android:name=".ChangePersonalInfo" />
         <activity android:name=".IandREvents" />
         <activity android:name=".MyEvents"></activity>
+=======
+        <activity android:name=".Activities.HealthierEatActivity" />
+        <activity android:name=".Activities.RegistrationActivity" />
+        <activity android:name=".Activities.MainActivity"></activity>
+>>>>>>> d447a5c888f7b0c8113a14738b9ef974e6efb548
     </application>
 
 </manifest>
