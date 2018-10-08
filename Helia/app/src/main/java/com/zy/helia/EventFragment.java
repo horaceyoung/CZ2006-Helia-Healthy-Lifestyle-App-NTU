@@ -1,13 +1,15 @@
 package com.zy.helia;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.ImageButton;
+import com.zy.helia.Activities.*;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +30,9 @@ public class EventFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private ImageButton mostPopular;
+    private ImageButton more;
 
     public EventFragment() {
         // Required empty public constructor
@@ -60,10 +65,39 @@ public class EventFragment extends Fragment {
         }
     }
 
+    public void openEventDetail() {
+        Intent intent = new Intent(getContext(), EventDetail.class);
+        startActivity(intent);
+    }
+
+    public void openTypeList() {
+        Intent intent = new Intent(getContext(), TypeList.class);
+        startActivity(intent);
+    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        View Rootview = inflater.inflate(R.layout.fragment_event, container, false);
+        mostPopular = Rootview.findViewById(R.id.mostPopular);
+
+        mostPopular.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openEventDetail();
+            }
+        });
+
+        more = Rootview.findViewById(R.id.more);
+
+        more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openTypeList();
+            }
+        });
         return inflater.inflate(R.layout.fragment_event, container, false);
     }
 

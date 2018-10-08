@@ -40,14 +40,11 @@ public class MainActivity extends AppCompatActivity{
                 case R.id.mainNav_Discover:
                     mainViewPager.setCurrentItem(0);
                     return true;
-                case R.id.mainNav_Health:
+                case R.id.mainNav_Event:
                     mainViewPager.setCurrentItem(1);
                     return true;
-                case R.id.mainNav_Event:
-                    mainViewPager.setCurrentItem(2);
-                    return true;
                 case R.id.mainNav_Me:
-                    mainViewPager.setCurrentItem(3);
+                    mainViewPager.setCurrentItem(2);
                     return true;
                 default:
                     return true;

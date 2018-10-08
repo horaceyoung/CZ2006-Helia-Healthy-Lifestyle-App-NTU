@@ -15,10 +15,8 @@ public class MainPageAdapter extends FragmentPagerAdapter {
             case 0:
                 return new HomePageFragment();
             case 1:
-                return new HealthFragment();
-            case 2:
                 return new EventFragment();
-            case 3:
+            case 2:
                 return new MeFragment();
                 default: return new HomePageFragment();
         }
@@ -26,6 +24,6 @@ public class MainPageAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 3;
     }
 }

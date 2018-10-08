@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.EventDetail">
+
+    <TextView
+        android:id="@+id/name2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Event Descprition"
+        tools:layout_editor_absoluteX="138dp"
+        tools:layout_editor_absoluteY="385dp" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Event Name"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="250dp"
+        android:layout_height="307dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/ic_launcher_background"
+        tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="53dp" />
+
+    <Button
+        android:id="@+id/interest"
+        android:layout_width="wrap_content"
+        android:layout_height="52dp"
+        android:layout_above="@+id/interest2"
+        android:layout_centerHorizontal="true"
+        android:text="Add to Interested list"
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="434dp" />
+
+    <Button
+        android:id="@+id/interest2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Register"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="503dp" />
+
+</android.support.constraint.ConstraintLayout>
