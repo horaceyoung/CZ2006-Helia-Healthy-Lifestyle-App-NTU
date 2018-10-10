@@ -21,6 +21,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button mLoginBtn;
     private EditText mUsername;
     private EditText mPassword;
+    private String mCurrentUsername;
+    private String mCurrentPassword;
 
     private AccountDBHelper mAccountHelper;
 
@@ -80,6 +82,8 @@ public class LoginActivity extends AppCompatActivity {
             String currentPassword = cursor.getString(passwordIndex);
             Log.d(TAG, "current username is " + currentUsername + "current password is "+currentPassword);
             if (username.equals(currentUsername) && password.equals(currentPassword)) {
+                mCurrentUsername = currentUsername;
+                mCurrentPassword = currentPassword;
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
                 Intent loginSuccessIntent = new Intent(this, MainActivity.class);
                 startActivity(loginSuccessIntent);
@@ -88,6 +92,14 @@ public class LoginActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Username not found or username and password does not match.", Toast.LENGTH_SHORT).show();
 
+    }
+
+    public String getUsername(){
+        return mCurrentUsername;
+    }
+
+    public String getPassword(){
+        return mCurrentPassword;
     }
 
 
