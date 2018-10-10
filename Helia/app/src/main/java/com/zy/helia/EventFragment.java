@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 import com.zy.helia.Activities.*;
 
@@ -94,7 +93,15 @@ public class EventFragment extends Fragment implements View.OnClickListener {
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager((mLayoutManager));
 
-        mAdapter = new TypeListAdapter();
+        mAdapter = new EventFragmentAdapter();
+        mRecyclerView.setAdapter(mAdapter);
+
+        mRecyclerView = (RecyclerView) getView().findViewById(R.id.typerankingRV);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        mRecyclerView.setLayoutManager((mLayoutManager));
+
+        mAdapter = new EventFragmentType();
         mRecyclerView.setAdapter(mAdapter);
 
         mostPopular = getView().findViewById(R.id.mostPopular);
