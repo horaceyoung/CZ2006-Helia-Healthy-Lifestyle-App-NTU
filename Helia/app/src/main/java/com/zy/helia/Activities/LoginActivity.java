@@ -21,8 +21,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button mLoginBtn;
     private EditText mUsername;
     private EditText mPassword;
-    private String mCurrentUsername;
-    private String mCurrentPassword;
+    private static String mCurrentUsername;
+    private static String mCurrentPassword;
 
     private AccountDBHelper mAccountHelper;
 
@@ -94,11 +94,11 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public String getUsername(){
+    public static String getUsername(){
         return mCurrentUsername;
     }
 
-    public String getPassword(){
+    public static String getPassword(){
         return mCurrentPassword;
     }
 
