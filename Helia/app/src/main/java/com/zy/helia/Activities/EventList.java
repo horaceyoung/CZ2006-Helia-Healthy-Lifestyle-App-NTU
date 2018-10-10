@@ -11,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 
 public class EventList extends AppCompatActivity {
 
-    private ImageButton rank1;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;

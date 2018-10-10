@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,9 +34,12 @@ public class EventFragment extends Fragment implements View.OnClickListener {
 
     private OnFragmentInteractionListener mListener;
 
-    private ImageButton mostPopular;
-    private ImageButton more;
+    private Button mostPopular;
     private Button create;
+
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     public EventFragment() {
         // Required empty public constructor
@@ -65,9 +70,6 @@ public class EventFragment extends Fragment implements View.OnClickListener {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
-
     }
 
     @Override
@@ -86,13 +88,22 @@ public class EventFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(View v, Bundle savedInstanceState) {
         super.onViewCreated(v, savedInstanceState);
+
+        mRecyclerView = (RecyclerView) getView().findViewById(R.id.eventrankingRV);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getContext());
+        mRecyclerView.setLayoutManager((mLayoutManager));
+
+        mAdapter = new TypeListAdapter();
+        mRecyclerView.setAdapter(mAdapter);
+
         mostPopular = getView().findViewById(R.id.mostPopular);
         mostPopular.setOnClickListener(this);
-        more = getView().findViewById(R.id.more);
-        more.setOnClickListener(this);
+//        more = getView().findViewById(R.id.more);
+//        more.setOnClickListener(this);
         create = getView().findViewById(R.id.create);
         create.setOnClickListener(this);
-}
+    }
 
 
     @Override
@@ -110,11 +121,6 @@ public class EventFragment extends Fragment implements View.OnClickListener {
                 startActivity(startNewActivity);
                 break;
 
-            case R.id.more:
-                Intent startNewActivity2 = new Intent(getContext(),TypeList.class);
-                startActivity(startNewActivity2);
-                break;
-
             case R.id.create:
                 Intent startNewActivity3 = new Intent(getContext(),CreateEvent.class);
                 startActivity(startNewActivity3);
@@ -123,8 +129,6 @@ public class EventFragment extends Fragment implements View.OnClickListener {
             default:
                 break;
         }
-
-
     }
 
     /**
