@@ -113,17 +113,17 @@ public class MeFragment extends Fragment implements View.OnClickListener{
         switch (v.getId()) {
 
             case R.id.Personal:
-                Intent startNewActivity = new Intent(getContext(),ME_ChangePersonalInfo.class);
+                Intent startNewActivity = new Intent(getContext(),MeChangePersonalInfo.class);
                 startActivity(startNewActivity);
                 break;
 
             case R.id.IREvents:
-                Intent startNewActivity2 = new Intent(getContext(),ME_IREvents.class);
+                Intent startNewActivity2 = new Intent(getContext(),MeIREvents.class);
                 startActivity(startNewActivity2);
                 break;
 
             case R.id.MyEvents:
-                Intent startNewActivity3 = new Intent(getContext(),ME_MyEvents.class);
+                Intent startNewActivity3 = new Intent(getContext(),MeMyEvents.class);
                 startActivity(startNewActivity3);
                 break;
 

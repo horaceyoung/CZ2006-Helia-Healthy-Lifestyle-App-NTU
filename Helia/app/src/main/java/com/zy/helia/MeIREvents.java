@@ -10,7 +10,7 @@ import android.widget.TableLayout;
 
 import com.zy.helia.Activities.ME_EventsPagerAdopter;
 
-public class MeIREvents extends AppCompatActivity implements ME_IR_Registered.OnFragmentInteractionListener, ME_IR_Interested.OnFragmentInteractionListener {
+public class MeIREvents extends AppCompatActivity implements MeIrRegistered.OnFragmentInteractionListener, MeIrInterested.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

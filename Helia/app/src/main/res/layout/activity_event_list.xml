@@ -21,71 +21,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <view class="android.support.v7.widget.RecyclerView"
+        android:id="@+id/eventListRV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-            <ImageButton
-                android:id="@+id/rank1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/ic_launcher" />
-
-            <ImageButton
-                android:id="@+id/rank2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/ic_launcher" />
-
-            <ImageButton
-                android:id="@+id/rank3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/ic_launcher" />
-
-            <ImageButton
-                android:id="@+id/rank4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/ic_launcher" />
-
-            <ImageButton
-                android:id="@+id/rank5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/ic_launcher" />
-
-            <ImageButton
-                android:id="@+id/rank6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/ic_launcher" />
-
-            <ImageButton
-                android:id="@+id/rank7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/ic_launcher" />
-
-            <ImageButton
-                android:id="@+id/rank8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/ic_launcher" />
-
-            <ImageButton
-                android:id="@+id/rank9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/ic_launcher" />
-
-            <ImageButton
-                android:id="@+id/rank10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/ic_launcher" />
-        </LinearLayout>
+    </view>
     </ScrollView>
 
     <TextView
