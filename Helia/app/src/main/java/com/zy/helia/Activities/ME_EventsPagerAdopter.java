@@ -3,8 +3,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.zy.helia.ME_IR_Interested;
-import com.zy.helia.ME_IR_Registered;
+import com.zy.helia.MeIrInterested;
+import com.zy.helia.MeIrRegistered;
+
 
 public class ME_EventsPagerAdopter extends FragmentPagerAdapter{
 
@@ -19,10 +20,10 @@ public class ME_EventsPagerAdopter extends FragmentPagerAdapter{
         public android.support.v4.app.Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    ME_IR_Interested interestedEvents = new ME_IR_Interested();
+                    MeIrInterested interestedEvents = new MeIrInterested();
                     return interestedEvents;
                 case 1:
-                    ME_IR_Registered registeredEvents = new ME_IR_Registered();
+                    MeIrRegistered registeredEvents = new MeIrRegistered();
                     return registeredEvents;
                 default:
                     return null;

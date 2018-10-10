@@ -3,7 +3,7 @@ package com.zy.helia;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class ME_ChangePersonalInfo extends AppCompatActivity {
+public class MeChangePersonalInfo extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

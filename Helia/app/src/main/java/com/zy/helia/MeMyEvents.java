@@ -3,7 +3,7 @@ package com.zy.helia;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class ME_MyEvents extends AppCompatActivity {
+public class MeMyEvents extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
