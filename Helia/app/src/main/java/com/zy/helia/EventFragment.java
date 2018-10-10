@@ -1,6 +1,5 @@
 package com.zy.helia;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,7 +7,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
+
 import com.zy.helia.Activities.*;
 
 /**
@@ -19,7 +20,7 @@ import com.zy.helia.Activities.*;
  * Use the {@link EventFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EventFragment extends Fragment {
+public class EventFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -33,6 +34,7 @@ public class EventFragment extends Fragment {
 
     private ImageButton mostPopular;
     private ImageButton more;
+    private Button create;
 
     public EventFragment() {
         // Required empty public constructor
@@ -63,41 +65,15 @@ public class EventFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-    }
 
-    public void openEventDetail() {
-        Intent intent = new Intent(getContext(), EventDetail.class);
-        startActivity(intent);
-    }
 
-    public void openTypeList() {
-        Intent intent = new Intent(getContext(), TypeList.class);
-        startActivity(intent);
-    }
 
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View Rootview = inflater.inflate(R.layout.fragment_event, container, false);
-        mostPopular = Rootview.findViewById(R.id.mostPopular);
-
-        mostPopular.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openEventDetail();
-            }
-        });
-
-        more = Rootview.findViewById(R.id.more);
-
-        more.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openTypeList();
-            }
-        });
         return inflater.inflate(R.layout.fragment_event, container, false);
     }
 
@@ -107,13 +83,48 @@ public class EventFragment extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
-
+    @Override
+    public void onViewCreated(View v, Bundle savedInstanceState) {
+        super.onViewCreated(v, savedInstanceState);
+        mostPopular = getView().findViewById(R.id.mostPopular);
+        mostPopular.setOnClickListener(this);
+        more = getView().findViewById(R.id.more);
+        more.setOnClickListener(this);
+        create = getView().findViewById(R.id.create);
+        create.setOnClickListener(this);
+}
 
 
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.mostPopular:
+                Intent startNewActivity = new Intent(getContext(),EventDetail.class);
+                startActivity(startNewActivity);
+                break;
+
+            case R.id.more:
+                Intent startNewActivity2 = new Intent(getContext(),TypeList.class);
+                startActivity(startNewActivity2);
+                break;
+
+            case R.id.create:
+                Intent startNewActivity3 = new Intent(getContext(),CreateEvent.class);
+                startActivity(startNewActivity3);
+                break;
+
+            default:
+                break;
+        }
+
+
     }
 
     /**
