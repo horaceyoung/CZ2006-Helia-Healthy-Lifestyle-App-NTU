@@ -47,9 +47,10 @@
         <activity android:name=".Activities.eventsToBeApproved" />
         <activity android:name=".Activities.eventTypes" />
         <activity android:name=".Activities.TypeList" />
-        <activity android:name=".ME_ChangePersonalInfo" />
-        <activity android:name=".ME_IREvents" />
-        <activity android:name=".ME_MyEvents"></activity>
+        <activity android:name=".MeChangePersonalInfo" />
+        <activity android:name=".MeIREvents" />
+        <activity android:name=".MeMyEvents" />
+        <activity android:name=".Activities.UpdateAvatar"></activity>
     </application>
 
 </manifest>
