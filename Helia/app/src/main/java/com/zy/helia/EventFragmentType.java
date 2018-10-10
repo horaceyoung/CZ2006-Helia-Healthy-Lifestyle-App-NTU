@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdapter.ViewHolder> {
+public class EventFragmentType extends RecyclerView.Adapter<EventFragmentType.ViewHolder> {
 
-    private int[] mDataset = {-1, 0, 1, 2, 3, 4, 5, 6, 7, 8};
+    private int[] mDataset = {-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8};
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
@@ -20,20 +20,20 @@ public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdap
         }
     }
 
-    public EventFragmentAdapter() {
+    public EventFragmentType() {
 
     }
 
     @NonNull
     @Override
-    public EventFragmentAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public EventFragmentType.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_event_adapter, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull EventFragmentAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull EventFragmentType.ViewHolder holder, int position) {
         holder.button.setText(Integer.toString(mDataset[position]));
     }
 
@@ -42,4 +42,3 @@ public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdap
         return mDataset.length;
     }
 }
-
