@@ -68,7 +68,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
 
     public int checkUsername(String Username){          //returns 0 if Username doesnt exist, returns 1 if it does
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "Select * from User Where Username = "+ Username;
+        String query = "Select * from User Where Username = '"+ Username +"'";
         Cursor c = db.rawQuery(query,null);
         if (c.getCount() <= 0) {
             c.close();
@@ -84,7 +84,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
 
     public int checkEmail(String Email){          //returns 0 if Email doesnt exist, returns 1 if it does
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "Select * from User Where Email = "+ Email;
+        String query = "Select * from User Where Email = '"+ Email +"'";
         Cursor c = db.rawQuery(query,null);
         if (c.getCount() <= 0) {
             c.close();
@@ -100,7 +100,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
 	
 	 public int checkUserIDByUsername(String Username){          //returns 0 if Username doesnt exist, returns UserID if it does
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "Select * from User Where Username = "+ Username;
+        String query = "Select * from User Where Username = '"+ Username +"'";
         Cursor c = db.rawQuery(query,null);
         if (c.getCount() <= 0) {
             c.close();
@@ -118,7 +118,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
 
     public int checkUserIDByEmail(String Email){          //returns 0 if Email doesnt exist, returns UserID if it does
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "Select * from User Where Email = "+ Email;
+        String query = "Select * from User Where Email = '"+ Email +"'";
         Cursor c = db.rawQuery(query,null);
         if (c.getCount() <= 0) {
             c.close();
@@ -144,7 +144,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
         }
         else {
             SQLiteDatabase db = this.getWritableDatabase();
-            String query =" Select * from User Where Username = " + Username + " AND Password = "+Password;
+            String query =" Select * from User Where Username = '" + Username + "' AND Password = '"+Password +"'";
             Cursor c= db.rawQuery(query,null);
             if( c.getCount() <= 0 ){
                 c.close();
@@ -329,7 +329,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
 
     public Cursor viewApprovedEvents(){ // View the list of Approved Events
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "Select * from Event Where Event_Approval_Status = Approved";
+        String query = "Select * from Event Where Event_Approval_Status = 'Approved'";
         Cursor c = db.rawQuery(query, null);
         db.close();
         return c;
@@ -338,7 +338,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
 
     public Cursor viewPendingEvents(){ // View the list of Pending Events
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "Select * from Event Where Event_Approval_Status = Pending";
+        String query = "Select * from Event Where Event_Approval_Status = 'Pending'";
         Cursor c = db.rawQuery(query, null);
         db.close();
         return c;
