@@ -1,35 +1,29 @@
 package com.zy.helia.Activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.ImageButton;
+import android.support.v7.widget.LinearLayoutManager;
 import com.zy.helia.R;
-
+import android.support.v7.widget.RecyclerView;
 
 public class TypeList extends AppCompatActivity {
 
-    private ImageButton typeA;
-
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type_list);
 
-        typeA = (ImageButton) findViewById(R.id.typeA);
+        mRecyclerView = (RecyclerView) findViewById(R.id.typeListRV);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager((mLayoutManager));
 
-        typeA.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openEventList();
-            }
-        });
+        mAdapter = new TypeListAdapter();
+        mRecyclerView.setAdapter(mAdapter);
 
     }
 
-    public void openEventList() {
-        Intent intent = new Intent(this, EventList.class);
-        startActivity(intent);
-    }
 }
