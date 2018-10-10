@@ -49,7 +49,8 @@
         <activity android:name=".Activities.TypeList" />
         <activity android:name=".MeChangePersonalInfo" />
         <activity android:name=".MeIREvents" />
-        <activity android:name=".MeMyEvents"></activity>
+        <activity android:name=".MeMyEvents" />
+        <activity android:name=".Activities.UpdateAvatar"></activity>
     </application>
 
 </manifest>
