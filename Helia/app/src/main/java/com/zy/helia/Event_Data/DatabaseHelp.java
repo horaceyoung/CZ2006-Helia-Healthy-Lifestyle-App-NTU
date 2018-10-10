@@ -3,13 +3,12 @@ package com.zy.helia.Event_Data;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.database.Cursor;
-
 
 import java.io.Closeable;
-import java.util.Locale;
+
 
 
 public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
@@ -25,7 +24,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE User (User_ID INTEGER PRIMARY KEY AUTOINCREMENT, Username TEXT, Password TEXT, Email TEXT, Avatar INTEGER)");
         db.execSQL("CREATE TABLE Event_Category (Event_Category_ID INTEGER PRIMARY KEY AUTOINCREMENT, Event_Category_Name TEXT, Event_Category_Description TEXT)");
-        db.execSQL("CREATE TABLE Event (Event_ID INTEGER PRIMARY KEY AUTOINCREMENT, Event_Name TEXT, Event_Description TEXT, Event_Category_ID INTEGER, Number_Of_People integer, Event_Duration text, Event_Picture integer, Event_Approval_Status INTEGER, User_ID INTEGER, FOREIGN KEY(Event_Category_ID) REFERENCES Event_Category(Event_Category_ID), FOREIGN KEY(User_ID) REFERENCES User(User_ID))");
+        db.execSQL("CREATE TABLE Event (Event_ID INTEGER PRIMARY KEY AUTOINCREMENT, Event_Name TEXT, Event_Description TEXT, Event_Category_ID INTEGER, Number_Of_People integer, Event_Location text, Event_Duration text, Event_Picture integer, Event_Approval_Status INTEGER, User_ID INTEGER, FOREIGN KEY(Event_Category_ID) REFERENCES Event_Category(Event_Category_ID), FOREIGN KEY(User_ID) REFERENCES User(User_ID))");
         db.execSQL("CREATE TABLE Interested (Interested_ID integer PRIMARY KEY AUTOINCREMENT, User_ID Integer, Event_ID integer, FOREIGN KEY(User_ID) REFERENCES User(User_ID), FOREIGN KEY (Event_ID) REFERENCES Event(Event_ID))");
         db.execSQL("CREATE TABLE Registered (Registered_ID integer PRIMARY KEY AUTOINCREMENT, User_ID Integer, Event_ID integer, FOREIGN KEY(User_ID) REFERENCES User(User_ID), FOREIGN KEY (Event_ID) REFERENCES Event(Event_ID))");
         db.execSQL("CREATE TABLE Activity (Activity_ID integer PRIMARY KEY AUTOINCREMENT, Activity_Name Text, Description Text)");
@@ -65,6 +64,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
     }
 
 
+
     public int checkUsername(String Username){          //returns 0 if Username doesnt exist, returns 1 if it does
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "Select * from User Where Username = "+ Username;
@@ -97,8 +97,45 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
         }
     } //end
 
+    public int checkUserIDByUsername(String Username){          //returns 0 if Username doesnt exist, returns UserID if it does
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "Select * from User Where Username = "+ Username;
+        Cursor c = db.rawQuery(query,null);
+        if (c.getCount() <= 0) {
+            c.close();
+            db.close();
+            return 0;
+        }
+        else{
+            int index = c.getColumnIndexOrThrow("UserID");
+            int userID = c.getInt(index);
+            c.close();
+            db.close();
+            return userID;
+        }
+    } //end
+
+    public int checkUserIDByEmail(String Email){          //returns 0 if Email doesnt exist, returns UserID if it does
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "Select * from User Where Email = "+ Email;
+        Cursor c = db.rawQuery(query,null);
+        if (c.getCount() <= 0) {
+            c.close();
+            db.close();
+            return 0;
+        }
+        else{
+            int index = c.getColumnIndexOrThrow("UserID");
+            int userID = c.getInt(index);
+            c.close();
+            db.close();
+            return userID;
+        }
+    } //end
+
+
     public int login(String Username, String Password){    // returns 0 if Username doesnt exist, returns 1 if Password matches,
-                                                            // returns 2 if Password doesnt match
+        // returns 2 if Password doesnt match
 
         if(checkUsername(Username) == 0)
         {
@@ -145,14 +182,14 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
         int count = c.getCount();
         c.close();
         db.close();
-       return count;
+        return count;
     }//end
 
     public int countRegistered(int Event_ID){ //  Count the number of people Registered
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "Select * from Registered Where Event_ID = "+ Event_ID;
         Cursor c = db.rawQuery(query,null);
-       int count = c.getCount();
+        int count = c.getCount();
         c.close();
         db.close();
         return count;
@@ -230,7 +267,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
 //Interested and Registered End
 
 
-//Event Start
+    //Event Start
 /// Event Photo confirmation
     public boolean createEvent(String Event_Name, String Event_Description, int Event_Category_ID, String Event_Location, int Number_Of_People, String Event_Duration, int Event_Photo, int User_ID){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -335,7 +372,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
 
 
     public Cursor retrieveEvents(){ // Retrieve Events which the number of people Registered has not exceed the number of people allowed
-                                    // If there isnt any it will return a null Cursor
+        // If there isnt any it will return a null Cursor
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "Select * from Event";
         Cursor c = db.rawQuery(query,null); // Retrieve the entire Event List
@@ -355,7 +392,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
 
             int NumOfPeople = countRegistered(event_Id);
             if(check > NumOfPeople && Approval == "Approved"){  // Check if the number of people Registered has exceeded the number of people allowed
-                                                                 // Also check if Event has been approved
+                // Also check if Event has been approved
 
                 ListOfEventID[count] = event_Id;    // If it hasnt, add the Event ID into the approved list
                 count++;
@@ -366,15 +403,15 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
             String query2 = "Select * from Event where Event_ID = "; // Modifying the Select SQL statement to add the entire list of events allowed
 
 
-                for (int i = 0; i < ListOfEventID.length; i++) {
+            for (int i = 0; i < ListOfEventID.length; i++) {
 
-                    query2 += ListOfEventID[i]; // adds the Event ID to the where clause
+                query2 += ListOfEventID[i]; // adds the Event ID to the where clause
 
-                    if( i != ListOfEventID.length-1) // Checks if this is the last event
-                       {
-                           query2 += "OR Event_ID = "; // If it isnt the last event, add another Where clause
-                       }
+                if( i != ListOfEventID.length-1) // Checks if this is the last event
+                {
+                    query2 += "OR Event_ID = "; // If it isnt the last event, add another Where clause
                 }
+            }
             n = db.rawQuery(query2,null);
             db.close();
             return n;
@@ -408,8 +445,8 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
 
             int NumOfPeople = countRegistered(event_Id);
             if(check > NumOfPeople && Category_Id == Event_Category_ID && Approval == "Approved"){  // Check if the number of people Registered has exceeded the number of people allowed
-                                                                                                     // Also check if Category ID matches with the given Event Category ID
-                                                                                                    // Also check if Event has been approved
+                // Also check if Category ID matches with the given Event Category ID
+                // Also check if Event has been approved
 
                 ListOfEventID[count] = event_Id;    // Add the Event ID into the approved list
                 count++;
@@ -440,7 +477,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
         }
     }// End of Retrieve Filtered Events
 
-    public Cursor viewPopularEvents(int Event_Category_ID){ // Retrieve filtered Events base on Category
+    public Cursor viewPopularEvents(int Event_Category_ID){ // Retrieve Events that is sorted base on Popularity
         // If there isnt any it will return a null Cursor
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "Select * from Event";
@@ -461,7 +498,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
 
             int NumOfPeople = countRegistered(event_Id);
             if(check > NumOfPeople && Approval == "Approved"){  // Check if the number of people Registered has exceeded the number of people allowed
-                                                                 // Also check if Event has been approved
+                // Also check if Event has been approved
 
                 ListOfEventID[count] = event_Id;    // Add the Event ID into the approved list
                 count++;
@@ -496,15 +533,15 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
         }
     }// End of View Popular Events
 
-// End of Event
+    // End of Event
 // Start of Event Category
     public Cursor viewEventCategory(){ // Retrieve the list of Event Category for the User to select
 
-            SQLiteDatabase db = this.getWritableDatabase();
-            String query = "Select * from Event_Category";
-            Cursor c = db.rawQuery(query, null);
-            db.close();
-            return c;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "Select * from Event_Category";
+        Cursor c = db.rawQuery(query, null);
+        db.close();
+        return c;
 
     }//end
 
@@ -537,7 +574,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
         }
 
     }//end
-// End of Event Category
+    // End of Event Category
 // Start of Activity
     public Cursor viewActivities(){ // Retrieve the list of Activities
 
