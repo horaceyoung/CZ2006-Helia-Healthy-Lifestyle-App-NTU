@@ -12,12 +12,12 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ME_IR_Registered.OnFragmentInteractionListener} interface
+ * {@link MeIrRegistered.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ME_IR_Registered#newInstance} factory method to
+ * Use the {@link MeIrRegistered#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ME_IR_Registered extends Fragment {
+public class MeIrRegistered extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +29,7 @@ public class ME_IR_Registered extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public ME_IR_Registered() {
+    public MeIrRegistered() {
         // Required empty public constructor
     }
 
@@ -39,11 +39,11 @@ public class ME_IR_Registered extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ME_IR_Registered.
+     * @return A new instance of fragment MeIrRegistered.
      */
     // TODO: Rename and change types and number of parameters
-    public static ME_IR_Registered newInstance(String param1, String param2) {
-        ME_IR_Registered fragment = new ME_IR_Registered();
+    public static MeIrRegistered newInstance(String param1, String param2) {
+        MeIrRegistered fragment = new MeIrRegistered();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
