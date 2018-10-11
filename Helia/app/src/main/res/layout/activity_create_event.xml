@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateEvent">
+    tools:context=".Activities.CreateEvent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -45,7 +45,7 @@
             android:textSize="16dp" />
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/ecEventName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -60,7 +60,7 @@
             android:textSize="16dp" />
 
         <EditText
-            android:id="@+id/editText5"
+            android:id="@+id/ecEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -75,7 +75,7 @@
             android:textSize="16dp"/>
 
         <EditText
-            android:id="@+id/editText6"
+            android:id="@+id/ecLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -90,25 +90,11 @@
             android:textSize="16dp"/>
 
         <EditText
-            android:id="@+id/editText9"
+            android:id="@+id/ecEventDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textMultiLine" />
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cost incurred"
-            android:textSize="16dp"/>
-
-            <EditText
-                android:id="@+id/editText14"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
 
             <TextView
             android:id="@+id/textView7"
@@ -118,21 +104,7 @@
             android:textSize="16dp"/>
 
         <EditText
-            android:id="@+id/editText11"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Date and Time"
-            android:textSize="16dp"/>
-
-        <EditText
-            android:id="@+id/editText12"
+            android:id="@+id/ecNumberOfParticipants"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -146,7 +118,7 @@
             android:textSize="16dp"/>
 
         <EditText
-            android:id="@+id/editText13"
+            android:id="@+id/ecDurationEstimated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
