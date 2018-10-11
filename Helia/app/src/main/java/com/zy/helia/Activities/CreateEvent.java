@@ -56,6 +56,9 @@ public class CreateEvent extends AppCompatActivity {
                 String str_email = ce_UserID.getText().toString().trim();
 
                 createNewEvent(str_eventname, str_eventdescription, 1, str_eventlocation, int_numberofpeople, str_eventduration, 2, str_email);
+
+                Intent submit = new Intent(CreateEvent.this, CreateEvent.class);
+                startActivity(submit);
             }
         });
 
