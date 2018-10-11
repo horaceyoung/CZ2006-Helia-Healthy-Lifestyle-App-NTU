@@ -307,7 +307,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
 
     //Event Start
 /// Event Photo confirmation
-    public boolean createEvent(String Event_Name, String Event_Description, int Event_Category_ID, String Event_Location, int Number_Of_People, String Event_Duration, int Event_Photo, int User_ID){
+    public boolean createEvent(String Event_Name, String Event_Description, int Event_Category_ID, String Event_Location, int Number_Of_People, String Event_Duration, int Event_Picture, int User_ID){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValue = new ContentValues();
         contentValue.put("Event_Name", Event_Name);
@@ -316,7 +316,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
         contentValue.put("Event_Location", Event_Location);
         contentValue.put("Number_Of_People", Number_Of_People);
         contentValue.put("Event_Duration", Event_Duration);
-        contentValue.put("Event_Photo", Event_Photo);
+        contentValue.put("Event_Picture", Event_Picture);
         contentValue.put("Event_Approval_Status", "Pending");
         contentValue.put("User_ID", User_ID);
         long result = db.insert("Event", null, contentValue);
@@ -348,7 +348,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
 
     }//end
 
-    public boolean editEvent(int Event_ID,String Event_Name, String Event_Description, int Event_Category_ID, String Event_Location, int Number_Of_People, String Event_Duration, int Event_Photo, int User_ID) { // Edit Event
+    public boolean editEvent(int Event_ID,String Event_Name, String Event_Description, int Event_Category_ID, String Event_Location, int Number_Of_People, String Event_Duration, int Event_Picture, int User_ID) { // Edit Event
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValue = new ContentValues();
         contentValue.put("Event_Name", Event_Name);
@@ -357,7 +357,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
         contentValue.put("Event_Location", Event_Location);
         contentValue.put("Number_Of_People", Number_Of_People);
         contentValue.put("Event_Duration", Event_Duration);
-        contentValue.put("Event_Photo", Event_Photo);
+        contentValue.put("Event_Picture", Event_Picture);
         contentValue.put("User_ID", User_ID);
         db.update("Event",contentValue, "Where Event_ID = " +Event_ID,null );
         db.close();
@@ -423,16 +423,16 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
 
             index = c.getColumnIndexOrThrow("Number_Of_People");
             int check = c.getInt(index);
-            index = c.getColumnIndexOrThrow("Event_Id");
-            int event_Id = c.getInt(index);
+            index = c.getColumnIndexOrThrow("Event_ID");
+            int event_ID = c.getInt(index);
             index = c.getColumnIndexOrThrow("Event_Approval_Status");
             String Approval =  c.getString(index);
 
-            int NumOfPeople = countRegistered(event_Id);
+            int NumOfPeople = countRegistered(event_ID);
             if(check > NumOfPeople && Approval == "Approved"){  // Check if the number of people Registered has exceeded the number of people allowed
                 // Also check if Event has been approved
 
-                ListOfEventID[count] = event_Id;    // If it hasnt, add the Event ID into the approved list
+                ListOfEventID[count] = event_ID;    // If it hasnt, add the Event ID into the approved list
                 count++;
             }
 
@@ -474,19 +474,19 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
 
             index = c.getColumnIndexOrThrow("Number_Of_People");
             int check = c.getInt(index);
-            index = c.getColumnIndexOrThrow("Event_Id");
-            int event_Id = c.getInt(index);
-            index = c.getColumnIndexOrThrow("Event_Category_Id");
-            int Category_Id = c.getInt(index);
+            index = c.getColumnIndexOrThrow("Event_ID");
+            int event_ID = c.getInt(index);
+            index = c.getColumnIndexOrThrow("Event_Category_ID");
+            int Category_ID = c.getInt(index);
             index = c.getColumnIndexOrThrow("Event_Approval_Status");
             String Approval =  c.getString(index);
 
             int NumOfPeople = countRegistered(event_Id);
-            if(check > NumOfPeople && Category_Id == Event_Category_ID && Approval == "Approved"){  // Check if the number of people Registered has exceeded the number of people allowed
+            if(check > NumOfPeople && Category_ID == Event_Category_ID && Approval == "Approved"){  // Check if the number of people Registered has exceeded the number of people allowed
                 // Also check if Category ID matches with the given Event Category ID
                 // Also check if Event has been approved
 
-                ListOfEventID[count] = event_Id;    // Add the Event ID into the approved list
+                ListOfEventID[count] = event_ID;    // Add the Event ID into the approved list
                 count++;
             }
 
@@ -529,16 +529,16 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
 
             index = c.getColumnIndexOrThrow("Number_Of_People");
             int check = c.getInt(index);
-            index = c.getColumnIndexOrThrow("Event_Id");
-            int event_Id = c.getInt(index);
+            index = c.getColumnIndexOrThrow("Event_ID");
+            int event_ID = c.getInt(index);
             index = c.getColumnIndexOrThrow("Event_Approval_Status");
             String Approval =  c.getString(index);
 
-            int NumOfPeople = countRegistered(event_Id);
+            int NumOfPeople = countRegistered(event_ID);
             if(check > NumOfPeople && Approval == "Approved"){  // Check if the number of people Registered has exceeded the number of people allowed
                 // Also check if Event has been approved
 
-                ListOfEventID[count] = event_Id;    // Add the Event ID into the approved list
+                ListOfEventID[count] = event_ID;    // Add the Event ID into the approved list
                 count++;
             }
 
