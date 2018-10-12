@@ -22,7 +22,7 @@ public class MeInterestedEventListAdapter extends RecyclerView.Adapter<MeInteres
         public Button button;
         public ViewHolder(View v) {
             super(v);
-            button = v.findViewById(R.id.button);
+            button = v.findViewById(R.id.interestedEventButton);
         }
     }
 

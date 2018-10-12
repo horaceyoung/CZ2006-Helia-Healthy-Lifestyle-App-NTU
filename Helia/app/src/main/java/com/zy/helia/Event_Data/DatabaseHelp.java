@@ -135,7 +135,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
     } //end
 
 
-    public int checkUserIDByUsername(String Username){          //returns 0 if Username doesnt exist, returns UserID if it does
+  /*  public int checkUserIDByUsername(String Username){          //returns 0 if Username doesnt exist, returns UserID if it does
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "Select * from User Where Username = "+ Username;
         Cursor c = db.rawQuery(query,null);
@@ -169,7 +169,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
             db.close();
             return userID;
         }
-    } //end
+    } //end*/
 
 
     public int login(String Username, String Password){    // returns 0 if Username doesnt exist, returns 1 if Password matches,
@@ -481,7 +481,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
             index = c.getColumnIndexOrThrow("Event_Approval_Status");
             String Approval =  c.getString(index);
 
-            int NumOfPeople = countRegistered(event_Id);
+            int NumOfPeople = countRegistered(event_ID);
             if(check > NumOfPeople && Category_ID == Event_Category_ID && Approval == "Approved"){  // Check if the number of people Registered has exceeded the number of people allowed
                 // Also check if Category ID matches with the given Event Category ID
                 // Also check if Event has been approved
