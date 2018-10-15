@@ -130,11 +130,12 @@
             android:layout_height="wrap_content"
             android:text="Type" />
 
-        <Button
-            android:id="@+id/selectTypeBut"
+        <Spinner
+            android:id="@+id/events_dl"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Select the type of your event"/>
+            android:layout_height="wrap_content">
+
+        </Spinner>
 
         <Button
             android:id="@+id/submitBut"

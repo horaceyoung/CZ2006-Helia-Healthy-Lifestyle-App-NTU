@@ -1,6 +1,5 @@
 package com.zy.helia;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,8 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 import android.content.Intent;
+
+import com.zy.helia.Activities.MeMyEvents;
 
 
 /**

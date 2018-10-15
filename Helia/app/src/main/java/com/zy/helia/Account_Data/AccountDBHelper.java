@@ -19,18 +19,20 @@ public class AccountDBHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String SQL_CREATE_PETS_TABLE =  "CREATE TABLE " + AccountEntry.TABLE_NAME + " ("
+        String SQL_CREATE_ACCOUNTS_TABLE =  "CREATE TABLE " + AccountEntry.TABLE_NAME + " ("
                 + AccountEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + AccountEntry.COLUMN_AVATAR + " INTEGER NOT NULL, "
                 + AccountEntry.COLUMN_USERNAME + " TEXT NOT NULL, "
                 + AccountEntry.COLUMN_PASSWORD + " TEXT NOT NULL, "
                 + AccountEntry.COLUMN_EMAIL + " TEXT NOT NULL);";
 
         // Execute the SQL statement
-        db.execSQL(SQL_CREATE_PETS_TABLE);
+        db.execSQL(SQL_CREATE_ACCOUNTS_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // The database is still at version 1, so there's nothing to do be done here.
     }
+
 }

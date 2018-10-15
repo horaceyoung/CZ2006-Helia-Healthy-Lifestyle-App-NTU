@@ -10,5 +10,6 @@ public class AccountContract {
         public final static String COLUMN_USERNAME = "username";
         public final static String COLUMN_PASSWORD = "password";
         public final static String COLUMN_EMAIL = "email";
+        public final static String COLUMN_AVATAR = "avatar";
     }
 }
