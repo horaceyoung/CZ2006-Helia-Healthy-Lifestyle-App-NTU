@@ -54,7 +54,11 @@
         <activity android:name=".Activities.MeInterestedEventListAdopter" />
         <activity android:name=".Activities.MeInterestedEventsAdapter" />
         <activity android:name=".Activities.MeInterestedEventListAdapter" />
+<<<<<<< HEAD
         <activity android:name=".Activities.MeRegisteredEventListAdapter"></activity>
+=======
+        <activity android:name=".Activities.eventTypesAdapter"></activity>
+>>>>>>> 50f4ad77110960f7aa7393b27b7b5edc39b13b83
     </application>
 
 </manifest>

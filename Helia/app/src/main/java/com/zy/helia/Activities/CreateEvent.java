@@ -56,6 +56,9 @@ public class CreateEvent extends AppCompatActivity {
                 String str_email = ce_UserID.getText().toString().trim();
 
                 createNewEvent(str_eventname, str_eventdescription, 1, str_eventlocation, int_numberofpeople, str_eventduration, 2, str_email);
+
+                Intent submit = new Intent(CreateEvent.this, CreateEvent.class);
+                startActivity(submit);
             }
         });
 
@@ -79,17 +82,17 @@ public class CreateEvent extends AppCompatActivity {
     }
 
 
-    private void createNewEvent(String Event_Name, String Event_Description, int Event_Category_ID, String Event_Location, int Number_Of_People, String Event_Duration, int Event_Photo, String User_ID){
+    private void createNewEvent(String Event_Name, String Event_Description, int Event_Category_ID, String Event_Location, int Number_Of_People, String Event_Duration, int Event_Picture, String User_ID){
 
         // Create database helper
         DatabaseHelp ceDbHelper = new DatabaseHelp(this);
         // Gets the database in write mode
         SQLiteDatabase cedb = ceDbHelper.getWritableDatabase();
 
-        Integer int_userid=ceDbHelper.checkUserIDByEmail(User_ID);
+        Integer int_userid = ceDbHelper.checkUserIDByEmail(User_ID);
 
         // lack int categoryid & photo->1-5   ??
-        ceDbHelper.createEvent(Event_Name, Event_Description, Event_Category_ID, Event_Location, Number_Of_People, Event_Duration, Event_Photo, int_userid );
+        ceDbHelper.createEvent(Event_Name, Event_Description, Event_Category_ID, Event_Location, Number_Of_People, Event_Duration, Event_Picture, int_userid );
     }
 
 
