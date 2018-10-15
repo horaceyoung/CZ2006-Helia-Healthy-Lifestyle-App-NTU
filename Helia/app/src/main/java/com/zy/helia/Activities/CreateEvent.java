@@ -5,8 +5,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.zy.helia.Event_Data.DatabaseHelp;
 import com.zy.helia.R;
@@ -14,23 +18,50 @@ import com.zy.helia.R;
 public class CreateEvent extends AppCompatActivity {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    private EditText ce_Event_name;
-    private EditText ce_EventDescription;
-    //  private EditText ce_EventCategoryID;
+    public EditText ce_Event_name;
+    public EditText ce_EventDescription;
+    public int ce_EventCategoryID;
     private EditText ce_EventLocation;
     private EditText ce_NumberOfPeople;
     private EditText ce_EventDuration;
     //  private EditText ce_EventPhoto;
     private EditText ce_UserID;
 
-    private Button selectTypeBut;
     private Button submitBut;
     private Button test;
+
+
+    Spinner etDropdownList;
+    String eventtypes[]={"Soccer","Basketball","Badminton","Running","Swimming","Aerobics"};
+    ArrayAdapter<String>arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
+
+
+        etDropdownList=(Spinner)findViewById(R.id.events_dl);
+        arrayAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,eventtypes);
+        etDropdownList.setAdapter(arrayAdapter);
+
+        etDropdownList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getApplicationContext(),"Your selection is: "+ eventtypes[i],Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+
+
+
+        });
+
+
+
 
         ce_Event_name = findViewById(R.id.ecEventName);
         ce_EventDescription = findViewById(R.id.ecEventDescription);
@@ -38,10 +69,10 @@ public class CreateEvent extends AppCompatActivity {
         ce_EventLocation = findViewById(R.id.ecLocation);
         ce_EventDuration = findViewById(R.id.ecDurationEstimated);
         ce_UserID = findViewById(R.id.ecEmailAddress);
+        etDropdownList=(Spinner)findViewById(R.id.events_dl);
 
         submitBut = findViewById(R.id.submitBut);
         test = findViewById(R.id.cancelBut);
-        selectTypeBut = findViewById(R.id.selectTypeBut);
 
 
         submitBut.setOnClickListener(new View.OnClickListener() {
@@ -54,21 +85,17 @@ public class CreateEvent extends AppCompatActivity {
                 String str_eventlocation = ce_EventLocation.getText().toString().trim();
                 String str_eventduration = ce_EventDuration.getText().toString().trim();
                 String str_email = ce_UserID.getText().toString().trim();
+                Integer int_ce_EventCategoryID = (Integer)etDropdownList.getSelectedItem();
 
-                createNewEvent(str_eventname, str_eventdescription, 1, str_eventlocation, int_numberofpeople, str_eventduration, 2, str_email);
+
+
+                createNewEvent(str_eventname, str_eventdescription, int_ce_EventCategoryID, str_eventlocation, int_numberofpeople, str_eventduration, 2, str_email);
 
                 Intent submit = new Intent(CreateEvent.this, CreateEvent.class);
                 startActivity(submit);
             }
         });
 
-        selectTypeBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent typeSelection = new Intent(CreateEvent.this, eventTypes.class);
-                startActivity(typeSelection);
-            }
-        });
 
         test.setOnClickListener(new View.OnClickListener() {
             @Override
