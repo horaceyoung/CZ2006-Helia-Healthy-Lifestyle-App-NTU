@@ -15,6 +15,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -33,6 +34,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.maps.android.data.kml.KmlLayer;
+import com.google.maps.android.data.kml.KmlPlacemark;
 import com.zy.helia.R;
 
 import java.io.IOException;
@@ -66,7 +68,7 @@ public class HealthierEatActivity extends AppCompatActivity implements OnMapRead
         super.onCreate(savedInstanceState);
         setContentView(com.zy.helia.R.layout.activity_healthier_eateries);
         mSearchText = findViewById(com.zy.helia.R.id.search_text);
-
+        mGps = (ImageView) findViewById(R.id.ic_gps);
         getLocationPermission();
 
     }
@@ -87,6 +89,13 @@ public class HealthierEatActivity extends AppCompatActivity implements OnMapRead
                 }
 
                 return false;
+            }
+        });
+        mGps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick gps icon");
+                getDeviceLocation();
             }
         });
 
@@ -118,7 +127,6 @@ public class HealthierEatActivity extends AppCompatActivity implements OnMapRead
                 Toast.makeText(this, "The location is currently unavailable", Toast.LENGTH_SHORT);
             }
 
-//            }
         }
     }
 
@@ -147,19 +155,19 @@ public class HealthierEatActivity extends AppCompatActivity implements OnMapRead
         }
     }
 
-    private void getDeviceLocation(){
+    private void getDeviceLocation() {
         Log.d(TAG, "getDeviceLocation: getting the devices current location");
 
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-        try{
-            if(mLocationPermissionsGranted){
+        try {
+            if (mLocationPermissionsGranted) {
 
                 final Task location = mFusedLocationProviderClient.getLastLocation();
                 location.addOnCompleteListener(new OnCompleteListener() {
                     @Override
                     public void onComplete(@NonNull Task task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             Log.d(TAG, "onComplete: found location!");
                             Location currentLocation = (Location) task.getResult();
 
@@ -167,15 +175,15 @@ public class HealthierEatActivity extends AppCompatActivity implements OnMapRead
                                     DEFAULT_ZOOM,
                                     "My Location");
 
-                        }else{
+                        } else {
                             Log.d(TAG, "onComplete: current location is null");
                             Toast.makeText(HealthierEatActivity.this, "unable to get current location", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
             }
-        }catch (SecurityException e){
-            Log.e(TAG, "getDeviceLocation: SecurityException: " + e.getMessage() );
+        } catch (SecurityException e) {
+            Log.e(TAG, "getDeviceLocation: SecurityException: " + e.getMessage());
         }
     }
 
@@ -250,5 +258,4 @@ public class HealthierEatActivity extends AppCompatActivity implements OnMapRead
     private void hideSoftKeyboard() {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(mSearchText.getWindowToken(), 0);}
-
 }
