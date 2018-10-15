@@ -135,6 +135,44 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
     } //end
 
 
+  /*  public int checkUserIDByUsername(String Username){          //returns 0 if Username doesnt exist, returns UserID if it does
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "Select * from User Where Username = "+ Username;
+        Cursor c = db.rawQuery(query,null);
+        if (c.getCount() <= 0) {
+            c.close();
+            db.close();
+            return 0;
+        }
+        else{
+            int index = c.getColumnIndexOrThrow("UserID");
+            int userID = c.getInt(index);
+            c.close();
+            db.close();
+            return userID;
+        }
+    } //end
+
+    public int checkUserIDByEmail(String Email){          //returns 0 if Email doesnt exist, returns UserID if it does
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "Select * from User Where Email = "+ Email;
+        Cursor c = db.rawQuery(query,null);
+        if (c.getCount() <= 0) {
+            c.close();
+            db.close();
+            return 0;
+        }
+        else{
+            int index = c.getColumnIndexOrThrow("UserID");
+            int userID = c.getInt(index);
+            c.close();
+            db.close();
+            return userID;
+        }
+    } //end*/
+
+
+
     public int login(String Username, String Password){    // returns 0 if Username doesnt exist, returns 1 if Password matches,
         // returns 2 if Password doesnt match
 
