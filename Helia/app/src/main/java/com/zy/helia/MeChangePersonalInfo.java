@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.database.sqlite.SQLiteDatabase;
 import com.zy.helia.Event_Data.DatabaseHelp;
 import com.zy.helia.Activities.LoginActivity;
+import com.zy.helia.Account_Data.AccountContract.AccountEntry;
 
 import com.zy.helia.Activities.AdminMainPage;
 import com.zy.helia.Activities.UpdateAvatar;
@@ -41,7 +42,8 @@ public class MeChangePersonalInfo extends AppCompatActivity {
                 String newPassword  =  Password.getText().toString();
                 String newEmail = Email.getText().toString();
                 String username = LoginActivity.getUsername();
-                db.editUserInformation(username,newPassword,newEmail,1);
+                LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_EMAIL,newEmail);
+                LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_PASSWORD,newPassword);
             }
         });
 
