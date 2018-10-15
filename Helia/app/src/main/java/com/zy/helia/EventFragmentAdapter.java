@@ -13,7 +13,7 @@ import com.zy.helia.Activities.eventTypes;
 
 public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdapter.ViewHolder> {
 
-    private int[] mDataset = {-1, 0, 1, 2, 3, 4, 5, 6, 7, 8};
+    private String[] mDataset = {"Event#1","Event#2","Event#3","Event#4","Event#5"};
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
@@ -39,7 +39,7 @@ public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdap
 
     @Override
     public void onBindViewHolder(@NonNull EventFragmentAdapter.ViewHolder holder, int position) {
-        holder.button.setText(Integer.toString(mDataset[position]));
+        holder.button.setText(mDataset[position]);
     }
 
     @Override
