@@ -1,20 +1,18 @@
 package com.zy.helia.Activities;
 
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.support.v7.widget.RecyclerView.Adapter;
 
 import com.zy.helia.R;
 
-import java.util.List;
-
-public class MeRegisteredEventListAdapter extends RecyclerView.Adapter<MeRegisteredEventListAdapter.ViewHolder> {
-
+public class MeMyEventsListAdapter extends RecyclerView.Adapter<MeMyEventsListAdapter.ViewHolder> {
     private int[] mDataset = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -22,24 +20,22 @@ public class MeRegisteredEventListAdapter extends RecyclerView.Adapter<MeRegiste
         public Button button;
         public ViewHolder(View v) {
             super(v);
-            button = v.findViewById(R.id.registeredEventButton);
+            button = v.findViewById(R.id.meMyEventsButton);
         }
     }
-
-    public MeRegisteredEventListAdapter() {
-
+    public MeMyEventsListAdapter() {
     }
 
     @NonNull
     @Override
-    public MeRegisteredEventListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_me_registered_event_list_adapter, parent, false);
-        ViewHolder vh = new ViewHolder(v);
+    public MeMyEventsListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_me_my_events_list_adapter, parent, false);
+        MeMyEventsListAdapter.ViewHolder vh = new MeMyEventsListAdapter.ViewHolder(v);
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MeRegisteredEventListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MeMyEventsListAdapter.ViewHolder holder, int position) {
         holder.button.setText(Integer.toString(mDataset[position]));
     }
 

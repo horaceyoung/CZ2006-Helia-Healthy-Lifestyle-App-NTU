@@ -49,16 +49,13 @@
         <activity android:name=".Activities.TypeList" />
         <activity android:name=".MeChangePersonalInfo" />
         <activity android:name=".MeIREvents" />
-        <activity android:name=".MeMyEvents" />
+        <activity android:name=".Activities.MeMyEvents" />
         <activity android:name=".Activities.UpdateAvatar" />
         <activity android:name=".Activities.MeInterestedEventListAdopter" />
         <activity android:name=".Activities.MeInterestedEventsAdapter" />
         <activity android:name=".Activities.MeInterestedEventListAdapter" />
-<<<<<<< HEAD
-        <activity android:name=".Activities.MeRegisteredEventListAdapter"></activity>
-=======
-        <activity android:name=".Activities.eventTypesAdapter"></activity>
->>>>>>> 50f4ad77110960f7aa7393b27b7b5edc39b13b83
+        <activity android:name=".Activities.MeRegisteredEventListAdapter" />
+        <activity android:name=".Activities.MeMyEventsListAdapter"></activity>
     </application>
 
 </manifest>
