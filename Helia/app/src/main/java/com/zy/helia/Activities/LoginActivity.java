@@ -1,5 +1,6 @@
 package com.zy.helia.Activities;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -24,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private static String mCurrentUsername;
     private static String mCurrentPassword;
 
-    private AccountDBHelper mAccountHelper;
+    private static AccountDBHelper mAccountHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +92,39 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         Toast.makeText(this, "Username not found or username and password does not match.", Toast.LENGTH_SHORT).show();
+
+    }
+
+    public static void UpdateUserInfo(String updateType, String updateValue){
+        SQLiteDatabase accountDB = mAccountHelper.getReadableDatabase();
+
+        String[] accountProjection = {
+                AccountEntry._ID,
+                AccountEntry.COLUMN_USERNAME,
+                AccountEntry.COLUMN_PASSWORD,
+                AccountEntry.COLUMN_EMAIL,
+                AccountEntry.COLUMN_AVATAR,
+        };
+
+        Cursor cursor = accountDB.query(
+                AccountEntry.TABLE_NAME,
+                accountProjection,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+        int usernameIndex = cursor.getColumnIndex(AccountEntry.COLUMN_USERNAME);
+        int idIndex = cursor.getColumnIndex(AccountEntry._ID);
+        while(cursor.moveToNext()){
+            if (cursor.getString(usernameIndex).equals(mCurrentUsername)){
+                int id = cursor.getInt(idIndex);
+                ContentValues update = new ContentValues();
+                update.put(updateType, updateValue);
+                accountDB.update(AccountEntry.TABLE_NAME, update, "_id=" + String.valueOf(id), null);
+            }
+        }
 
     }
 

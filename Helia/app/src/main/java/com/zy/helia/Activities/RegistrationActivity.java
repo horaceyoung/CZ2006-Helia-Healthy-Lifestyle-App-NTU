@@ -69,6 +69,7 @@ public class RegistrationActivity extends AppCompatActivity {
         accountValues.put(AccountEntry.COLUMN_USERNAME, username);
         accountValues.put(AccountEntry.COLUMN_PASSWORD, password);
         accountValues.put(AccountEntry.COLUMN_EMAIL, email);
+        accountValues.put(AccountEntry.COLUMN_AVATAR, 1);
 
         // Insert a new row for pet in the database, returning the ID of that new row.
         long newRowId = db.insert(AccountEntry.TABLE_NAME, null, accountValues);
