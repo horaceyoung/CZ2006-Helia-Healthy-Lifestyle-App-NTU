@@ -1,6 +1,7 @@
 package com.zy.helia;
 
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.zy.helia.Activities.HealthierEatActivity;
+import com.zy.helia.RecommendedActivities.RecommendationManager;
 
 
 /**
@@ -32,7 +35,9 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
     private OnFragmentInteractionListener mListener;
     private Button home_btnHealthierEateries;
+    private ImageView swimming;
 
+    private RecommendationManager ma;
     public HomePageFragment() {
         // Required empty public constructor
     }
@@ -85,6 +90,14 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(v, savedInstanceState);
         home_btnHealthierEateries = getView().findViewById(R.id.button_healthier_eateries);
         home_btnHealthierEateries.setOnClickListener(this);
+        ma = new RecommendationManager();
+        swimming = getView().findViewById(R.id.activityImage);
+        swimming.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ma.AcquireUVlight();
+            }
+        });
     }
 
 
