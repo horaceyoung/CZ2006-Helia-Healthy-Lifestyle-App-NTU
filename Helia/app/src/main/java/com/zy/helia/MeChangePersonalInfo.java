@@ -19,10 +19,8 @@ import com.zy.helia.Event_Data.DatabaseHelp;
 public class MeChangePersonalInfo extends AppCompatActivity {
 
     private Button updateAvatar;
-    private Button Confirm = findViewById(R.id.ConfirmChangePersonalInfo);
-    private EditText Password = findViewById(R.id.inputPassword);
-    private EditText Email  = findViewById(R.id.inputEmail);
-    private DatabaseHelp db = new DatabaseHelp(this);
+
+    //private DatabaseHelp db = new DatabaseHelp(this);
 
 
     @Override
@@ -36,16 +34,19 @@ public class MeChangePersonalInfo extends AppCompatActivity {
                     startActivity(toChangeAvatar);
                 }
             });
-
+        Button Confirm = findViewById(R.id.ConfirmChangePersonalInfo);
         Confirm.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
+
+                EditText Password = findViewById(R.id.inputPassword);
+                EditText Email  = findViewById(R.id.inputEmail);
                 String newPassword  =  Password.getText().toString();
                 String newEmail = Email.getText().toString();
-                String username = LoginActivity.getUsername();
                 LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_EMAIL,newEmail);
                 LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_PASSWORD,newPassword);
+                LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_AVATAR,"1");
             }
-        });
+    });
 
 
         }
