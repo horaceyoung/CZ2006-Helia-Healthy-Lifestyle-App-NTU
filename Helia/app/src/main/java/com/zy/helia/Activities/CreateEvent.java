@@ -65,6 +65,9 @@ public class CreateEvent extends AppCompatActivity {
             }
 
 
+        });
+
+
 
 
         ce_Event_name = findViewById(R.id.ecEventName);
@@ -94,10 +97,17 @@ public class CreateEvent extends AppCompatActivity {
 
 
 
+
                 Integer int_ce_EventCategoryID = (Integer)etDropdownList.getSelectedItem();
 
 
                 createNewEvent(str_eventname, str_eventdescription, int_ce_EventCategoryID, str_eventlocation, int_numberofpeople, str_eventduration, 2, str_email);
+
+                Toast.makeText(getBaseContext(), etDropdownList.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
+
+
+                createNewEvent(str_eventname, str_eventdescription, 1, str_eventlocation, int_numberofpeople, str_eventduration, 2, str_email);
+
 
                 Toast.makeText(getBaseContext(), etDropdownList.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
 
@@ -130,7 +140,11 @@ public class CreateEvent extends AppCompatActivity {
         // Gets the database in write mode
         SQLiteDatabase cedb = ceDbHelper.getWritableDatabase();
 
+
         //ceDbHelper.createEventCategory("Soccer", "Fun");
+
+        ceDbHelper.createEventCategory("Soccer", "Fun");
+
 
 
         Integer int_userid = ceDbHelper.checkUserIDByEmail(User_ID);
