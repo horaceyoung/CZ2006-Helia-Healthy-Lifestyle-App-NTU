@@ -65,18 +65,18 @@ public class CreateEvent extends AppCompatActivity {
             }
 
 
+            ce_Event_name = findViewById(R.id.ecEventName);
+            ce_EventDescription = findViewById(R.id.ecEventDescription);
+            ce_NumberOfPeople = findViewById(R.id.ecNumberOfParticipants);
+            ce_EventLocation = findViewById(R.id.ecLocation);
+            ce_EventDuration = findViewById(R.id.ecDurationEstimated);
+            ce_UserID = findViewById(R.id.ecEmailAddress);
+            etDropdownList=(Spinner)findViewById(R.id.events_dl);
+
+            submitBut = findViewById(R.id.submitBut);
+            test = findViewById(R.id.cancelBut);
 
 
-        ce_Event_name = findViewById(R.id.ecEventName);
-        ce_EventDescription = findViewById(R.id.ecEventDescription);
-        ce_NumberOfPeople = findViewById(R.id.ecNumberOfParticipants);
-        ce_EventLocation = findViewById(R.id.ecLocation);
-        ce_EventDuration = findViewById(R.id.ecDurationEstimated);
-        ce_UserID = findViewById(R.id.ecEmailAddress);
-        etDropdownList=(Spinner)findViewById(R.id.events_dl);
-
-        submitBut = findViewById(R.id.submitBut);
-        test = findViewById(R.id.cancelBut);
 
 
         submitBut.setOnClickListener(new View.OnClickListener() {
