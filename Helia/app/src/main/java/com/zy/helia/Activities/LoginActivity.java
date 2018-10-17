@@ -26,13 +26,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private static String mCurrentUsername;
     private static String mCurrentPassword;
-<<<<<<< HEAD
     private static String mCurrentEmail;
     private static String mCurrentAvatar;
-=======
     private static int mCurrentAvatarChoice;
-    private static String mCurrentEmail;
->>>>>>> 86cd331d63a14b8de3ac04ffe43d9031652b49e8
     private static AccountDBHelper mAccountHelper;
 
     @Override
@@ -86,14 +82,9 @@ public class LoginActivity extends AppCompatActivity {
 
         int usernameIndex = cursor.getColumnIndex(AccountEntry.COLUMN_USERNAME);
         int passwordIndex = cursor.getColumnIndex(AccountEntry.COLUMN_PASSWORD);
-<<<<<<< HEAD
         int emailIndex = cursor.getColumnIndex(AccountEntry.COLUMN_EMAIL);
         int avatarIndex = cursor.getColumnIndex(AccountEntry.COLUMN_AVATAR);
 
-=======
-        int avatarChoiceIndex = cursor.getColumnIndex(AccountEntry.COLUMN_AVATAR);
-        int emailIndex = cursor.getColumnIndex(AccountEntry.COLUMN_EMAIL);
->>>>>>> 86cd331d63a14b8de3ac04ffe43d9031652b49e8
         while (cursor.moveToNext()) {
             String currentUsername = cursor.getString(usernameIndex);
             String currentPassword = cursor.getString(passwordIndex);
@@ -158,11 +149,7 @@ public class LoginActivity extends AppCompatActivity {
     public static String getPassword(){
         return mCurrentPassword;
     }
-
-<<<<<<< HEAD
     //public static String getEmail(){return }
 
-=======
     public static int gerAvatarChoice(){return mCurrentAvatarChoice;}
->>>>>>> 86cd331d63a14b8de3ac04ffe43d9031652b49e8
 }

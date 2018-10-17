@@ -1,6 +1,8 @@
 package com.zy.helia;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +15,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.zy.helia.Activities.*;
+import com.zy.helia.Event_Data.DatabaseHelp;
+
+import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
 
@@ -45,6 +50,9 @@ public class EventFragment extends Fragment implements View.OnClickListener {
     private RecyclerView mRecyclerView_Event;
     private RecyclerView.Adapter mAdapter_Event;
     private RecyclerView.LayoutManager mLayoutManager_Event;
+
+    private Cursor eventds;
+    private ArrayList<String> EventName = new ArrayList<>();
 
     public EventFragment() {
         // Required empty public constructor
@@ -102,12 +110,29 @@ public class EventFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(View v, Bundle savedInstanceState) {
         super.onViewCreated(v, savedInstanceState);
         Log.d(TAG, "Event name");
+
+        // Get all pending events
+        DatabaseHelp dbHelper = new DatabaseHelp(getContext());
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor eventCursor = dbHelper.viewPendingEvents(db);
+
+        Log.d("EventActivity", "This is called" );
+        while (eventCursor.moveToNext())
+        {
+            int eventIndex = eventCursor.getColumnIndex("Event_Name");
+            String eventName = eventCursor.getString(eventIndex);
+            Log.d("EventActivity", "Event name 1233" +eventName);
+            EventName.add(eventName);
+        }
+        db.close();
+        // Block End
+
         mRecyclerView_Event = (RecyclerView) getView().findViewById(R.id.eventrankingRV);
         mRecyclerView_Event.setHasFixedSize(true);
         mLayoutManager_Event = new LinearLayoutManager(getContext());
         mRecyclerView_Event.setLayoutManager((mLayoutManager_Event));
 
-        mAdapter_Event = new EventFragmentAdapter(getContext());
+        mAdapter_Event = new EventFragmentAdapter(getActivity().getBaseContext(), EventName);
         mRecyclerView_Event.setAdapter(mAdapter_Event);
 
         mRecyclerView_Type = (RecyclerView) getView().findViewById(R.id.typerankingRV);
