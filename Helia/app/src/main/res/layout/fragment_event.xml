@@ -12,31 +12,21 @@
         android:layout_width="399dp"
         android:layout_height="600dp">
 
-        <HorizontalScrollView
-            android:id="@+id/type"
-            android:layout_width="272dp"
-            android:layout_height="89dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
+        <view
+            android:id="@+id/typerankingRV"
+            class="android.support.v7.widget.RecyclerView"
+            android:layout_width="347dp"
+            android:layout_height="80dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/create"
+            app:layout_constraintBottom_toTopOf="@+id/ranking"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.375">
+            app:layout_constraintTop_toBottomOf="@+id/mostPopular">
 
-            <view
-                android:id="@+id/typerankingRV"
-                class="android.support.v7.widget.RecyclerView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-            </view>
-        </HorizontalScrollView>
+        </view>
 
         <Button
             android:id="@+id/create"
@@ -44,13 +34,12 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="48dp"
+            android:layout_marginBottom="64dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:text="Create Your Own Event"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
@@ -67,29 +56,32 @@
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.143" />
+            app:layout_constraintVertical_bias="0.054" />
 
         <ScrollView
             android:id="@+id/ranking"
             android:layout_width="272dp"
-            android:layout_height="179dp"
+            android:layout_height="227dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="48dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toTopOf="@+id/create"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.93">
 
             <view
                 android:id="@+id/eventrankingRV"
                 class="android.support.v7.widget.RecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:layout_editor_absoluteX="179dp"
-                tools:layout_editor_absoluteY="277dp">
+                android:layout_height="match_parent"
+                tools:layout_editor_absoluteX="71dp"
+                tools:layout_editor_absoluteY="254dp">
 
             </view>
         </ScrollView>
