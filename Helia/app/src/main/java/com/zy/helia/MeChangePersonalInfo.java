@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.ImageView;
+
 import com.zy.helia.Event_Data.DatabaseHelp;
 import com.zy.helia.Activities.LoginActivity;
 import com.zy.helia.Account_Data.AccountContract.AccountEntry;
@@ -19,16 +21,34 @@ import com.zy.helia.Event_Data.DatabaseHelp;
 public class MeChangePersonalInfo extends AppCompatActivity {
 
     private Button updateAvatar;
-    private Button Confirm = findViewById(R.id.ConfirmChangePersonalInfo);
-    private EditText Password = findViewById(R.id.inputPassword);
-    private EditText Email  = findViewById(R.id.inputEmail);
-    private DatabaseHelp db = new DatabaseHelp(this);
+    private ImageView userAvatar;
+    //private DatabaseHelp db = new DatabaseHelp(this);
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_me__change_personal_info);
+
+        userAvatar = findViewById(R.id.userAvatar);
+
+        switch (LoginActivity.gerAvatarChoice()){
+            case 1:
+                userAvatar.setImageResource(R.drawable.m01);
+                break;
+            case 2:
+                userAvatar.setImageResource(R.drawable.m02);
+                break;
+            case 3:
+                userAvatar.setImageResource(R.drawable.f01);
+                break;
+            case 4:
+                userAvatar.setImageResource(R.drawable.f02);
+                break;
+        }
+
+        //userAvatar.setImageDrawable();
+
         updateAvatar=findViewById(R.id.changeAvatar);
         updateAvatar.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View v){
@@ -36,16 +56,19 @@ public class MeChangePersonalInfo extends AppCompatActivity {
                     startActivity(toChangeAvatar);
                 }
             });
-
+        Button Confirm = findViewById(R.id.ConfirmChangePersonalInfo);
         Confirm.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
+
+                EditText Password = findViewById(R.id.inputPassword);
+                EditText Email  = findViewById(R.id.inputEmail);
                 String newPassword  =  Password.getText().toString();
                 String newEmail = Email.getText().toString();
-                String username = LoginActivity.getUsername();
                 LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_EMAIL,newEmail);
                 LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_PASSWORD,newPassword);
+
             }
-        });
+    });
 
 
         }

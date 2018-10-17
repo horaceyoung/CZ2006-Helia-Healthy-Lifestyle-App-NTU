@@ -24,7 +24,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mPassword;
     private static String mCurrentUsername;
     private static String mCurrentPassword;
-
+    private static int mCurrentAvatarChoice;
+    private static String mCurrentEmail;
     private static AccountDBHelper mAccountHelper;
 
     @Override
@@ -78,13 +79,19 @@ public class LoginActivity extends AppCompatActivity {
 
         int usernameIndex = cursor.getColumnIndex(AccountEntry.COLUMN_USERNAME);
         int passwordIndex = cursor.getColumnIndex(AccountEntry.COLUMN_PASSWORD);
+        int avatarChoiceIndex = cursor.getColumnIndex(AccountEntry.COLUMN_AVATAR);
+        int emailIndex = cursor.getColumnIndex(AccountEntry.COLUMN_EMAIL);
         while (cursor.moveToNext()) {
             String currentUsername = cursor.getString(usernameIndex);
             String currentPassword = cursor.getString(passwordIndex);
+            //int currentAvatarChoice = cursor.getInt(avatarChoiceIndex);
+            //String currentEmail = cursor.getString(emailIndex);
             Log.d(TAG, "current username is " + currentUsername + "current password is "+currentPassword);
             if (username.equals(currentUsername) && password.equals(currentPassword)) {
                 mCurrentUsername = currentUsername;
                 mCurrentPassword = currentPassword;
+                //mCurrentAvatarChoice = currentAvatarChoice;
+                //mCurrentEmail = currentEmail;
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
                 Intent loginSuccessIntent = new Intent(this, MainActivity.class);
                 startActivity(loginSuccessIntent);
@@ -139,5 +146,5 @@ public class LoginActivity extends AppCompatActivity {
         return mCurrentPassword;
     }
 
-
+    public static int gerAvatarChoice(){return mCurrentAvatarChoice;}
 }
