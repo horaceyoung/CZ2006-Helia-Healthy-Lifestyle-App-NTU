@@ -65,6 +65,7 @@ public class CreateEvent extends AppCompatActivity {
             }
 
 
+<<<<<<< HEAD
             ce_Event_name = findViewById(R.id.ecEventName);
             ce_EventDescription = findViewById(R.id.ecEventDescription);
             ce_NumberOfPeople = findViewById(R.id.ecNumberOfParticipants);
@@ -72,6 +73,11 @@ public class CreateEvent extends AppCompatActivity {
             ce_EventDuration = findViewById(R.id.ecDurationEstimated);
             ce_UserID = findViewById(R.id.ecEmailAddress);
             etDropdownList=(Spinner)findViewById(R.id.events_dl);
+=======
+        });
+
+
+>>>>>>> 67f0403346e174932dc0a5b8f275d2666be73cc3
 
             submitBut = findViewById(R.id.submitBut);
             test = findViewById(R.id.cancelBut);
@@ -94,10 +100,17 @@ public class CreateEvent extends AppCompatActivity {
 
 
 
+
                 Integer int_ce_EventCategoryID = (Integer)etDropdownList.getSelectedItem();
 
 
                 createNewEvent(str_eventname, str_eventdescription, int_ce_EventCategoryID, str_eventlocation, int_numberofpeople, str_eventduration, 2, str_email);
+
+                Toast.makeText(getBaseContext(), etDropdownList.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
+
+
+                createNewEvent(str_eventname, str_eventdescription, 1, str_eventlocation, int_numberofpeople, str_eventduration, 2, str_email);
+
 
                 Toast.makeText(getBaseContext(), etDropdownList.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
 
@@ -130,7 +143,11 @@ public class CreateEvent extends AppCompatActivity {
         // Gets the database in write mode
         SQLiteDatabase cedb = ceDbHelper.getWritableDatabase();
 
+
         //ceDbHelper.createEventCategory("Soccer", "Fun");
+
+        ceDbHelper.createEventCategory("Soccer", "Fun");
+
 
 
         Integer int_userid = ceDbHelper.checkUserIDByEmail(User_ID);
