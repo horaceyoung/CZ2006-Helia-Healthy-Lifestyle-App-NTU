@@ -24,7 +24,7 @@ public class EventList extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager((mLayoutManager));
 
-        mAdapter = new EventListAdapter();
+        mAdapter = new EventListAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
 
     }

@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class EventFragmentType extends RecyclerView.Adapter<EventFragmentType.ViewHolder> {
 
-    private int[] mDataset = {-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8};
+    private String[] mDataset = {"Type#1", "Type#2", "Type#3", "MORE"};
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
@@ -27,14 +27,14 @@ public class EventFragmentType extends RecyclerView.Adapter<EventFragmentType.Vi
     @NonNull
     @Override
     public EventFragmentType.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_event_adapter, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_event_type, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull EventFragmentType.ViewHolder holder, int position) {
-        holder.button.setText(Integer.toString(mDataset[position]));
+        holder.button.setText(mDataset[position]);
     }
 
     @Override
