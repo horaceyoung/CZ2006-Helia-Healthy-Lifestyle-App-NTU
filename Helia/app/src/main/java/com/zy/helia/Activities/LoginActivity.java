@@ -22,9 +22,12 @@ public class LoginActivity extends AppCompatActivity {
     private Button mLoginBtn;
     private EditText mUsername;
     private EditText mPassword;
+
+
     private static String mCurrentUsername;
     private static String mCurrentPassword;
-
+    private static String mCurrentEmail;
+    private static String mCurrentAvatar;
     private static AccountDBHelper mAccountHelper;
 
     @Override
@@ -78,6 +81,9 @@ public class LoginActivity extends AppCompatActivity {
 
         int usernameIndex = cursor.getColumnIndex(AccountEntry.COLUMN_USERNAME);
         int passwordIndex = cursor.getColumnIndex(AccountEntry.COLUMN_PASSWORD);
+        int emailIndex = cursor.getColumnIndex(AccountEntry.COLUMN_EMAIL);
+        int avatarIndex = cursor.getColumnIndex(AccountEntry.COLUMN_AVATAR);
+
         while (cursor.moveToNext()) {
             String currentUsername = cursor.getString(usernameIndex);
             String currentPassword = cursor.getString(passwordIndex);
@@ -139,5 +145,6 @@ public class LoginActivity extends AppCompatActivity {
         return mCurrentPassword;
     }
 
+    //public static String getEmail(){return }
 
 }

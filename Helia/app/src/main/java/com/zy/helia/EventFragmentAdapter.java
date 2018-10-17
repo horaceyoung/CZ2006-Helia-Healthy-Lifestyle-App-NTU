@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zy.helia.Activities.EventDetail;
 import com.zy.helia.Event_Data.DatabaseHelp;
@@ -28,14 +29,17 @@ public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdap
     private ArrayList<String> EventName = new ArrayList<>();
 
 
+
     public EventFragmentAdapter(Context context) {
         this.context = context;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        public View mView;
         // each data item is just a string in this case
         public ViewHolder(final View v) {
             super(v);
+            mView = v;
         }
     }
 
@@ -49,32 +53,38 @@ public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdap
 
     @Override
     public void onBindViewHolder(@NonNull final EventFragmentAdapter.ViewHolder holder, final int position) {
-        try {
-            DatabaseHelp db = new DatabaseHelp(context);
-            eventds = db.viewPendingEvents();
-            if(eventds==null)
-                Log.d(TAG, "NULL");
-        }
-        catch (Exception e){
-            Log.d(TAG, "ERROR");
-        }
-        while (eventds.moveToNext())
-        {
-            int eventIndex = eventds.getColumnIndex("Event_Name");
-            String eventName = eventds.getString(eventIndex);
-            Log.d(TAG, "Event name" +eventName);
-            EventName.add(eventName);
-        }
-        button.setText(EventName.get(position));
-
-        button = holder.itemView.findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+//        try {
+//            DatabaseHelp db = new DatabaseHelp(context);
+//            eventds = db.viewPendingEvents();
+//            if(eventds==null)
+//                Log.d(TAG, "NULL");
+//        }
+//        catch (Exception e){
+//            Log.d(TAG, "ERROR");
+//        }
+//        while (eventds.moveToNext())
+//        {
+//            int eventIndex = eventds.getColumnIndex("Event_Name");
+//            String eventName = eventds.getString(eventIndex);
+//            Log.d(TAG, "Event name" +eventName);
+//            EventName.add(eventName);
+//        }
+//        button.setText(EventName.get(position));
+//
+//        button = holder.itemView.findViewById(R.id.button);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                TextView name = holder.itemView.findViewById(R.id.name);
+//                name.setText(EventName.get(position));
+//                Intent startNewActivity = new Intent(context,EventDetail.class);
+//                context.startActivity(startNewActivity);
+//            }
+//        });
+        holder.mView.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView name = holder.itemView.findViewById(R.id.name);
-                name.setText(EventName.get(position));
-                Intent startNewActivity = new Intent(context,EventDetail.class);
-                context.startActivity(startNewActivity);
+                Toast.makeText(context, "clicked", Toast.LENGTH_LONG).show();;
             }
         });
     }
