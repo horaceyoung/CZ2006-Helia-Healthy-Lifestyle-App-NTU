@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.common.server.converter.StringToIntConverter;
 import com.zy.helia.Event_Data.DatabaseHelp;
 import com.zy.helia.R;
 
@@ -32,8 +33,10 @@ public class CreateEvent extends AppCompatActivity {
 
 
     Spinner etDropdownList;
+    Spinner Array;
     String eventtypes[]={"Soccer","Basketball","Badminton","Running","Swimming","Aerobics"};
     ArrayAdapter<String>arrayAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,11 @@ public class CreateEvent extends AppCompatActivity {
         arrayAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,eventtypes);
         etDropdownList.setAdapter(arrayAdapter);
 
+
+
+
+
+
         etDropdownList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -55,10 +63,6 @@ public class CreateEvent extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-
-
-
-        });
 
 
 
@@ -85,11 +89,21 @@ public class CreateEvent extends AppCompatActivity {
                 String str_eventlocation = ce_EventLocation.getText().toString().trim();
                 String str_eventduration = ce_EventDuration.getText().toString().trim();
                 String str_email = ce_UserID.getText().toString().trim();
+
+
+
+
+
                 Integer int_ce_EventCategoryID = (Integer)etDropdownList.getSelectedItem();
 
 
-
                 createNewEvent(str_eventname, str_eventdescription, int_ce_EventCategoryID, str_eventlocation, int_numberofpeople, str_eventduration, 2, str_email);
+
+                Toast.makeText(getBaseContext(), etDropdownList.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
+
+
+                createNewEvent(str_eventname, str_eventdescription, 1, str_eventlocation, int_numberofpeople, str_eventduration, 2, str_email);
+
 
                 Intent submit = new Intent(CreateEvent.this, CreateEvent.class);
                 startActivity(submit);
@@ -115,6 +129,9 @@ public class CreateEvent extends AppCompatActivity {
         DatabaseHelp ceDbHelper = new DatabaseHelp(this);
         // Gets the database in write mode
         SQLiteDatabase cedb = ceDbHelper.getWritableDatabase();
+
+        //ceDbHelper.createEventCategory("Soccer", "Fun");
+
 
         Integer int_userid = ceDbHelper.checkUserIDByEmail(User_ID);
 
