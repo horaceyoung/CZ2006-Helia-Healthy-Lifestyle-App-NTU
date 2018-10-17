@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.content.Intent;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.zy.helia.Activities.LoginActivity;
 import com.zy.helia.Activities.MeMyEvents;
@@ -36,7 +37,7 @@ public class MeFragment extends Fragment implements View.OnClickListener{
     public Button LogOut;
     private TextView userid;
     private OnFragmentInteractionListener mListener;
-
+    private ImageView Avatar;
     public MeFragment() {
         // Required empty public constructor
     }
@@ -76,9 +77,10 @@ public class MeFragment extends Fragment implements View.OnClickListener{
         IREvents.setOnClickListener(this);
         MyEvents = view.findViewById(R.id.MyEvents);
         MyEvents.setOnClickListener(this);
-
-        TextView UserId = view.findViewById(R.id.UserId);
-        UserId.setText(LoginActivity.getUsername());
+        Avatar=view.findViewById(R.id.UserDp);
+        Avatar.setImageResource(R.drawable.m01);
+        userid = view.findViewById(R.id.UserId);
+        userid.setText(LoginActivity.getUsername());
         return view;
     }
 

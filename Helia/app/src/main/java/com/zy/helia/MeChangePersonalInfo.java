@@ -32,7 +32,8 @@ public class MeChangePersonalInfo extends AppCompatActivity {
 
         userAvatar = findViewById(R.id.userAvatar);
 
-        switch (LoginActivity.gerAvatarChoice()){
+        //switch (LoginActivity.gerAvatarChoice()){
+        switch (1){
             case 1:
                 userAvatar.setImageResource(R.drawable.m01);
                 break;

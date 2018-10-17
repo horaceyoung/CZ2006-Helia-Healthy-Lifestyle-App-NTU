@@ -65,19 +65,16 @@ public class CreateEvent extends AppCompatActivity {
             }
 
 
-<<<<<<< HEAD
-            ce_Event_name = findViewById(R.id.ecEventName);
-            ce_EventDescription = findViewById(R.id.ecEventDescription);
-            ce_NumberOfPeople = findViewById(R.id.ecNumberOfParticipants);
-            ce_EventLocation = findViewById(R.id.ecLocation);
-            ce_EventDuration = findViewById(R.id.ecDurationEstimated);
-            ce_UserID = findViewById(R.id.ecEmailAddress);
-            etDropdownList=(Spinner)findViewById(R.id.events_dl);
-=======
         });
 
+        ce_Event_name = findViewById(R.id.ecEventName);
+        ce_EventDescription = findViewById(R.id.ecEventDescription);
+        ce_NumberOfPeople = findViewById(R.id.ecNumberOfParticipants);
+        ce_EventLocation = findViewById(R.id.ecLocation);
+        ce_EventDuration = findViewById(R.id.ecDurationEstimated);
+        ce_UserID = findViewById(R.id.ecEmailAddress);
+        etDropdownList=(Spinner)findViewById(R.id.events_dl);
 
->>>>>>> 67f0403346e174932dc0a5b8f275d2666be73cc3
 
             submitBut = findViewById(R.id.submitBut);
             test = findViewById(R.id.cancelBut);
