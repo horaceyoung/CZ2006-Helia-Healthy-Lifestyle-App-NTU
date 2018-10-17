@@ -92,12 +92,12 @@ public class LoginActivity extends AppCompatActivity {
                 mCurrentPassword = currentPassword;
                 //mCurrentAvatarChoice = currentAvatarChoice;
                 //mCurrentEmail = currentEmail;
-                Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
                 Intent loginSuccessIntent = new Intent(this, MainActivity.class);
                 startActivity(loginSuccessIntent);
             }
             else{
-                Toast.makeText(this, "Username not found or username and password does not match.", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Username not found or username and password does not match.", Toast.LENGTH_SHORT).show();
             }
         }
 

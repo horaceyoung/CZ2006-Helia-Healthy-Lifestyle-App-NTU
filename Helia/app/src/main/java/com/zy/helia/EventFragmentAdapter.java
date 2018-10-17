@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zy.helia.Activities.EventDetail;
 import com.zy.helia.Event_Data.DatabaseHelp;
@@ -49,20 +50,21 @@ public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdap
 
     @Override
     public void onBindViewHolder(@NonNull final EventFragmentAdapter.ViewHolder holder, final int position) {
+        Toast.makeText(context,"WuZiang",Toast.LENGTH_LONG).show();
         try {
             DatabaseHelp db = new DatabaseHelp(context);
             eventds = db.viewPendingEvents();
             if(eventds==null)
-                Log.d(TAG, "NULL");
+                Toast.makeText(context,"Null",Toast.LENGTH_LONG).show();
         }
         catch (Exception e){
-            Log.d(TAG, "ERROR");
+            Toast.makeText(context,"Error",Toast.LENGTH_LONG).show();
         }
         while (eventds.moveToNext())
         {
             int eventIndex = eventds.getColumnIndex("Event_Name");
             String eventName = eventds.getString(eventIndex);
-            Log.d(TAG, "Event name" +eventName);
+            Toast.makeText(context,eventName,Toast.LENGTH_LONG).show();
             EventName.add(eventName);
         }
         button.setText(EventName.get(position));

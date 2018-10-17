@@ -25,7 +25,7 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".Activities.LoginActivity">
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,7 +34,6 @@
         </activity>
         <activity android:name=".Activities.HealthierEatActivity" />
         <activity android:name=".Activities.RegistrationActivity" />
-        <activity android:name=".Activities.MainActivity" />
         <activity android:name=".Activities.adminLogOut" />
         <activity android:name=".Activities.AdminMainPage" />
         <activity android:name=".Activities.CreateEvent" />
