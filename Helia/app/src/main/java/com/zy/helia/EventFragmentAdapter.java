@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zy.helia.Activities.EventDetail;
 import com.zy.helia.Event_Data.DatabaseHelp;
@@ -49,6 +50,7 @@ public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdap
 
     @Override
     public void onBindViewHolder(@NonNull final EventFragmentAdapter.ViewHolder holder, final int position) {
+        Toast.makeText(context, "onBindViewHolder", Toast.LENGTH_SHORT).show();
         try {
             DatabaseHelp db = new DatabaseHelp(context);
             eventds = db.viewPendingEvents();
