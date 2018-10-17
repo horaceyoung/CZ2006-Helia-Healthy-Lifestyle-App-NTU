@@ -114,7 +114,7 @@ public class CreateEvent extends AppCompatActivity {
         // Gets the database in write mode
         SQLiteDatabase cedb = ceDbHelper.getWritableDatabase();
 
-        //ceDbHelper.createEventCategory("Soccer", "Fun");
+        ceDbHelper.createEventCategory("Soccer", "Fun");
 
 
         Integer int_userid = ceDbHelper.checkUserIDByEmail(User_ID);
