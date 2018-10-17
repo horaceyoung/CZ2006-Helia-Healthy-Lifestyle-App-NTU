@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.zy.helia.Activities.*;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,9 +39,12 @@ public class EventFragment extends Fragment implements View.OnClickListener {
     private Button mostPopular;
     private Button create;
 
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView mRecyclerView_Type;
+    private RecyclerView.Adapter mAdapter_Type;
+    private RecyclerView.LayoutManager mLayoutManager_Type;
+    private RecyclerView mRecyclerView_Event;
+    private RecyclerView.Adapter mAdapter_Event;
+    private RecyclerView.LayoutManager mLayoutManager_Event;
 
     public EventFragment() {
         // Required empty public constructor
@@ -84,25 +90,33 @@ public class EventFragment extends Fragment implements View.OnClickListener {
             mListener.onFragmentInteraction(uri);
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mRecyclerView_Event.setAdapter(mAdapter_Event);
+        mRecyclerView_Type.setLayoutManager((mLayoutManager_Type));
+    }
+
     @Override
     public void onViewCreated(View v, Bundle savedInstanceState) {
         super.onViewCreated(v, savedInstanceState);
+        Log.d(TAG, "Event name");
+        mRecyclerView_Event = (RecyclerView) getView().findViewById(R.id.eventrankingRV);
+        mRecyclerView_Event.setHasFixedSize(true);
+        mLayoutManager_Event = new LinearLayoutManager(getContext());
+        mRecyclerView_Event.setLayoutManager((mLayoutManager_Event));
 
-        mRecyclerView = (RecyclerView) getView().findViewById(R.id.eventrankingRV);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getContext());
-        mRecyclerView.setLayoutManager((mLayoutManager));
+        mAdapter_Event = new EventFragmentAdapter(getContext());
+        mRecyclerView_Event.setAdapter(mAdapter_Event);
 
-        mAdapter = new EventFragmentAdapter();
-        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView_Type = (RecyclerView) getView().findViewById(R.id.typerankingRV);
+        mRecyclerView_Type.setHasFixedSize(true);
+        mLayoutManager_Type = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        mRecyclerView_Type.setLayoutManager((mLayoutManager_Type));
 
-        mRecyclerView = (RecyclerView) getView().findViewById(R.id.typerankingRV);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        mRecyclerView.setLayoutManager((mLayoutManager));
-
-        mAdapter = new EventFragmentType();
-        mRecyclerView.setAdapter(mAdapter);
+        mAdapter_Type = new EventFragmentType();
+        mRecyclerView_Type.setAdapter(mAdapter_Type);
 
         mostPopular = getView().findViewById(R.id.mostPopular);
         mostPopular.setOnClickListener(this);

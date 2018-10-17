@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.common.server.converter.StringToIntConverter;
 import com.zy.helia.Event_Data.DatabaseHelp;
 import com.zy.helia.R;
 
@@ -56,8 +57,6 @@ public class CreateEvent extends AppCompatActivity {
 
             }
 
-
-
         });
 
 
@@ -85,11 +84,10 @@ public class CreateEvent extends AppCompatActivity {
                 String str_eventlocation = ce_EventLocation.getText().toString().trim();
                 String str_eventduration = ce_EventDuration.getText().toString().trim();
                 String str_email = ce_UserID.getText().toString().trim();
-                Integer int_ce_EventCategoryID = (Integer)etDropdownList.getSelectedItem();
+                Toast.makeText(getBaseContext(), etDropdownList.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
 
 
-
-                createNewEvent(str_eventname, str_eventdescription, int_ce_EventCategoryID, str_eventlocation, int_numberofpeople, str_eventduration, 2, str_email);
+                createNewEvent(str_eventname, str_eventdescription, 1, str_eventlocation, int_numberofpeople, str_eventduration, 2, str_email);
 
                 Intent submit = new Intent(CreateEvent.this, CreateEvent.class);
                 startActivity(submit);
@@ -115,6 +113,9 @@ public class CreateEvent extends AppCompatActivity {
         DatabaseHelp ceDbHelper = new DatabaseHelp(this);
         // Gets the database in write mode
         SQLiteDatabase cedb = ceDbHelper.getWritableDatabase();
+
+        //ceDbHelper.createEventCategory("Soccer", "Fun");
+
 
         Integer int_userid = ceDbHelper.checkUserIDByEmail(User_ID);
 
