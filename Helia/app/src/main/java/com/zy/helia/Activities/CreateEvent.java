@@ -98,21 +98,21 @@ public class CreateEvent extends AppCompatActivity {
 
 
 
-                Integer int_ce_EventCategoryID = (Integer)etDropdownList.getSelectedItem();
+                //int int_ce_EventCategoryID = (Integer)etDropdownList.getSelectedItem();
 
 
-                createNewEvent(str_eventname, str_eventdescription, int_ce_EventCategoryID, str_eventlocation, int_numberofpeople, str_eventduration, 2, str_email);
+                //createNewEvent(str_eventname, str_eventdescription, int_ce_EventCategoryID, str_eventlocation, int_numberofpeople, str_eventduration, 2, str_email);
 
-                Toast.makeText(getBaseContext(), etDropdownList.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
-
-
-                createNewEvent(str_eventname, str_eventdescription, 1, str_eventlocation, int_numberofpeople, str_eventduration, 2, str_email);
+                //Toast.makeText(getBaseContext(), etDropdownList.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
 
 
-                Toast.makeText(getBaseContext(), etDropdownList.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
+                //createNewEvent(str_eventname, str_eventdescription, 1, str_eventlocation, int_numberofpeople, str_eventduration, 2, str_email);
 
 
-                createNewEvent(str_eventname, str_eventdescription, 1, str_eventlocation, int_numberofpeople, str_eventduration, 2, str_email);
+                //Toast.makeText(getBaseContext(), etDropdownList.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
+
+
+                createNewEvent(str_eventname, str_eventdescription, 0, str_eventlocation, int_numberofpeople, str_eventduration, 2,str_email);
 
 
                 Intent submit = new Intent(CreateEvent.this, CreateEvent.class);
@@ -133,7 +133,7 @@ public class CreateEvent extends AppCompatActivity {
     }
 
 
-    private void createNewEvent(String Event_Name, String Event_Description, int Event_Category_ID, String Event_Location, int Number_Of_People, String Event_Duration, int Event_Picture, String User_ID){
+    private void createNewEvent(String Event_Name, String Event_Description, int Category_Id, String Event_Location, int Number_Of_People, String Event_Duration, int Event_Picture,String Email){
 
         // Create database helper
         DatabaseHelp ceDbHelper = new DatabaseHelp(this);
@@ -143,14 +143,11 @@ public class CreateEvent extends AppCompatActivity {
 
         //ceDbHelper.createEventCategory("Soccer", "Fun");
 
-        ceDbHelper.createEventCategory("Soccer", "Fun");
-
-
-
-        Integer int_userid = ceDbHelper.checkUserIDByEmail(User_ID);
+        //ceDbHelper.createEventCategory("Soccer", "Fun");
+        //Integer int_userid = ceDbHelper.checkUserIDByEmail(Email);
 
         // lack int categoryid & photo->1-5   ??
-        ceDbHelper.createEvent(Event_Name, Event_Description, Event_Category_ID, Event_Location, Number_Of_People, Event_Duration, Event_Picture, int_userid );
+        ceDbHelper.createEvent(Event_Name, Event_Description, 0, Event_Location, Number_Of_People, Event_Duration, Event_Picture, 9 );
     }
 
 
