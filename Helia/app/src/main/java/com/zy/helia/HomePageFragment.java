@@ -90,7 +90,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(v, savedInstanceState);
         home_btnHealthierEateries = getView().findViewById(R.id.button_healthier_eateries);
         home_btnHealthierEateries.setOnClickListener(this);
-        ma = new RecommendationManager();
+        ma = new RecommendationManager(getContext());
         swimming = getView().findViewById(R.id.activityImage);
         swimming.setOnClickListener(new View.OnClickListener() {
             @Override
