@@ -26,8 +26,13 @@ public class LoginActivity extends AppCompatActivity {
 
     private static String mCurrentUsername;
     private static String mCurrentPassword;
+<<<<<<< HEAD
     private static String mCurrentEmail;
     private static String mCurrentAvatar;
+=======
+    private static int mCurrentAvatarChoice;
+    private static String mCurrentEmail;
+>>>>>>> 86cd331d63a14b8de3ac04ffe43d9031652b49e8
     private static AccountDBHelper mAccountHelper;
 
     @Override
@@ -81,22 +86,31 @@ public class LoginActivity extends AppCompatActivity {
 
         int usernameIndex = cursor.getColumnIndex(AccountEntry.COLUMN_USERNAME);
         int passwordIndex = cursor.getColumnIndex(AccountEntry.COLUMN_PASSWORD);
+<<<<<<< HEAD
         int emailIndex = cursor.getColumnIndex(AccountEntry.COLUMN_EMAIL);
         int avatarIndex = cursor.getColumnIndex(AccountEntry.COLUMN_AVATAR);
 
+=======
+        int avatarChoiceIndex = cursor.getColumnIndex(AccountEntry.COLUMN_AVATAR);
+        int emailIndex = cursor.getColumnIndex(AccountEntry.COLUMN_EMAIL);
+>>>>>>> 86cd331d63a14b8de3ac04ffe43d9031652b49e8
         while (cursor.moveToNext()) {
             String currentUsername = cursor.getString(usernameIndex);
             String currentPassword = cursor.getString(passwordIndex);
+            //int currentAvatarChoice = cursor.getInt(avatarChoiceIndex);
+            //String currentEmail = cursor.getString(emailIndex);
             Log.d(TAG, "current username is " + currentUsername + "current password is "+currentPassword);
             if (username.equals(currentUsername) && password.equals(currentPassword)) {
                 mCurrentUsername = currentUsername;
                 mCurrentPassword = currentPassword;
-                Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
+                //mCurrentAvatarChoice = currentAvatarChoice;
+                //mCurrentEmail = currentEmail;
+                //Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
                 Intent loginSuccessIntent = new Intent(this, MainActivity.class);
                 startActivity(loginSuccessIntent);
             }
             else{
-                Toast.makeText(this, "Username not found or username and password does not match.", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Username not found or username and password does not match.", Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -145,6 +159,10 @@ public class LoginActivity extends AppCompatActivity {
         return mCurrentPassword;
     }
 
+<<<<<<< HEAD
     //public static String getEmail(){return }
 
+=======
+    public static int gerAvatarChoice(){return mCurrentAvatarChoice;}
+>>>>>>> 86cd331d63a14b8de3ac04ffe43d9031652b49e8
 }
