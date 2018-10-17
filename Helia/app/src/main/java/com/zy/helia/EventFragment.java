@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.zy.helia.Activities.*;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -98,7 +101,7 @@ public class EventFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(View v, Bundle savedInstanceState) {
         super.onViewCreated(v, savedInstanceState);
-
+        Log.d(TAG, "Event name");
         mRecyclerView_Event = (RecyclerView) getView().findViewById(R.id.eventrankingRV);
         mRecyclerView_Event.setHasFixedSize(true);
         mLayoutManager_Event = new LinearLayoutManager(getContext());

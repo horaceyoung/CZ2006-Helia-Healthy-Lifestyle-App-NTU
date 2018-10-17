@@ -57,8 +57,6 @@ public class CreateEvent extends AppCompatActivity {
 
             }
 
-
-
         });
 
 
@@ -89,8 +87,7 @@ public class CreateEvent extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), etDropdownList.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
 
 
-
-                createNewEvent(str_eventname, str_eventdescription, 0, str_eventlocation, int_numberofpeople, str_eventduration, 2, str_email);
+                createNewEvent(str_eventname, str_eventdescription, 1, str_eventlocation, int_numberofpeople, str_eventduration, 2, str_email);
 
                 Intent submit = new Intent(CreateEvent.this, CreateEvent.class);
                 startActivity(submit);
@@ -116,6 +113,9 @@ public class CreateEvent extends AppCompatActivity {
         DatabaseHelp ceDbHelper = new DatabaseHelp(this);
         // Gets the database in write mode
         SQLiteDatabase cedb = ceDbHelper.getWritableDatabase();
+
+        //ceDbHelper.createEventCategory("Soccer", "Fun");
+
 
         Integer int_userid = ceDbHelper.checkUserIDByEmail(User_ID);
 

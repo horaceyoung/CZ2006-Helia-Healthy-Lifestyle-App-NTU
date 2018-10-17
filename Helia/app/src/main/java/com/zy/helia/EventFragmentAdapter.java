@@ -17,6 +17,8 @@ import com.zy.helia.Event_Data.DatabaseHelp;
 
 import java.util.ArrayList;
 
+import static android.content.ContentValues.TAG;
+
 public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdapter.ViewHolder> {
 
     private static Context context;
@@ -48,15 +50,19 @@ public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdap
     @Override
     public void onBindViewHolder(@NonNull final EventFragmentAdapter.ViewHolder holder, final int position) {
         try {
-            eventds = new DatabaseHelp(context).viewPopularEvents(0);
+            DatabaseHelp db = new DatabaseHelp(context);
+            eventds = db.viewPendingEvents();
+            if(eventds==null)
+                Log.d(TAG, "NULL");
         }
         catch (Exception e){
-            System.out.print("NOTHING");
+            Log.d(TAG, "ERROR");
         }
         while (eventds.moveToNext())
         {
             int eventIndex = eventds.getColumnIndex("Event_Name");
             String eventName = eventds.getString(eventIndex);
+            Log.d(TAG, "Event name" +eventName);
             EventName.add(eventName);
         }
         button.setText(EventName.get(position));
