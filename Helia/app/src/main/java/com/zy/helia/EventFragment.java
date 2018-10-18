@@ -51,7 +51,7 @@ public class EventFragment extends Fragment implements View.OnClickListener {
     private RecyclerView.Adapter mAdapter_Event;
     private RecyclerView.LayoutManager mLayoutManager_Event;
 
-    private Cursor eventds;
+    // creates a ArrayList of String to store all the names
     private ArrayList<String> EventName = new ArrayList<>();
 
     public EventFragment() {
@@ -111,27 +111,35 @@ public class EventFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(v, savedInstanceState);
         Log.d(TAG, "Event name");
 
-        // Get all pending events
+        // declare a DatabaseHelp and a SQLiteDabtaBase corresponding to the DatabaseHelp
         DatabaseHelp dbHelper = new DatabaseHelp(getContext());
         SQLiteDatabase db = dbHelper.getReadableDatabase();
+        // declare a Cursor and using it to fetch data from the database by corresponding function
+        // before using the function in the DatabaseHelp - edit the function
+        // 1 - instead of declaring the SQLiteDabtaBase in the function, pass the SQLiteDabtaBase declared here into the function
+        // 2 - remove the line which close the database
         Cursor eventCursor = dbHelper.viewPendingEvents(db);
 
-        Log.d("EventActivity", "This is called" );
         while (eventCursor.moveToNext())
         {
+            int idIndex = eventCursor.getColumnIndex("Event_ID");
             int eventIndex = eventCursor.getColumnIndex("Event_Name");
+
+            int eventID = eventCursor.getInt(idIndex);
+
             String eventName = eventCursor.getString(eventIndex);
-            Log.d("EventActivity", "Event name 1233" +eventName);
             EventName.add(eventName);
         }
+
+        // only close the database when all the data have been fetched
         db.close();
-        // Block End
 
         mRecyclerView_Event = (RecyclerView) getView().findViewById(R.id.eventrankingRV);
         mRecyclerView_Event.setHasFixedSize(true);
         mLayoutManager_Event = new LinearLayoutManager(getContext());
         mRecyclerView_Event.setLayoutManager((mLayoutManager_Event));
 
+        // pass the ArrayList EventName into the Adapter
         mAdapter_Event = new EventFragmentAdapter(getActivity().getBaseContext(), EventName);
         mRecyclerView_Event.setAdapter(mAdapter_Event);
 
