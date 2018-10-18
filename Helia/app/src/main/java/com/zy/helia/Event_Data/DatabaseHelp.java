@@ -374,11 +374,10 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
 
     }//end
 
-    public Cursor viewPendingEvents(){ // View the list of Pending Events
-        SQLiteDatabase db = this.getWritableDatabase();
+    public Cursor viewPendingEvents(SQLiteDatabase db){ // View the list of Pending Events
+        db = this.getWritableDatabase();
         String query = "Select * from Event Where Event_Approval_Status = 'Pending'";
         Cursor c = db.rawQuery(query, null);
-        db.close();
         return c;
 
     }//end

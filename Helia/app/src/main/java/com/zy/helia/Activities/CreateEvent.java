@@ -67,9 +67,6 @@ public class CreateEvent extends AppCompatActivity {
 
         });
 
-
-
-
         ce_Event_name = findViewById(R.id.ecEventName);
         ce_EventDescription = findViewById(R.id.ecEventDescription);
         ce_NumberOfPeople = findViewById(R.id.ecNumberOfParticipants);
@@ -78,8 +75,11 @@ public class CreateEvent extends AppCompatActivity {
         ce_UserID = findViewById(R.id.ecEmailAddress);
         etDropdownList=(Spinner)findViewById(R.id.events_dl);
 
-        submitBut = findViewById(R.id.submitBut);
-        test = findViewById(R.id.cancelBut);
+
+            submitBut = findViewById(R.id.submitBut);
+            test = findViewById(R.id.cancelBut);
+
+
 
 
         submitBut.setOnClickListener(new View.OnClickListener() {

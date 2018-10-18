@@ -22,6 +22,11 @@ public class MeChangePersonalInfo extends AppCompatActivity {
 
     private Button updateAvatar;
     private ImageView userAvatar;
+    private Button Confirm;
+    private EditText Password;
+    private EditText Email;
+    private String newPassword;
+    private String newEmail;
     //private DatabaseHelp db = new DatabaseHelp(this);
 
 
@@ -32,7 +37,7 @@ public class MeChangePersonalInfo extends AppCompatActivity {
 
         userAvatar = findViewById(R.id.userAvatar);
 
-        switch (LoginActivity.gerAvatarChoice()){
+        switch (LoginActivity.getAvatarChoice()){
             case 1:
                 userAvatar.setImageResource(R.drawable.m01);
                 break;
@@ -47,7 +52,6 @@ public class MeChangePersonalInfo extends AppCompatActivity {
                 break;
         }
 
-        //userAvatar.setImageDrawable();
 
         updateAvatar=findViewById(R.id.changeAvatar);
         updateAvatar.setOnClickListener(new View.OnClickListener(){
@@ -56,14 +60,14 @@ public class MeChangePersonalInfo extends AppCompatActivity {
                     startActivity(toChangeAvatar);
                 }
             });
-        Button Confirm = findViewById(R.id.ConfirmChangePersonalInfo);
+
+        Confirm = findViewById(R.id.ConfirmChangePersonalInfo);
         Confirm.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-
-                EditText Password = findViewById(R.id.inputPassword);
-                EditText Email  = findViewById(R.id.inputEmail);
-                String newPassword  =  Password.getText().toString();
-                String newEmail = Email.getText().toString();
+                Password = findViewById(R.id.inputPassword);
+                Email  = findViewById(R.id.inputEmail);
+                newPassword  =  Password.getText().toString();
+                newEmail = Email.getText().toString();
                 LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_EMAIL,newEmail);
                 LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_PASSWORD,newPassword);
 
