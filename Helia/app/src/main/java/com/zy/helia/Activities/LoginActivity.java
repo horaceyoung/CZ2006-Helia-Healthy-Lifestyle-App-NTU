@@ -68,6 +68,8 @@ public class LoginActivity extends AppCompatActivity {
                 AccountEntry._ID,
                 AccountEntry.COLUMN_USERNAME,
                 AccountEntry.COLUMN_PASSWORD,
+                AccountEntry.COLUMN_AVATAR,
+                AccountEntry.COLUMN_EMAIL
         };
 
         Cursor cursor = accountDB.query(
@@ -88,15 +90,15 @@ public class LoginActivity extends AppCompatActivity {
         while (cursor.moveToNext()) {
             String currentUsername = cursor.getString(usernameIndex);
             String currentPassword = cursor.getString(passwordIndex);
-            //int currentAvatarChoice = cursor.getInt(avatarChoiceIndex);
-            //String currentEmail = cursor.getString(emailIndex);
+            int currentAvatarChoice = cursor.getInt(avatarIndex);
+            String currentEmail = cursor.getString(emailIndex);
             Log.d(TAG, "current username is " + currentUsername + "current password is "+currentPassword);
             if (username.equals(currentUsername) && password.equals(currentPassword)) {
                 mCurrentUsername = currentUsername;
                 mCurrentPassword = currentPassword;
-                //mCurrentAvatarChoice = currentAvatarChoice;
-                //mCurrentEmail = currentEmail;
-                //Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
+                mCurrentAvatarChoice = currentAvatarChoice;
+                mCurrentEmail = currentEmail;
+                Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
                 Intent loginSuccessIntent = new Intent(this, MainActivity.class);
                 startActivity(loginSuccessIntent);
             }
@@ -135,7 +137,10 @@ public class LoginActivity extends AppCompatActivity {
             if (cursor.getString(usernameIndex).equals(mCurrentUsername)){
                 int id = cursor.getInt(idIndex);
                 ContentValues update = new ContentValues();
-                update.put(updateType, updateValue);
+                if(updateType=="COLUMN_AVATAR")
+                    update.put(updateType, Integer.parseInt(updateValue));
+                else
+                    update.put(updateType,updateValue);
                 accountDB.update(AccountEntry.TABLE_NAME, update, "_id=" + String.valueOf(id), null);
             }
         }
@@ -151,5 +156,6 @@ public class LoginActivity extends AppCompatActivity {
     }
     //public static String getEmail(){return }
 
-    public static int gerAvatarChoice(){return mCurrentAvatarChoice;}
+    public static int getAvatarChoice(){return mCurrentAvatarChoice;}
+    public static String getEmail(){return mCurrentEmail;}
 }
