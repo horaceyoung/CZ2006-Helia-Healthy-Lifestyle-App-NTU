@@ -2,24 +2,18 @@ package com.zy.helia;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.support.v7.widget.RecyclerView;;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.zy.helia.Activities.EventDetail;
-import com.zy.helia.Event_Data.DatabaseHelp;
-
 import java.util.ArrayList;
 
-import static android.content.ContentValues.TAG;
 
 public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdapter.ViewHolder> {
 
@@ -29,13 +23,10 @@ public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdap
 
     private Button button;
 
-
-
-
-
+    // two parameter for this class - context and an ArrayList containing the EventName to be in the recyclerView
     public EventFragmentAdapter(Context context, ArrayList<String> EventName) {
-
         this.context = context;
+        // get the number of EventName when the class is constructed
         this.totalCount = EventName.size();
         this.EventName = EventName;
     }
@@ -54,36 +45,31 @@ public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdap
     public EventFragmentAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_event_adapter, parent, false);
         ViewHolder vh = new ViewHolder(v);
-
-
-
         return vh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull final EventFragmentAdapter.ViewHolder holder, final int position) {
-
-
         holder.button.setText(EventName.get(position));
 
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView name = holder.itemView.findViewById(R.id.name);
-                name.setText(EventName.get(position));
+                // pass information to another activity started by click the button
                 Intent startNewActivity = new Intent(context,EventDetail.class);
+
+                startNewActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startNewActivity.putExtra("EventName", EventName.get(position));
+
                 context.startActivity(startNewActivity);
+
             }
         });
-
-
-
-
     }
 
     @Override
+    // the getItemCount should return the size of the ArrayList
     public int getItemCount() {
         return totalCount;
     }
 }
-
