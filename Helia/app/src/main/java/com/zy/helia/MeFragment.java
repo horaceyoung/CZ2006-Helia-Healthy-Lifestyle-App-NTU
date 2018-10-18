@@ -79,7 +79,21 @@ public class MeFragment extends Fragment implements View.OnClickListener{
         MyEvents = view.findViewById(R.id.MyEvents);
         MyEvents.setOnClickListener(this);
         Avatar=view.findViewById(R.id.UserDp);
-        Avatar.setImageResource(R.drawable.m01);
+        switch (LoginActivity.getAvatarChoice()){
+            case 1:
+                Avatar.setImageResource(R.drawable.m01);
+                break;
+            case 2:
+                Avatar.setImageResource(R.drawable.m02);
+                break;
+            case 3:
+                Avatar.setImageResource(R.drawable.f01);
+                break;
+            case 4:
+                Avatar.setImageResource(R.drawable.f02);
+                break;
+        }
+
         userid = view.findViewById(R.id.UserId);
         userid.setText(LoginActivity.getUsername());
         userEmail = view.findViewById(R.id.UserEmail);

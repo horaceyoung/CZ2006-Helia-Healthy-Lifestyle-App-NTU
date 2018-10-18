@@ -68,9 +68,17 @@ public class MeChangePersonalInfo extends AppCompatActivity {
                 Email  = findViewById(R.id.inputEmail);
                 newPassword  =  Password.getText().toString();
                 newEmail = Email.getText().toString();
-                LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_EMAIL,newEmail);
-                LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_PASSWORD,newPassword);
 
+                if(newEmail!=null)
+                    LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_EMAIL,newEmail);
+
+                if(newPassword!=null)
+                    LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_PASSWORD,newPassword);
+
+                Intent i = new Intent();
+                i.putExtra("Bundle", bundle);
+                setResult(Activity. i);
+                finish();
             }
     });
 

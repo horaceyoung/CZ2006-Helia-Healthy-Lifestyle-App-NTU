@@ -137,12 +137,19 @@ public class LoginActivity extends AppCompatActivity {
             if (cursor.getString(usernameIndex).equals(mCurrentUsername)){
                 int id = cursor.getInt(idIndex);
                 ContentValues update = new ContentValues();
-                if(updateType=="COLUMN_AVATAR")
+                if(updateType==AccountEntry.COLUMN_AVATAR)
                     update.put(updateType, Integer.parseInt(updateValue));
                 else
                     update.put(updateType,updateValue);
-                accountDB.update(AccountEntry.TABLE_NAME, update, "_id=" + String.valueOf(id), null);
+                accountDB.update(AccountEntry.TABLE_NAME, update, AccountEntry._ID  + " = " + String.valueOf(id), null);
             }
+
+        }
+        if (updateType == AccountEntry.COLUMN_EMAIL){
+            updateEmail(updateValue);
+        }
+        if (updateType == AccountEntry.COLUMN_AVATAR){
+            updateAvatar(Integer.parseInt(updateValue));
         }
 
     }
@@ -157,5 +164,13 @@ public class LoginActivity extends AppCompatActivity {
     //public static String getEmail(){return }
 
     public static int getAvatarChoice(){return mCurrentAvatarChoice;}
+
     public static String getEmail(){return mCurrentEmail;}
+
+    private static void updateEmail(String email){
+        mCurrentEmail = email;
+    }
+    private static void updateAvatar(int Avatar){
+        mCurrentAvatarChoice = Avatar;
+    }
 }
