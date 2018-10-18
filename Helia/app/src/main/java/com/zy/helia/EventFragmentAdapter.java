@@ -50,11 +50,9 @@ public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdap
 
     @Override
     public void onBindViewHolder(@NonNull final EventFragmentAdapter.ViewHolder holder, final int position) {
-<<<<<<< HEAD
         Toast.makeText(context,"WuZiang",Toast.LENGTH_LONG).show();
-=======
         Toast.makeText(context, "onBindViewHolder", Toast.LENGTH_SHORT).show();
->>>>>>> dfc9fd90571e3e045c8f8b278670e3ad665a85c0
+
         try {
             DatabaseHelp db = new DatabaseHelp(context);
             eventds = db.viewPendingEvents();

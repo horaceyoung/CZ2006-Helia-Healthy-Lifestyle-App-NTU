@@ -115,7 +115,7 @@ public class CreateEvent extends AppCompatActivity {
                 createNewEvent(str_eventname, str_eventdescription, 0, str_eventlocation, int_numberofpeople, str_eventduration, 2,str_email);
 
 
-                Intent submit = new Intent(CreateEvent.this, CreateEvent.class);
+                Intent submit = new Intent(CreateEvent.this, createEventConfirm.class);
                 startActivity(submit);
             }
         });
