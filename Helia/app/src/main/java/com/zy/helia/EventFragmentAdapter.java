@@ -13,9 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.zy.helia.Activities.EventDetail;
+import com.zy.helia.Event_Data.DatabaseHelp;
+
 import java.util.ArrayList;
 
 
