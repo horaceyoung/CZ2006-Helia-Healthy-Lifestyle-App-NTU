@@ -36,6 +36,7 @@ public class MeFragment extends Fragment implements View.OnClickListener{
     public Button IREvents;
     public Button LogOut;
     private TextView userid;
+    private TextView userEmail;
     private OnFragmentInteractionListener mListener;
     private ImageView Avatar;
     public MeFragment() {
@@ -81,6 +82,8 @@ public class MeFragment extends Fragment implements View.OnClickListener{
         Avatar.setImageResource(R.drawable.m01);
         userid = view.findViewById(R.id.UserId);
         userid.setText(LoginActivity.getUsername());
+        userEmail = view.findViewById(R.id.UserEmail);
+        userEmail.setText(LoginActivity.getEmail());
         return view;
     }
 

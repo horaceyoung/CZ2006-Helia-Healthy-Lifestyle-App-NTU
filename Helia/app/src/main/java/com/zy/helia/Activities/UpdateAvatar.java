@@ -19,7 +19,7 @@ public class UpdateAvatar extends AppCompatActivity {
     private ImageButton two;
     private ImageButton three;
     private ImageButton four;
-    private int userChoiceofAvatar;
+    private String userChoiceofAvatar;
 
 
     @Override
@@ -34,22 +34,22 @@ public class UpdateAvatar extends AppCompatActivity {
 
         one.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                userChoiceofAvatar = 1;
+                userChoiceofAvatar = "1";
             }
         });
         two.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                userChoiceofAvatar = 2;
+                userChoiceofAvatar = "2";
             }
         });
         three.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                userChoiceofAvatar = 3;
+                userChoiceofAvatar = "3";
             }
         });
         four.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                userChoiceofAvatar = 4;
+                userChoiceofAvatar = "4";
             }
         });
 
@@ -58,7 +58,7 @@ public class UpdateAvatar extends AppCompatActivity {
         Confirm = findViewById(R.id.ConfirmChangeAvatar);
         Confirm.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                LoginActivity.UpdateUserInfo(AccountContract.AccountEntry.COLUMN_AVATAR,Integer.toString(userChoiceofAvatar));
+                LoginActivity.UpdateUserInfo(AccountContract.AccountEntry.COLUMN_AVATAR,userChoiceofAvatar);
                 Intent Back = new Intent(UpdateAvatar.this, MeChangePersonalInfo.class);
                 startActivity(Back);
             }

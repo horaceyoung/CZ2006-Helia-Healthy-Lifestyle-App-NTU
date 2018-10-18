@@ -90,21 +90,15 @@ public class LoginActivity extends AppCompatActivity {
         while (cursor.moveToNext()) {
             String currentUsername = cursor.getString(usernameIndex);
             String currentPassword = cursor.getString(passwordIndex);
-            int currentAvatarChoice = cursor.getInt(avatarChoiceIndex);
+            int currentAvatarChoice = cursor.getInt(avatarIndex);
             String currentEmail = cursor.getString(emailIndex);
             Log.d(TAG, "current username is " + currentUsername + "current password is "+currentPassword);
             if (username.equals(currentUsername) && password.equals(currentPassword)) {
                 mCurrentUsername = currentUsername;
                 mCurrentPassword = currentPassword;
-<<<<<<< HEAD
                 mCurrentAvatarChoice = currentAvatarChoice;
                 mCurrentEmail = currentEmail;
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
-=======
-                //mCurrentAvatarChoice = currentAvatarChoice;
-                //mCurrentEmail = currentEmail;
-                //Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
->>>>>>> 3cfb352b3045b4046c4516beeb5709cadb52ac3a
                 Intent loginSuccessIntent = new Intent(this, MainActivity.class);
                 startActivity(loginSuccessIntent);
             }
@@ -143,7 +137,7 @@ public class LoginActivity extends AppCompatActivity {
             if (cursor.getString(usernameIndex).equals(mCurrentUsername)){
                 int id = cursor.getInt(idIndex);
                 ContentValues update = new ContentValues();
-                if(updateType=="AccountContract.AccountEntry.COLUMN_AVATAR")
+                if(updateType=="COLUMN_AVATAR")
                     update.put(updateType, Integer.parseInt(updateValue));
                 else
                     update.put(updateType,updateValue);
@@ -163,4 +157,5 @@ public class LoginActivity extends AppCompatActivity {
     //public static String getEmail(){return }
 
     public static int getAvatarChoice(){return mCurrentAvatarChoice;}
+    public static String getEmail(){return mCurrentEmail;}
 }
