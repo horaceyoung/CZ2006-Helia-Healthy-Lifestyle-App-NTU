@@ -49,10 +49,6 @@ public class CreateEvent extends AppCompatActivity {
         etDropdownList.setAdapter(arrayAdapter);
 
 
-
-
-
-
         etDropdownList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -66,9 +62,6 @@ public class CreateEvent extends AppCompatActivity {
 
 
         });
-
-
-
 
         ce_Event_name = findViewById(R.id.ecEventName);
         ce_EventDescription = findViewById(R.id.ecEventDescription);
@@ -92,11 +85,6 @@ public class CreateEvent extends AppCompatActivity {
                 String str_eventlocation = ce_EventLocation.getText().toString().trim();
                 String str_eventduration = ce_EventDuration.getText().toString().trim();
                 String str_email = ce_UserID.getText().toString().trim();
-
-
-
-
-
 
                 //int int_ce_EventCategoryID = (Integer)etDropdownList.getSelectedItem();
 
