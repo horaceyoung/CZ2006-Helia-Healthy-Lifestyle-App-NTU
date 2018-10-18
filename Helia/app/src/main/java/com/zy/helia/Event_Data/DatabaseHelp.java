@@ -22,7 +22,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE User (User_ID INTEGER PRIMARY KEY AUTOINCREMENT, Username TEXT, Password TEXT, Email TEXT, Avatar INTEGER)");
+        // db.execSQL("CREATE TABLE User (User_ID INTEGER PRIMARY KEY AUTOINCREMENT, Username TEXT, Password TEXT, Email TEXT, Avatar INTEGER)");
         db.execSQL("CREATE TABLE Event_Category (Event_Category_ID INTEGER PRIMARY KEY AUTOINCREMENT, Event_Category_Name TEXT, Event_Category_Description TEXT)");
         db.execSQL("CREATE TABLE Event (Event_ID INTEGER PRIMARY KEY AUTOINCREMENT, Event_Name TEXT, Event_Description TEXT, Event_Category_ID INTEGER, Number_Of_People integer, Event_Location text, Event_Duration text, Event_Picture integer, Event_Approval_Status INTEGER, User_ID INTEGER, FOREIGN KEY(Event_Category_ID) REFERENCES Event_Category(Event_Category_ID), FOREIGN KEY(User_ID) REFERENCES User(User_ID))");
         db.execSQL("CREATE TABLE Interested (Interested_ID integer PRIMARY KEY AUTOINCREMENT, User_ID Integer, Event_ID integer, FOREIGN KEY(User_ID) REFERENCES User(User_ID), FOREIGN KEY (Event_ID) REFERENCES Event(Event_ID))");
@@ -374,11 +374,10 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
 
     }//end
 
-    public Cursor viewPendingEvents(){ // View the list of Pending Events
-        SQLiteDatabase db = this.getWritableDatabase();
+    public Cursor viewPendingEvents(SQLiteDatabase db){ // View the list of Pending Events
+        db = this.getWritableDatabase();
         String query = "Select * from Event Where Event_Approval_Status = 'Pending'";
         Cursor c = db.rawQuery(query, null);
-        db.close();
         return c;
 
     }//end

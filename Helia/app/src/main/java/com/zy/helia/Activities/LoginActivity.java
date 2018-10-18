@@ -22,10 +22,13 @@ public class LoginActivity extends AppCompatActivity {
     private Button mLoginBtn;
     private EditText mUsername;
     private EditText mPassword;
+
+
     private static String mCurrentUsername;
     private static String mCurrentPassword;
-    private static int mCurrentAvatarChoice;
     private static String mCurrentEmail;
+    private static String mCurrentAvatar;
+    private static int mCurrentAvatarChoice;
     private static AccountDBHelper mAccountHelper;
 
     @Override
@@ -81,8 +84,9 @@ public class LoginActivity extends AppCompatActivity {
 
         int usernameIndex = cursor.getColumnIndex(AccountEntry.COLUMN_USERNAME);
         int passwordIndex = cursor.getColumnIndex(AccountEntry.COLUMN_PASSWORD);
-        int avatarChoiceIndex = cursor.getColumnIndex(AccountEntry.COLUMN_AVATAR);
         int emailIndex = cursor.getColumnIndex(AccountEntry.COLUMN_EMAIL);
+        int avatarIndex = cursor.getColumnIndex(AccountEntry.COLUMN_AVATAR);
+
         while (cursor.moveToNext()) {
             String currentUsername = cursor.getString(usernameIndex);
             String currentPassword = cursor.getString(passwordIndex);
@@ -92,14 +96,20 @@ public class LoginActivity extends AppCompatActivity {
             if (username.equals(currentUsername) && password.equals(currentPassword)) {
                 mCurrentUsername = currentUsername;
                 mCurrentPassword = currentPassword;
+<<<<<<< HEAD
                 mCurrentAvatarChoice = currentAvatarChoice;
                 mCurrentEmail = currentEmail;
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
+=======
+                //mCurrentAvatarChoice = currentAvatarChoice;
+                //mCurrentEmail = currentEmail;
+                //Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
+>>>>>>> 3cfb352b3045b4046c4516beeb5709cadb52ac3a
                 Intent loginSuccessIntent = new Intent(this, MainActivity.class);
                 startActivity(loginSuccessIntent);
             }
             else{
-                Toast.makeText(this, "Username not found or username and password does not match.", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Username not found or username and password does not match.", Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -150,6 +160,7 @@ public class LoginActivity extends AppCompatActivity {
     public static String getPassword(){
         return mCurrentPassword;
     }
+    //public static String getEmail(){return }
 
     public static int getAvatarChoice(){return mCurrentAvatarChoice;}
 }
