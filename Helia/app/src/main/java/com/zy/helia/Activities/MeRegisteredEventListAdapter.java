@@ -1,5 +1,7 @@
 package com.zy.helia.Activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -11,11 +13,15 @@ import android.widget.ImageButton;
 
 import com.zy.helia.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MeRegisteredEventListAdapter extends RecyclerView.Adapter<MeRegisteredEventListAdapter.ViewHolder> {
 
-    private int[] mDataset = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+    private static Context context;
+    private int totalCount;
+    private ArrayList<String> EventName;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
@@ -26,8 +32,11 @@ public class MeRegisteredEventListAdapter extends RecyclerView.Adapter<MeRegiste
         }
     }
 
-    public MeRegisteredEventListAdapter() {
-
+    public MeRegisteredEventListAdapter(Context context, ArrayList<String> EventName) {
+        this.context = context;
+        // get the number of EventName when the class is constructed
+        this.totalCount = EventName.size();
+        this.EventName = EventName;
     }
 
     @NonNull
@@ -39,12 +48,26 @@ public class MeRegisteredEventListAdapter extends RecyclerView.Adapter<MeRegiste
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MeRegisteredEventListAdapter.ViewHolder holder, int position) {
-        holder.button.setText(Integer.toString(mDataset[position]));
+    public void onBindViewHolder(@NonNull MeRegisteredEventListAdapter.ViewHolder holder, final int position) {
+        holder.button.setText(EventName.get(position));
+
+        holder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // pass information to another activity started by click the button
+                Intent startNewActivity = new Intent(context,EventDetail.class);
+
+                startNewActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startNewActivity.putExtra("EventName", EventName.get(position));
+
+                context.startActivity(startNewActivity);
+
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return totalCount;
     }
 }

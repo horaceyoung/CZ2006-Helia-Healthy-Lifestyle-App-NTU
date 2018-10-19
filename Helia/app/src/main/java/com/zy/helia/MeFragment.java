@@ -11,7 +11,11 @@ import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.zy.helia.Activities.LoginActivity;
+import com.zy.helia.Activities.MainActivity;
 import com.zy.helia.Activities.MeMyEvents;
+
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
 
 
 /**
@@ -68,22 +72,43 @@ public class MeFragment extends Fragment implements View.OnClickListener{
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle args) {
         View view = inflater.inflate(R.layout.fragment_me, container, false);
         Personal = view.findViewById(R.id.Personal);
         Personal.setOnClickListener(this);
+
+        LogOut = view.findViewById(R.id.LogOut);
+        LogOut.setOnClickListener(this);
         IREvents =  view.findViewById(R.id.IREvents);
         IREvents.setOnClickListener(this);
         MyEvents = view.findViewById(R.id.MyEvents);
         MyEvents.setOnClickListener(this);
         Avatar=view.findViewById(R.id.UserDp);
-        Avatar.setImageResource(R.drawable.m01);
+        switch (LoginActivity.getAvatarChoice()){
+            case 1:
+                Avatar.setImageResource(R.drawable.m01);
+                break;
+            case 2:
+                Avatar.setImageResource(R.drawable.m02);
+                break;
+            case 3:
+                Avatar.setImageResource(R.drawable.f01);
+                break;
+            case 4:
+                Avatar.setImageResource(R.drawable.f02);
+                break;
+        }
+
         userid = view.findViewById(R.id.UserId);
         userid.setText(LoginActivity.getUsername());
         userEmail = view.findViewById(R.id.UserEmail);
         userEmail.setText(LoginActivity.getEmail());
+
+
         return view;
     }
 
@@ -137,11 +162,27 @@ public class MeFragment extends Fragment implements View.OnClickListener{
                 startActivity(startNewActivity3);
                 break;
 
+            case R.id.LogOut:
+                Intent startNewActivity4 = new Intent(getContext(),LoginActivity.class);
+                startActivity(startNewActivity4);
+                break;
+
             default:
                 break;
         }
 
 
     }
+
+    @Override
+    public void onResume() {
+        int id = getActivity().getIntent().getIntExtra("id", 0);
+        if(id==2){
+            MainActivity.mainViewPager.setCurrentItem(2);
+        }
+        super.onResume();
+    }
+
+
 }
 
