@@ -1,8 +1,11 @@
 package com.zy.helia.Activities;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.zy.helia.MainPageAdapter;
+import com.zy.helia.MeFragment;
 import com.zy.helia.R;
 
 public class MainActivity extends AppCompatActivity{
@@ -29,7 +33,9 @@ public class MainActivity extends AppCompatActivity{
         mainNav = findViewById(R.id.main_navigation);
         mainNav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         toggleHideyBar();
-    }
+
+        }
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -101,4 +107,6 @@ public class MainActivity extends AppCompatActivity{
 
         getWindow().getDecorView().setSystemUiVisibility(newUiOptions);
     }
+
 }
+

@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.ImageView;
 
+import com.zy.helia.Activities.MainActivity;
 import com.zy.helia.Event_Data.DatabaseHelp;
 import com.zy.helia.Activities.LoginActivity;
 import com.zy.helia.Account_Data.AccountContract.AccountEntry;
@@ -69,16 +70,14 @@ public class MeChangePersonalInfo extends AppCompatActivity {
                 newPassword  =  Password.getText().toString();
                 newEmail = Email.getText().toString();
 
-                if(newEmail!=null)
+                if(!newEmail.equals(""))
                     LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_EMAIL,newEmail);
 
-                if(newPassword!=null)
+                if(!newPassword.equals(""))
                     LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_PASSWORD,newPassword);
 
-                Intent i = new Intent();
-                i.putExtra("Bundle", bundle);
-                setResult(Activity. i);
-                finish();
+                Intent goBack = new Intent(MeChangePersonalInfo.this, MainActivity.class);
+                startActivity(goBack);
             }
     });
 

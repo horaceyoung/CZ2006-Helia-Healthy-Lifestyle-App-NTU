@@ -13,6 +13,9 @@ import android.widget.TextView;
 import com.zy.helia.Activities.LoginActivity;
 import com.zy.helia.Activities.MeMyEvents;
 
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,6 +71,8 @@ public class MeFragment extends Fragment implements View.OnClickListener{
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle args) {
@@ -157,5 +162,7 @@ public class MeFragment extends Fragment implements View.OnClickListener{
 
 
     }
+
+
 }
 
