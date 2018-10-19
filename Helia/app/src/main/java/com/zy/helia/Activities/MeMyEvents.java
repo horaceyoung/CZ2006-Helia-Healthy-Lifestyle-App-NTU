@@ -33,7 +33,7 @@ public class MeMyEvents extends AppCompatActivity {
 
         DatabaseHelp dbHelper = new DatabaseHelp(this);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor eventCursor = dbHelper.viewPendingEvents(db);
+        Cursor eventCursor = dbHelper.viewMyEvent(LoginActivity.getUserID());
 
         Log.d("EventActivity", "This is called" );
         while (eventCursor.moveToNext())

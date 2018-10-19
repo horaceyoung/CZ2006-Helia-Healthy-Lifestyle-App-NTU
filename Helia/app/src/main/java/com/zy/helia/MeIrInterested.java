@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 
 import com.zy.helia.Activities.EventListAdapter;
+import com.zy.helia.Activities.LoginActivity;
 import com.zy.helia.Activities.MeInterestedEventListAdapter;
 import com.zy.helia.Event_Data.DatabaseHelp;
 
@@ -87,7 +88,7 @@ public class MeIrInterested extends Fragment {
         // Get all pending events
         DatabaseHelp dbHelper = new DatabaseHelp(getContext());
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor eventCursor = dbHelper.viewPendingEvents(db);
+        Cursor eventCursor = dbHelper.viewInterested(LoginActivity.getUserID());
 
         Log.d("EventActivity", "This is called" );
         while (eventCursor.moveToNext())

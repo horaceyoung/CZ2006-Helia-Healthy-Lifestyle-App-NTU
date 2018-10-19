@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.zy.helia.Activities.LoginActivity;
 import com.zy.helia.Activities.MeInterestedEventListAdapter;
 import com.zy.helia.Activities.MeRegisteredEventListAdapter;
 import com.zy.helia.Event_Data.DatabaseHelp;
@@ -80,9 +81,12 @@ public class MeIrRegistered extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+
         DatabaseHelp dbHelper = new DatabaseHelp(getContext());
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor eventCursor = dbHelper.viewPendingEvents(db);
+
+        Cursor eventCursor = dbHelper.viewRegistered(LoginActivity.getUserID());
+
 
         Log.d("EventActivity", "This is called" );
         while (eventCursor.moveToNext())
