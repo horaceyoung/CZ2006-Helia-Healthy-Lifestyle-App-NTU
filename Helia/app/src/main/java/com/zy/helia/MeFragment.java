@@ -80,6 +80,9 @@ public class MeFragment extends Fragment implements View.OnClickListener{
         View view = inflater.inflate(R.layout.fragment_me, container, false);
         Personal = view.findViewById(R.id.Personal);
         Personal.setOnClickListener(this);
+
+        LogOut = view.findViewById(R.id.LogOut);
+        LogOut.setOnClickListener(this);
         IREvents =  view.findViewById(R.id.IREvents);
         IREvents.setOnClickListener(this);
         MyEvents = view.findViewById(R.id.MyEvents);
@@ -104,6 +107,8 @@ public class MeFragment extends Fragment implements View.OnClickListener{
         userid.setText(LoginActivity.getUsername());
         userEmail = view.findViewById(R.id.UserEmail);
         userEmail.setText(LoginActivity.getEmail());
+
+
         return view;
     }
 
@@ -155,6 +160,11 @@ public class MeFragment extends Fragment implements View.OnClickListener{
             case R.id.MyEvents:
                 Intent startNewActivity3 = new Intent(getContext(),MeMyEvents.class);
                 startActivity(startNewActivity3);
+                break;
+
+            case R.id.LogOut:
+                Intent startNewActivity4 = new Intent(getContext(),LoginActivity.class);
+                startActivity(startNewActivity4);
                 break;
 
             default:

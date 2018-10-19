@@ -1,11 +1,14 @@
 package com.zy.helia;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +16,9 @@ import android.widget.ListAdapter;
 
 import com.zy.helia.Activities.EventListAdapter;
 import com.zy.helia.Activities.MeInterestedEventListAdapter;
+import com.zy.helia.Event_Data.DatabaseHelp;
+
+import java.util.ArrayList;
 
 
 /**
@@ -24,7 +30,6 @@ import com.zy.helia.Activities.MeInterestedEventListAdapter;
  * create an instance of this fragment.
  */
 public class MeIrInterested extends Fragment {
-    private int[] mDataset = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -39,6 +44,8 @@ public class MeIrInterested extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private Cursor eventds;
+    private ArrayList<String> EventName = new ArrayList<>();
 
     public MeIrInterested() {
         // Required empty public constructor
@@ -77,6 +84,22 @@ public class MeIrInterested extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+        // Get all pending events
+        DatabaseHelp dbHelper = new DatabaseHelp(getContext());
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor eventCursor = dbHelper.viewPendingEvents(db);
+
+        Log.d("EventActivity", "This is called" );
+        while (eventCursor.moveToNext())
+        {
+            int eventIndex = eventCursor.getColumnIndex("Event_Name");
+            String eventName = eventCursor.getString(eventIndex);
+            Log.d("EventActivity", "Event name 1233" +eventName);
+            EventName.add(eventName);
+        }
+        db.close();
+        // Block End
+
 
         //newly added section
         View view = inflater.inflate(R.layout.fragment_me__ir__interested, container, false);
@@ -86,7 +109,7 @@ public class MeIrInterested extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager((mLayoutManager));
 
-        mAdapter = new MeInterestedEventListAdapter();
+        mAdapter = new MeInterestedEventListAdapter(getContext(),EventName);
         mRecyclerView.setAdapter(mAdapter);
         //end of newly added section
 
