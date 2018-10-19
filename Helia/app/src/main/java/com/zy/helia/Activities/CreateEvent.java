@@ -1,7 +1,6 @@
 package com.zy.helia.Activities;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,10 +12,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.common.server.converter.StringToIntConverter;
-import com.zy.helia.Account_Data.AccountContract;
-import com.zy.helia.Account_Data.AccountDBHelper;
+
 import com.zy.helia.Event_Data.DatabaseHelp;
+import com.zy.helia.Activities.LoginActivity;
 import com.zy.helia.R;
 
 public class CreateEvent extends AppCompatActivity {
@@ -123,8 +121,7 @@ public class CreateEvent extends AppCompatActivity {
                         break;
                 }
 
-
-                createNewEvent(str_eventname, str_eventdescription, ce_EventCategoryID, str_eventlocation, int_numberofpeople, str_eventduration, 2,getUserId());
+                createNewEvent(str_eventname, str_eventdescription, ce_EventCategoryID, str_eventlocation, int_numberofpeople, str_eventduration, 2,LoginActivity.getUserID());
 
 
                 Intent submit = new Intent(CreateEvent.this, CreateEvent.class);
@@ -144,38 +141,6 @@ public class CreateEvent extends AppCompatActivity {
 
     }
 
-
-    private static AccountDBHelper mAccountHelper;
-
-
-    private int getUserId(){
-
-        mAccountHelper = new AccountDBHelper(this);
-        SQLiteDatabase accountDB = mAccountHelper.getReadableDatabase();
-
-        String[] accountProjection = {
-                AccountContract.AccountEntry._ID,
-                AccountContract.AccountEntry.COLUMN_USERNAME,
-                AccountContract.AccountEntry.COLUMN_PASSWORD,
-                AccountContract.AccountEntry.COLUMN_EMAIL,
-                AccountContract.AccountEntry.COLUMN_AVATAR,
-        };
-
-        Cursor cursor = accountDB.query(
-                AccountContract.AccountEntry.TABLE_NAME,
-                accountProjection,
-                null,
-                null,
-                null,
-                null,
-                null
-        );
-
-    int idIndex = cursor.getColumnIndex(AccountContract.AccountEntry._ID);
-
-    return idIndex;
-
-    }
 
     private void createNewEvent(String Event_Name, String Event_Description, int Category_Id, String Event_Location, int Number_Of_People, String Event_Duration, int Event_Picture,int User_Id){
 
