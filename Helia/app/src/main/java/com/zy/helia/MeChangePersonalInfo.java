@@ -77,6 +77,7 @@ public class MeChangePersonalInfo extends AppCompatActivity {
                     LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_PASSWORD,newPassword);
 
                 Intent goBack = new Intent(MeChangePersonalInfo.this, MainActivity.class);
+                goBack.putExtra("id", 2);
                 startActivity(goBack);
             }
     });

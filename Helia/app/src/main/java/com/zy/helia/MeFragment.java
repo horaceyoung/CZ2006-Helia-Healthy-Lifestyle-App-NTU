@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.zy.helia.Activities.LoginActivity;
+import com.zy.helia.Activities.MainActivity;
 import com.zy.helia.Activities.MeMyEvents;
 
 import static android.app.Activity.RESULT_CANCELED;
@@ -161,6 +162,15 @@ public class MeFragment extends Fragment implements View.OnClickListener{
         }
 
 
+    }
+
+    @Override
+    public void onResume() {
+        int id = getActivity().getIntent().getIntExtra("id", 0);
+        if(id==2){
+            MainActivity.mainViewPager.setCurrentItem(2);
+        }
+        super.onResume();
     }
 
 
