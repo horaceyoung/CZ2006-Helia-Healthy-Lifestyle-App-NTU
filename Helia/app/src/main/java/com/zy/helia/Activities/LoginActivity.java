@@ -63,6 +63,13 @@ public class LoginActivity extends AppCompatActivity {
 
     private void validateUser(String username, String password){
         Log.d(TAG, "The login button is clicked");
+
+        if(username.equals("admin")&&password.equals("BO55man")){
+            Toast.makeText(this, "Welcome back boss", Toast.LENGTH_SHORT).show();
+            Intent adminLoginSuccessIntent = new Intent(this, AdminMainPage.class);
+            startActivity(adminLoginSuccessIntent);
+        }
+
         SQLiteDatabase accountDB = mAccountHelper.getReadableDatabase();
 
         String[] accountProjection = {
@@ -96,6 +103,8 @@ public class LoginActivity extends AppCompatActivity {
             String currentEmail = cursor.getString(emailIndex);
             int currentUserID = cursor.getInt(userIDIndex);
             Log.d(TAG, "current username is " + currentUsername + "current password is "+currentPassword);
+
+
             if (username.equals(currentUsername) && password.equals(currentPassword)) {
                 mCurrentUsername = currentUsername;
                 mCurrentPassword = currentPassword;
