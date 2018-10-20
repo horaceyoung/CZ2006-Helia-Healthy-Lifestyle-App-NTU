@@ -37,7 +37,7 @@ public class EventDetail extends AppCompatActivity {
         String description = intent.getStringExtra("EventDescription");
         eventDescription.setText(description);
 
-        eventID = intent.getIntExtra("UserID", 0);
+        eventID = Integer.parseInt(intent.getStringExtra("EventID"));
 
         register = (Button) findViewById(R.id.register);
         register.setOnClickListener(new View.OnClickListener() {

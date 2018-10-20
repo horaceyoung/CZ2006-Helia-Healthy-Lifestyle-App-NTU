@@ -66,7 +66,7 @@
                 startNewActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 startNewActivity.putExtra("EventName", EventName.get(position));
-                startNewActivity.putExtra("EventID", EventID.get(position));
+                startNewActivity.putExtra("EventID", Integer.toString(EventID.get(position)));
                 startNewActivity.putExtra("EventDescription", EventName.get(position));
 
                 context.startActivity(startNewActivity);
