@@ -47,9 +47,16 @@ public class EventDetail extends AppCompatActivity {
                 DatabaseHelp DBHelper = new DatabaseHelp(getBaseContext());
                 // Gets the database in write mode
                 SQLiteDatabase DB = DBHelper.getWritableDatabase();
-
-                DBHelper.addRegistered(eventID, LoginActivity.getUserID());
-                Toast.makeText(getBaseContext(), "Registration Successful", Toast.LENGTH_SHORT).show();
+                if(register.getText().equals("Register")){
+                    DBHelper.addRegistered(eventID, LoginActivity.getUserID());
+                    register.setText("Registered");
+                    Toast.makeText(getBaseContext(), "Registration Successful", Toast.LENGTH_SHORT).show();
+                }
+                if(register.getText().equals("Registered")){
+                    DBHelper.removeRegistered(eventID, LoginActivity.getUserID());
+                    register.setText("Register");
+                    Toast.makeText(getBaseContext(), "Registration Cancelled", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
