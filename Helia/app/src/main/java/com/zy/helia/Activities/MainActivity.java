@@ -1,8 +1,12 @@
 package com.zy.helia.Activities;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,11 +15,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.zy.helia.MainPageAdapter;
+import com.zy.helia.MeFragment;
 import com.zy.helia.R;
 
 public class MainActivity extends AppCompatActivity{
     private static final String TAG = "MainActivity";
-    private ViewPager mainViewPager;
+    public static ViewPager mainViewPager;
     private BottomNavigationView mainNav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +34,9 @@ public class MainActivity extends AppCompatActivity{
         mainNav = findViewById(R.id.main_navigation);
         mainNav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         toggleHideyBar();
+
     }
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -52,12 +59,6 @@ public class MainActivity extends AppCompatActivity{
         }
 
     };
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
 
 
     /**
@@ -101,4 +102,24 @@ public class MainActivity extends AppCompatActivity{
 
         getWindow().getDecorView().setSystemUiVisibility(newUiOptions);
     }
+
+    @Override
+    protected void onResume() {
+        int id = getIntent().getIntExtra("id", 0);
+        if (id == 2) {
+            Fragment fragmen = new MeFragment();
+            FragmentManager fmanger = getSupportFragmentManager();
+            FragmentTransaction transaction = fmanger.beginTransaction();
+            transaction.replace(R.id.main_view_pager, fragmen);
+            transaction.commit();
+            mainViewPager.setCurrentItem(2);//
+            //帮助跳转到指定子fragment
+            Intent i=new Intent();
+            i.setClass(MainActivity.this,MeFragment.class);
+            i.putExtra("id",2);
+        }
+        super.onResume();
+    }
+
 }
+

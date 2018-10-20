@@ -286,19 +286,17 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
         return true;
     }//end
 
-    public Cursor viewInterested(int Event_ID, int User_ID){ // View the list of Events that the User is Interested in
+    public Cursor viewInterested(int User_ID){ // View the list of Events that the User is Interested in
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "Select Event.* from Event Inner join Interested on Event.Event_ID = Interested.Event_ID Where Interested.User_ID = " + User_ID;
         Cursor c = db.rawQuery(query,null);
-        db.close();
         return c;
     }//end
-
-    public Cursor viewRegistered(int Event_ID, int User_ID){// View the list of Events that the User is Registered for
+//Deleted parameter int Event_ID - Yanxi
+    public Cursor viewRegistered(int User_ID){// View the list of Events that the User is Registered for
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "Select Event.* from Event Inner join Registered on Event.Event_ID = Registered.Event_ID Where Registered.User_ID =" + User_ID;
         Cursor c = db.rawQuery(query,null);
-        db.close();
         return c;
     }//end
 
@@ -344,7 +342,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "Select * from Event Where User_ID = " + User_ID;
         Cursor c = db.rawQuery(query, null);
-        db.close();
+
         return c;
 
     }//end
