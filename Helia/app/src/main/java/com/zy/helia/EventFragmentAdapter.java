@@ -1,6 +1,6 @@
-        package com.zy.helia;
+package com.zy.helia;
 
-        import android.content.Context;
+import android.content.Context;
         import android.content.Intent;
         import android.support.annotation.NonNull;
         import android.support.v7.widget.RecyclerView;;
@@ -15,8 +15,7 @@
         import java.util.ArrayList;
         import java.util.List;
 
-
-        public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdapter.ViewHolder> {
+public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdapter.ViewHolder> {
 
     private static Context context;
     private int totalCount;
@@ -67,7 +66,7 @@
 
                 startNewActivity.putExtra("EventName", EventName.get(position));
                 startNewActivity.putExtra("EventID", Integer.toString(EventID.get(position)));
-                startNewActivity.putExtra("EventDescription", EventName.get(position));
+                startNewActivity.putExtra("EventDescription", EventDescription.get(position));
 
                 context.startActivity(startNewActivity);
 
