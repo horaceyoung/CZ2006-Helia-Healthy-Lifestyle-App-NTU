@@ -15,7 +15,7 @@ import java.util.List;
 
 public class TypeListAdapter extends RecyclerView.Adapter<TypeListAdapter.ViewHolder> {
 
-    private String[] mDataset = {"Type#1", "Type#2", "Type#3", "More"};
+    private String[] mDataset = {"Aerobics", "Badminton", "Basketball", "Running", "Soccer", "Swimming"};
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
