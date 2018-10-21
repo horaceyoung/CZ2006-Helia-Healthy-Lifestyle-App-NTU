@@ -292,7 +292,6 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
         Cursor c = db.rawQuery(query,null);
         return c;
     }//end
-
 //Deleted parameter int Event_ID - Yanxi
     public Cursor viewRegistered(int User_ID){// View the list of Events that the User is Registered for
         SQLiteDatabase db = this.getWritableDatabase();
@@ -300,38 +299,6 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
         Cursor c = db.rawQuery(query,null);
         return c;
     }//end
-
-    public boolean isRegistered(int Event_ID, int User_ID){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "Select * from Registered Where Event_ID = " + Event_ID + " AND User_ID = " + User_ID;
-        Cursor c = db.rawQuery(query,null);
-        if (c.getCount() <= 0) {
-            c.close();
-            db.close();
-            return false;
-        }
-        else{
-            c.close();
-            db.close();
-            return true;
-        }
-    } //end
-
-    public boolean isInterested(int Event_ID, int User_ID){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "Select * from Interested Where Event_ID = " + Event_ID + " AND User_ID = " + User_ID;
-        Cursor c = db.rawQuery(query,null);
-        if (c.getCount() <= 0) {
-            c.close();
-            db.close();
-            return false;
-        }
-        else{
-            c.close();
-            db.close();
-            return true;
-        }
-    } //end
 
 
 //Interested and Registered End
@@ -367,6 +334,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "Select * from Event Where Event_ID = " + Event_ID;
         Cursor c = db.rawQuery(query,null);
+        db.close();
         return c;
     }//end
 
@@ -374,6 +342,7 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "Select * from Event Where User_ID = " + User_ID;
         Cursor c = db.rawQuery(query, null);
+
         return c;
 
     }//end
