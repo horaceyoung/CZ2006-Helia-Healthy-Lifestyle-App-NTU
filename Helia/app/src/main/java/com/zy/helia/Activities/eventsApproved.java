@@ -1,66 +1,58 @@
 package com.zy.helia.Activities;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import com.zy.helia.R;
-
-import android.content.Intent;
+import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
+
+import com.zy.helia.Event_Data.DatabaseHelp;
+import com.zy.helia.R;
+import android.support.v7.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class eventsApproved extends AppCompatActivity {
 
-    public Button eventToBe1;
-
-    public void initEventToBe1(){
-        eventToBe1=(Button)findViewById(R.id.toBe1But);
-        eventToBe1.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent eventToBe1 = new Intent(eventsApproved.this, eventDetailApproved.class);
-                startActivity(eventToBe1);
-            }
-        });
-
-    }
-
-
-    public Button eventToBe2;
-
-    public void initEventToBe2(){
-        eventToBe2=(Button)findViewById(R.id.toBe2But);
-        eventToBe2.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent eventToBe2 = new Intent(eventsApproved.this, eventDetailApproved.class);
-                startActivity(eventToBe2);
-            }
-        });
-
-    }
-
-
-    public Button eventToBe3;
-
-    public void initEventToBe3(){
-        eventToBe3=(Button)findViewById(R.id.toBe3But);
-        eventToBe3.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent eventToBe3 = new Intent(eventsApproved.this, eventDetailApproved.class);
-                startActivity(eventToBe3);
-            }
-        });
-
-    }
-
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private Cursor eventds;
+    private ArrayList<String> EventName = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events_approved);
-        initEventToBe1();
-        initEventToBe2();
-        initEventToBe3();
+
+
+
+        DatabaseHelp dbHelper = new DatabaseHelp(this);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor eventCursor = dbHelper.viewMyEvent(LoginActivity.getUserID());
+
+        Log.d("EventActivity", "This is called" );
+        while (eventCursor.moveToNext())
+        {
+            int eventIndex = eventCursor.getColumnIndex("Event_Name");
+            String eventName = eventCursor.getString(eventIndex);
+            Log.d("EventActivity", "Event name 1233" +eventName);
+            EventName.add(eventName);
+        }
+        db.close();
+
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.ApprovedEventListRV);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager((mLayoutManager));
+
+        mAdapter = new EventsToBeAdapter(getBaseContext(), EventName);
+        mRecyclerView.setAdapter(mAdapter);
+
     }
+
 }

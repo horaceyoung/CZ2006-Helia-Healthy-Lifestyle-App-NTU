@@ -24,6 +24,7 @@
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
+
         <activity android:name=".Activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,8 +36,7 @@
         <activity android:name=".Activities.RegistrationActivity" />
         <activity android:name=".Activities.adminLogOut" />
         <activity android:name=".Activities.AdminMainPage" />
-
-        <activity android:name=".Activities.MainActivity"/>
+        <activity android:name=".Activities.MainActivity" />
         <activity android:name=".Activities.CreateEvent" />
         <activity android:name=".Activities.EventDetail" />
         <activity android:name=".Activities.eventDetailApproved" />
@@ -52,8 +52,10 @@
         <activity android:name=".Activities.UpdateAvatar" />
         <activity android:name=".Activities.MeInterestedEventListAdapter" />
         <activity android:name=".Activities.MeRegisteredEventListAdapter" />
-        <activity android:name=".Activities.MeMyEventsListAdapter"></activity>
-
+        <activity android:name=".Activities.MeMyEventsListAdapter" />
+        <activity android:name=".Activities.eventDetailToBeAdapter" />
+        <activity android:name=".Activities.EventsToBeAdapter" />
+        <activity android:name=".Activities.eventsApprovedAdapter"></activity>
     </application>
 
 </manifest>
