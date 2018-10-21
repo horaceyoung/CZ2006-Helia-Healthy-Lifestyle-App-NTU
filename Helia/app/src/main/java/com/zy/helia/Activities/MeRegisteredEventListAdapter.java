@@ -22,8 +22,6 @@ public class MeRegisteredEventListAdapter extends RecyclerView.Adapter<MeRegiste
     private static Context context;
     private int totalCount;
     private ArrayList<String> EventName;
-    private List<Integer> EventID;
-
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
@@ -34,12 +32,11 @@ public class MeRegisteredEventListAdapter extends RecyclerView.Adapter<MeRegiste
         }
     }
 
-    public MeRegisteredEventListAdapter(Context context, ArrayList<String> EventName, List<Integer> EventID) {
+    public MeRegisteredEventListAdapter(Context context, ArrayList<String> EventName) {
         this.context = context;
         // get the number of EventName when the class is constructed
         this.totalCount = EventName.size();
         this.EventName = EventName;
-        this.EventID = EventID;
     }
 
     @NonNull
@@ -61,7 +58,7 @@ public class MeRegisteredEventListAdapter extends RecyclerView.Adapter<MeRegiste
                 Intent startNewActivity = new Intent(context,EventDetail.class);
 
                 startNewActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startNewActivity.putExtra("EventID", Integer.toString(EventID.get(position)));
+                startNewActivity.putExtra("EventName", EventName.get(position));
 
                 context.startActivity(startNewActivity);
 
