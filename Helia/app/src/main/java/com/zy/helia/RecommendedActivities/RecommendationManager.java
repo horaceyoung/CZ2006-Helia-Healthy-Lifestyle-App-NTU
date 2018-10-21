@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.textclassifier.TextLinks;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -17,13 +18,18 @@ import org.json.simple.JSONObject;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.net.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.ToDoubleBiFunction;
+import java.time.*;
 
 public class RecommendationManager {
     private static final String TAG = "RecommendationManager";
     private ArrayList<RecommendedActivities> activitiesList = new ArrayList<RecommendedActivities>();
+    //UV Light Attributes
     private URL urlUVLight = null;
     private float UVLightIndex = 0;
+
     private Context context;
     public RecommendationManager(Context context){
         CreateActivities();
@@ -44,11 +50,14 @@ public class RecommendationManager {
     }
 
     public void AcquireUVlight(){
+        String responseUVlight;
+
         RequestQueue UVLightRequestQueue = Volley.newRequestQueue(context);
         String UVLightUrl = "https:api.data.gov.sg/v1/environment/uv-index";
         StringRequest UVLightRequest = new StringRequest(Request.Method.GET, UVLightUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+
                 Toast.makeText(context, response.toString(), Toast.LENGTH_LONG).show();
             }
         }, new Response.ErrorListener() {
@@ -56,7 +65,22 @@ public class RecommendationManager {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
             }
-        });
+        }){
+            /**
+             * Returns a Map of parameters to be used for a POST or PUT request. Can throw {@link
+             * AuthFailureError} as authentication may be required to provide these values.
+             * <p>
+             * <p>Note that you can directly override {@link #getBody()} for custom data.
+             *
+             * @throws AuthFailureError in the event of auth failure
+             */
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> paraMap = new HashMap<>();
+                paraMap.put("data_time", "2018-10-21T19:28:30");
+                return paraMap;
+            }
+        };
 
         UVLightRequestQueue.add(UVLightRequest);
 
