@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".eventTypes">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="66dp"
+                android:layout_marginTop="6dp"
+                android:text="Select the type of your event"
+                android:textSize="20dp" />
+
+            <Button
+                android:id="@+id/typeABut"
+                android:layout_width="347dp"
+                android:layout_height="68dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Type A"
+                android:textSize="18dp" />
+
+            <Button
+                android:id="@+id/typeBBut"
+                android:layout_width="347dp"
+                android:layout_height="68dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Type B"
+                android:textSize="18dp" />
+
+            <Button
+                android:id="@+id/typeCBut"
+                android:layout_width="347dp"
+                android:layout_height="68dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Type C"
+                android:textSize="18dp" />
+
+            <Button
+                android:id="@+id/typeDBut"
+                android:layout_width="347dp"
+                android:layout_height="68dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Type D"
+                android:textSize="18dp" />
+
+            <Button
+                android:id="@+id/typeEBut"
+                android:layout_width="347dp"
+                android:layout_height="68dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Type E"
+                android:textSize="18dp" />
+
+            <Button
+                android:id="@+id/typeFBut"
+                android:layout_width="347dp"
+                android:layout_height="68dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Type F"
+                android:textSize="18dp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

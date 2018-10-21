@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyD16KPY4X94I_cAtO-pwU0sxzhMu8kGDeo" />
+            android:value="AIzaSyAXUpsuvol5jJ2g5HgZ3ppw55UMyL-_5W8" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -24,6 +24,7 @@
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
+
         <activity android:name=".Activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,10 +36,8 @@
         <activity android:name=".Activities.RegistrationActivity" />
         <activity android:name=".Activities.adminLogOut" />
         <activity android:name=".Activities.AdminMainPage" />
-
-        <activity android:name=".Activities.MainActivity"/>
+        <activity android:name=".Activities.MainActivity" />
         <activity android:name=".Activities.CreateEvent" />
-        <activity android:name=".Activities.createEventConfirm" />
         <activity android:name=".Activities.EventDetail" />
         <activity android:name=".Activities.eventDetailApproved" />
         <activity android:name=".Activities.eventDetailToBe" />
@@ -53,8 +52,10 @@
         <activity android:name=".Activities.UpdateAvatar" />
         <activity android:name=".Activities.MeInterestedEventListAdapter" />
         <activity android:name=".Activities.MeRegisteredEventListAdapter" />
-        <activity android:name=".Activities.MeMyEventsListAdapter"></activity>
-
+        <activity android:name=".Activities.MeMyEventsListAdapter" />
+        <activity android:name=".Activities.eventDetailToBeAdapter" />
+        <activity android:name=".Activities.EventsToBeAdapter" />
+        <activity android:name=".Activities.eventsApprovedAdapter"></activity>
     </application>
 
 </manifest>
