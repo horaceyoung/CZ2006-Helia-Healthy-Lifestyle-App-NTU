@@ -38,7 +38,6 @@
 
         <activity android:name=".Activities.MainActivity"/>
         <activity android:name=".Activities.CreateEvent" />
-        <activity android:name=".Activities.createEventConfirm" />
         <activity android:name=".Activities.EventDetail" />
         <activity android:name=".Activities.eventDetailApproved" />
         <activity android:name=".Activities.eventDetailToBe" />
