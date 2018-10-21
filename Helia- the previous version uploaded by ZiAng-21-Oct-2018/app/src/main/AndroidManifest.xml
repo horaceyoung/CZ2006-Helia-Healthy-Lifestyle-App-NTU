@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zy.helia">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAXUpsuvol5jJ2g5HgZ3ppw55UMyL-_5W8" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+        <activity android:name=".Activities.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activities.HealthierEatActivity" />
+        <activity android:name=".Activities.RegistrationActivity" />
+        <activity android:name=".Activities.adminLogOut" />
+        <activity android:name=".Activities.AdminMainPage" />
+
+        <activity android:name=".Activities.MainActivity"/>
+        <activity android:name=".Activities.CreateEvent" />
+        <activity android:name=".Activities.EventDetail" />
+        <activity android:name=".Activities.eventDetailApproved" />
+        <activity android:name=".Activities.eventDetailToBe" />
+        <activity android:name=".Activities.EventList" />
+        <activity android:name=".Activities.eventsApproved" />
+        <activity android:name=".Activities.eventsToBeApproved" />
+        <activity android:name=".Activities.eventTypes" />
+        <activity android:name=".Activities.TypeList" />
+        <activity android:name=".MeChangePersonalInfo" />
+        <activity android:name=".MeIREvents" />
+        <activity android:name=".Activities.MeMyEvents" />
+        <activity android:name=".Activities.UpdateAvatar" />
+        <activity android:name=".Activities.MeInterestedEventListAdapter" />
+        <activity android:name=".Activities.MeRegisteredEventListAdapter" />
+        <activity android:name=".Activities.MeMyEventsListAdapter"></activity>
+
+    </application>
+
+</manifest>
