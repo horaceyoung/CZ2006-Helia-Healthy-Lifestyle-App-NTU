@@ -42,7 +42,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/search_text"
             android:layout_width="700dp"
             android:layout_height="39dp"

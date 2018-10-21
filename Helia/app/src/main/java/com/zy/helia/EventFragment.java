@@ -18,6 +18,7 @@ import com.zy.helia.Activities.*;
 import com.zy.helia.Event_Data.DatabaseHelp;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
@@ -43,6 +44,7 @@ public class EventFragment extends Fragment implements View.OnClickListener {
 
     private Button mostPopular;
     private Button create;
+    private Button more;
 
     private RecyclerView mRecyclerView_Type;
     private RecyclerView.Adapter mAdapter_Type;
@@ -51,8 +53,9 @@ public class EventFragment extends Fragment implements View.OnClickListener {
     private RecyclerView.Adapter mAdapter_Event;
     private RecyclerView.LayoutManager mLayoutManager_Event;
 
-    private Cursor eventds;
     private ArrayList<String> EventName = new ArrayList<>();
+    private List<Integer> EventID = new ArrayList<Integer>();
+    private ArrayList<String> EventDescription = new ArrayList<>();
 
     public EventFragment() {
         // Required empty public constructor
@@ -116,13 +119,20 @@ public class EventFragment extends Fragment implements View.OnClickListener {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor eventCursor = dbHelper.viewPendingEvents(db);
 
-        Log.d("EventActivity", "This is called" );
         while (eventCursor.moveToNext())
         {
             int eventIndex = eventCursor.getColumnIndex("Event_Name");
             String eventName = eventCursor.getString(eventIndex);
-            Log.d("EventActivity", "Event name 1233" +eventName);
             EventName.add(eventName);
+
+            int IDIndex = eventCursor.getColumnIndex("Event_ID");
+            int eventID = eventCursor.getInt(IDIndex);
+            EventID.add(eventID);
+
+            int descriptionIndex = eventCursor.getColumnIndex("Event_Description");
+            String eventDescription = eventCursor.getString(descriptionIndex);
+            EventDescription.add(eventDescription);
+
         }
         db.close();
         // Block End
@@ -132,7 +142,7 @@ public class EventFragment extends Fragment implements View.OnClickListener {
         mLayoutManager_Event = new LinearLayoutManager(getContext());
         mRecyclerView_Event.setLayoutManager((mLayoutManager_Event));
 
-        mAdapter_Event = new EventFragmentAdapter(getActivity().getBaseContext(), EventName);
+        mAdapter_Event = new EventFragmentAdapter(getActivity().getBaseContext(), EventName, EventID, EventDescription);
         mRecyclerView_Event.setAdapter(mAdapter_Event);
 
         mRecyclerView_Type = (RecyclerView) getView().findViewById(R.id.typerankingRV);
@@ -145,10 +155,12 @@ public class EventFragment extends Fragment implements View.OnClickListener {
 
         mostPopular = getView().findViewById(R.id.mostPopular);
         mostPopular.setOnClickListener(this);
-//        more = getView().findViewById(R.id.more);
-//        more.setOnClickListener(this);
+
         create = getView().findViewById(R.id.create);
         create.setOnClickListener(this);
+
+        more = getView().findViewById(R.id.more);
+        more.setOnClickListener(this);
     }
 
 
@@ -168,7 +180,12 @@ public class EventFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.create:
-                Intent startNewActivity3 = new Intent(getContext(),CreateEvent.class);
+                Intent startNewActivity2 = new Intent(getContext(),CreateEvent.class);
+                startActivity(startNewActivity2);
+                break;
+
+            case R.id.more:
+                Intent startNewActivity3 = new Intent(getContext(),TypeList.class);
                 startActivity(startNewActivity3);
                 break;
 

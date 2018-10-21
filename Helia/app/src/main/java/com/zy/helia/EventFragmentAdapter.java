@@ -1,6 +1,6 @@
-        package com.zy.helia;
+package com.zy.helia;
 
-        import android.content.Context;
+import android.content.Context;
         import android.content.Intent;
         import android.support.annotation.NonNull;
         import android.support.v7.widget.RecyclerView;;
@@ -13,22 +13,26 @@
 
         import com.zy.helia.Activities.EventDetail;
         import java.util.ArrayList;
-
+        import java.util.List;
 
 public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdapter.ViewHolder> {
 
     private static Context context;
     private int totalCount;
     private ArrayList<String> EventName;
+    private List<Integer> EventID;
+    private ArrayList<String> EventDescription;
 
     private Button button;
 
     // two parameter for this class - context and an ArrayList containing the EventName to be in the recyclerView
-    public EventFragmentAdapter(Context context, ArrayList<String> EventName) {
+    public EventFragmentAdapter(Context context, ArrayList<String> EventName, List<Integer> EventID, ArrayList<String> EventDescription) {
         this.context = context;
         // get the number of EventName when the class is constructed
         this.totalCount = EventName.size();
         this.EventName = EventName;
+        this.EventID = EventID;
+        this.EventDescription = EventDescription;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -59,7 +63,10 @@ public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdap
                 Intent startNewActivity = new Intent(context,EventDetail.class);
 
                 startNewActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 startNewActivity.putExtra("EventName", EventName.get(position));
+                startNewActivity.putExtra("EventID", Integer.toString(EventID.get(position)));
+                startNewActivity.putExtra("EventDescription", EventDescription.get(position));
 
                 context.startActivity(startNewActivity);
 
