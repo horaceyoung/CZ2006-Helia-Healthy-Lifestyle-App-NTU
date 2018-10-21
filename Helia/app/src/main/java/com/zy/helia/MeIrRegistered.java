@@ -19,7 +19,6 @@ import com.zy.helia.Activities.MeRegisteredEventListAdapter;
 import com.zy.helia.Event_Data.DatabaseHelp;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -38,9 +37,8 @@ public class MeIrRegistered extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private Cursor eventds;
     private ArrayList<String> EventName = new ArrayList<>();
-    private List<Integer> EventID = new ArrayList<Integer>();
-
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -97,10 +95,6 @@ public class MeIrRegistered extends Fragment {
             String eventName = eventCursor.getString(eventIndex);
             Log.d("EventActivity", "Event name 1233" +eventName);
             EventName.add(eventName);
-
-            int IDIndex = eventCursor.getColumnIndex("Event_ID");
-            int eventID = eventCursor.getInt(IDIndex);
-            EventID.add(eventID);
         }
         db.close();
         //newly added section
@@ -111,7 +105,7 @@ public class MeIrRegistered extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager((mLayoutManager));
 
-        mAdapter = new MeRegisteredEventListAdapter(getContext(),EventName, EventID);
+        mAdapter = new MeRegisteredEventListAdapter(getContext(),EventName);
         mRecyclerView.setAdapter(mAdapter);
         //end of newly added section
 
