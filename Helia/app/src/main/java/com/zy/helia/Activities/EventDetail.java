@@ -52,7 +52,7 @@ public class EventDetail extends AppCompatActivity {
         String event = "EventID"+eventID+"UserID"+userID;
 
         register = (Button) findViewById(R.id.register);
-<<<<<<< HEAD
+
         if ((!registeredlist.isEmpty())&&(registeredlist.indexOf(event)!=-1)) {
             register.setClickable(false);
             register.setText("Successfully Registered");
@@ -74,7 +74,7 @@ public class EventDetail extends AppCompatActivity {
                 }
             });
         }
-=======
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,7 +94,7 @@ public class EventDetail extends AppCompatActivity {
                 }
             }
         });
->>>>>>> 64c8ab342aec3d4cdf0c0d0545f62149ec6a1a41
+
 
         interested = (Button) findViewById(R.id.interest);
         if ((!interestedlist.isEmpty())&&(interestedlist.indexOf(event)!=-1)){
