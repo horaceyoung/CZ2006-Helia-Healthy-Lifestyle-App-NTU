@@ -17,7 +17,7 @@ public class AdminMainPage extends AppCompatActivity {
         toBeApproved.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent toBeApproved = new Intent(AdminMainPage.this, eventsToBeApproved.class);
+              Intent toBeApproved = new Intent(AdminMainPage.this, eventsToBeApproved.class);
                 startActivity(toBeApproved);
             }
         });
