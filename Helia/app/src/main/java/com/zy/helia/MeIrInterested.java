@@ -12,14 +12,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListAdapter;
 
-import com.zy.helia.Activities.EventListAdapter;
 import com.zy.helia.Activities.LoginActivity;
 import com.zy.helia.Activities.MeInterestedEventListAdapter;
 import com.zy.helia.Event_Data.DatabaseHelp;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -45,8 +44,8 @@ public class MeIrInterested extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-    private Cursor eventds;
     private ArrayList<String> EventName = new ArrayList<>();
+    private List<Integer> EventID = new ArrayList<Integer>();
 
     public MeIrInterested() {
         // Required empty public constructor
@@ -90,13 +89,15 @@ public class MeIrInterested extends Fragment {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor eventCursor = dbHelper.viewInterested(LoginActivity.getUserID());
 
-        Log.d("EventActivity", "This is called" );
         while (eventCursor.moveToNext())
         {
             int eventIndex = eventCursor.getColumnIndex("Event_Name");
             String eventName = eventCursor.getString(eventIndex);
-            Log.d("EventActivity", "Event name 1233" +eventName);
             EventName.add(eventName);
+
+            int IDIndex = eventCursor.getColumnIndex("Event_ID");
+            int eventID = eventCursor.getInt(IDIndex);
+            EventID.add(eventID);
         }
         db.close();
         // Block End
@@ -110,7 +111,7 @@ public class MeIrInterested extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager((mLayoutManager));
 
-        mAdapter = new MeInterestedEventListAdapter(getContext(),EventName);
+        mAdapter = new MeInterestedEventListAdapter(getContext(),EventName, EventID);
         mRecyclerView.setAdapter(mAdapter);
         //end of newly added section
 

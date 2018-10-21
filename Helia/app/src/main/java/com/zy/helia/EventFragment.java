@@ -55,7 +55,6 @@ public class EventFragment extends Fragment implements View.OnClickListener {
 
     private ArrayList<String> EventName = new ArrayList<>();
     private List<Integer> EventID = new ArrayList<Integer>();
-    private ArrayList<String> EventDescription = new ArrayList<>();
 
     public EventFragment() {
         // Required empty public constructor
@@ -129,10 +128,6 @@ public class EventFragment extends Fragment implements View.OnClickListener {
             int eventID = eventCursor.getInt(IDIndex);
             EventID.add(eventID);
 
-            int descriptionIndex = eventCursor.getColumnIndex("Event_Description");
-            String eventDescription = eventCursor.getString(descriptionIndex);
-            EventDescription.add(eventDescription);
-
         }
         db.close();
         // Block End
@@ -142,7 +137,7 @@ public class EventFragment extends Fragment implements View.OnClickListener {
         mLayoutManager_Event = new LinearLayoutManager(getContext());
         mRecyclerView_Event.setLayoutManager((mLayoutManager_Event));
 
-        mAdapter_Event = new EventFragmentAdapter(getActivity().getBaseContext(), EventName, EventID, EventDescription);
+        mAdapter_Event = new EventFragmentAdapter(getActivity().getBaseContext(), EventName, EventID);
         mRecyclerView_Event.setAdapter(mAdapter_Event);
 
         mRecyclerView_Type = (RecyclerView) getView().findViewById(R.id.typerankingRV);
