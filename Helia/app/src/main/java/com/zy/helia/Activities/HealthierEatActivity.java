@@ -49,6 +49,8 @@ import com.google.maps.android.data.kml.KmlLayer;
 import com.zy.helia.Activities.models.PlaceInfo;
 import com.zy.helia.R;
 
+import org.xmlpull.v1.XmlPullParserException;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -177,7 +179,9 @@ public class HealthierEatActivity extends AppCompatActivity implements OnMapRead
             try {
                 KmlLayer layer = new KmlLayer(mMap, com.zy.helia.R.raw.healthier_eateries_kml, getApplicationContext());
                 layer.addLayerToMap();
-            } catch (Exception e) {
+            }
+            catch (XmlPullParserException e){}
+            catch (Exception e) {
                 Toast.makeText(this, "The location is currently unavailable", Toast.LENGTH_SHORT);
             }
 
@@ -246,6 +250,7 @@ public class HealthierEatActivity extends AppCompatActivity implements OnMapRead
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
 
 //       mMap.clear();
+         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(HealthierEatActivity.this));
 
         if(placeInfo != null){
             try{
