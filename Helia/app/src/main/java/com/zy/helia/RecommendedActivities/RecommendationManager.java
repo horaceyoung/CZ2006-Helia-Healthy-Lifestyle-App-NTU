@@ -57,7 +57,6 @@ public class RecommendationManager {
         StringRequest UVLightRequest = new StringRequest(Request.Method.GET, UVLightUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
                 Toast.makeText(context, response.toString(), Toast.LENGTH_LONG).show();
             }
         }, new Response.ErrorListener() {
@@ -66,14 +65,6 @@ public class RecommendationManager {
                 Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
             }
         }){
-            /**
-             * Returns a Map of parameters to be used for a POST or PUT request. Can throw {@link
-             * AuthFailureError} as authentication may be required to provide these values.
-             * <p>
-             * <p>Note that you can directly override {@link #getBody()} for custom data.
-             *
-             * @throws AuthFailureError in the event of auth failure
-             */
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> paraMap = new HashMap<>();
@@ -81,6 +72,13 @@ public class RecommendationManager {
                 return paraMap;
             }
         };
+        try{
+            Log.d(TAG, UVLightRequest.getBody().toString());
+        }
+        catch (Exception e){
+            e.getMessage();
+        }
+
 
         UVLightRequestQueue.add(UVLightRequest);
 
