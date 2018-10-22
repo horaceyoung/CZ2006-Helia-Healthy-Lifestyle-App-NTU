@@ -57,7 +57,7 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private boolean checkUsername(String Username){          //returns 0 if Username doesnt exist, returns 1 if it does
-        if(!InputManager.ValidateUserNameInput(Username)){
+        if(!InputManager.ValidateUserNameInput(Username)&&Username.length()<=8){
             Toast.makeText(this, "Error: the Username is not valid, it should contain alphabets and numbers only", Toast.LENGTH_LONG).show();
             return false;
         }
@@ -79,7 +79,7 @@ public class RegistrationActivity extends AppCompatActivity {
     } //end
 
     private boolean checkPassword(String password){
-        if(!InputManager.ValidatePasswordInput(password) && password.length()<=16){
+        if(!InputManager.ValidatePasswordInput(password) && password.length()<=12){
             Toast.makeText(this, "Error: the password is not valid, it should contain non-space characters with length longer than 16", Toast.LENGTH_LONG).show();
             return false;
         }
@@ -87,6 +87,10 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private boolean checkEmail(String Email){          //returns 0 if Email doesnt exist, returns 1 if it does
+        if(!InputManager.ValidateEmailInput(Email) && Email.length()<10){
+            Toast.makeText(this, "Error: the email is not valid", Toast.LENGTH_LONG).show();
+            return false;
+        }
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
         String query = "Select * from User Where Email = '"+ Email +"'";
         Cursor c = db.rawQuery(query,null);
@@ -105,7 +109,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private boolean checkAccountInfoEligibility(String username, String password, String email){
         //To be completed later (for now don't check is duplicate usernames exist)
-        if (checkUsername(username) && checkPassword(password)&&checkEmail(email)){
+        if (checkUsername(username) && checkPassword(password) && checkEmail(email)){
             return true;
         }
         return false;
