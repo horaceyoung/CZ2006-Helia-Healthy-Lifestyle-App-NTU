@@ -423,8 +423,8 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValue = new ContentValues();
         contentValue.put("Event_Approval_Status","Approved");
-        db.update("Event",contentValue,"Where Event_ID = "+ Event_ID, null);
-        db.close();
+        db.update("Event",contentValue,"Event_ID = "+ Event_ID, null);
+
         return true;
     }//end
 
@@ -432,8 +432,8 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValue = new ContentValues();
         contentValue.put("Event_Approval_Status","Reject");
-        db.update("Event",contentValue,"Where Event_ID = "+ Event_ID, null);
-        db.close();
+        db.update("Event",contentValue,"Event_ID = "+ Event_ID, null);
+
         return true;
     }//end
 
