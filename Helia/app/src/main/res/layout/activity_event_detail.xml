@@ -36,7 +36,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/image"
+        android:id="@+id/imageEvent"
         android:layout_width="250dp"
         android:layout_height="307dp"
         android:layout_alignParentTop="true"

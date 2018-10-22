@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zy.helia.Event_Data.DatabaseHelp;
@@ -20,6 +21,7 @@ public class eventDetailToBe extends AppCompatActivity {
 
     private Button approve;
     private Button reject;
+    private ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,33 @@ public class eventDetailToBe extends AppCompatActivity {
                 }
             });
 
+        image = (ImageView) findViewById(R.id.imageToBe);
+        int typeIndex = eventCursor.getColumnIndex("Event_Category_ID");
+        int typeID = eventCursor.getInt(typeIndex);
+
+        switch (typeID){
+            case 1:
+                image.setImageResource(R.drawable.type_soccer);
+                break;
+            case 2:
+                image.setImageResource(R.drawable.type_basketball);
+                break;
+            case 3:
+                image.setImageResource(R.drawable.type_badminton);
+                break;
+            case 4:
+                image.setImageResource(R.drawable.type_running);
+                break;
+            case 5:
+                image.setImageResource(R.drawable.type_swimming);
+                break;
+            case 6:
+                image.setImageResource(R.drawable.type_aerobics);
+                break;
+            default:
+                image.setImageResource(R.drawable.helia_white);
+                break;
+        }
     }
 }
 
