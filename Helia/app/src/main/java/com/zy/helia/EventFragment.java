@@ -107,17 +107,15 @@ public class EventFragment extends Fragment implements View.OnClickListener {
         super.onResume();
         mRecyclerView_Event.setAdapter(mAdapter_Event);
         mRecyclerView_Type.setLayoutManager((mLayoutManager_Type));
-    }
-
-    @Override
-    public void onViewCreated(View v, Bundle savedInstanceState) {
-        super.onViewCreated(v, savedInstanceState);
 
         // Get all pending events
         DatabaseHelp dbHelper = new DatabaseHelp(getContext());
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor eventCursor = dbHelper.viewPendingEvents(db);
 
+        EventName.clear();
+        EventID.clear();
+        
         while (eventCursor.moveToNext())
         {
             int eventIndex = eventCursor.getColumnIndex("Event_Name");
@@ -127,22 +125,23 @@ public class EventFragment extends Fragment implements View.OnClickListener {
             int IDIndex = eventCursor.getColumnIndex("Event_ID");
             int eventID = eventCursor.getInt(IDIndex);
             EventID.add(eventID);
-
-            int descriptionIndex = eventCursor.getColumnIndex("Event_Description");
-            String eventDescription = eventCursor.getString(descriptionIndex);
-            EventDescription.add(eventDescription);
-
         }
         db.close();
+
+        mAdapter_Event = new EventFragmentAdapter(getActivity().getBaseContext(), EventName, EventID, EventDescription);
+        mRecyclerView_Event.setAdapter(mAdapter_Event);
+
         // Block End
+    }
+
+    @Override
+    public void onViewCreated(View v, Bundle savedInstanceState) {
+        super.onViewCreated(v, savedInstanceState);
 
         mRecyclerView_Event = (RecyclerView) getView().findViewById(R.id.eventrankingRV);
         mRecyclerView_Event.setHasFixedSize(true);
         mLayoutManager_Event = new LinearLayoutManager(getContext());
         mRecyclerView_Event.setLayoutManager((mLayoutManager_Event));
-
-        mAdapter_Event = new EventFragmentAdapter(getActivity().getBaseContext(), EventName, EventID, EventDescription);
-        mRecyclerView_Event.setAdapter(mAdapter_Event);
 
         mRecyclerView_Type = (RecyclerView) getView().findViewById(R.id.typerankingRV);
         mRecyclerView_Type.setHasFixedSize(true);

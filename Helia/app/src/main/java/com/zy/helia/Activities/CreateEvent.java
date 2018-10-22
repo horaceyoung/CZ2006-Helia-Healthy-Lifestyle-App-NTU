@@ -124,9 +124,7 @@ public class CreateEvent extends AppCompatActivity {
                 createNewEvent(str_eventname, str_eventdescription, ce_EventCategoryID, str_eventlocation, int_numberofpeople, str_eventduration, 2,LoginActivity.getUserID());
 
 
-                Intent submit = new Intent(CreateEvent.this, MainActivity.class);
-                submit.putExtra("id", 1);
-                startActivity(submit);
+                onBackPressed();
             }
         });
 
@@ -134,8 +132,7 @@ public class CreateEvent extends AppCompatActivity {
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent test = new Intent(CreateEvent.this, MainActivity.class);
-                startActivity(test);
+                onBackPressed();
             }
         });
 
