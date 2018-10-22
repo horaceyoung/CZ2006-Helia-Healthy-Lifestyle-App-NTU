@@ -107,7 +107,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         PSIStausText = getView().findViewById(R.id.PSIStatus);
 
         activityImage = getView().findViewById(R.id.activityImage);
-        activityImage.setImageResource(recommendationManager.GetRandomAvailableActivity().getImageReference());
+        activityImage.setImageResource(recommendationManager.GetRandomAvailableActivity(Float.valueOf(temperatureText.getText().toString().trim()),
+                Float.valueOf(UVLightIndexText.getText().toString().trim()), Float.valueOf(PSIText.getText().toString().trim())).getImageReference());
 
         UpdateEnvrionment(recommendationManager);
 
@@ -117,7 +118,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 UpdateEnvrionment(recommendationManager);
-                activityImage.setImageResource(recommendationManager.GetRandomAvailableActivity().getImageReference());
+                activityImage.setImageResource(recommendationManager.GetRandomAvailableActivity(Float.valueOf(temperatureText.getText().toString().trim()),
+                        Float.valueOf(UVLightIndexText.getText().toString().trim()), Float.valueOf(PSIText.getText().toString().trim())).getImageReference());
             }
         });
     }

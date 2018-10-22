@@ -1,6 +1,7 @@
 package com.zy.helia.Activities;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -80,7 +81,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private boolean checkPassword(String password){
         if(!InputManager.ValidatePasswordInput(password) && password.length()<=12){
-            Toast.makeText(this, "Error: the password is not valid, it should contain non-space characters with length longer than 16", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Error: the password is not valid, it should contain non-space characters with length longer than 12", Toast.LENGTH_LONG).show();
             return false;
         }
         return true;
@@ -141,6 +142,7 @@ public class RegistrationActivity extends AppCompatActivity {
         } else {
             // Otherwise, the insertion was successful and we can display a toast with the row ID.
             Toast.makeText(this, "Account Successfully Created", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, LoginActivity.class));
         }
     }
 }
