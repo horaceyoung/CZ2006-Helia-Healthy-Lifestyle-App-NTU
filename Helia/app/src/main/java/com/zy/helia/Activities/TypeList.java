@@ -21,7 +21,7 @@ public class TypeList extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager((mLayoutManager));
 
-        mAdapter = new TypeListAdapter();
+        mAdapter = new TypeListAdapter(getBaseContext());
         mRecyclerView.setAdapter(mAdapter);
 
     }

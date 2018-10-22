@@ -6,9 +6,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.io.Closeable;
-
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
@@ -230,7 +232,6 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
         Cursor c = db.rawQuery(query,null);
         int count = c.getCount();
         c.close();
-        db.close();
         return count;
     }//end
 
@@ -434,15 +435,14 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
     }//end
 
 
-    public Cursor retrieveEvents(){ // Retrieve Events which the number of people Registered has not exceed the number of people allowed
+    public Cursor retrieveEvents(SQLiteDatabase db){ // Retrieve Events which the number of people Registered has not exceed the number of people allowed
         // If there isnt any it will return a null Cursor
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "Select * from Event";
+        db = this.getWritableDatabase();
+        String query = "Select * from Event ";
         Cursor c = db.rawQuery(query,null); // Retrieve the entire Event List
-        c.moveToFirst();
         Cursor n = null;
-        int[] ListOfEventID = new int[Integer.MAX_VALUE];
-        int count = 0;
+        List<Integer> ListOfEventID = new ArrayList<>();
+
         while(c.moveToNext()){
             int index;
 
@@ -454,46 +454,42 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
             String Approval =  c.getString(index);
 
             int NumOfPeople = countRegistered(event_ID);
-            if(check > NumOfPeople && Approval == "Approved"){  // Check if the number of people Registered has exceeded the number of people allowed
+
+            if(check > NumOfPeople && Approval.equals("Approved")){  // Check if the number of people Registered has exceeded the number of people allowed
                 // Also check if Event has been approved
-
-                ListOfEventID[count] = event_ID;    // If it hasnt, add the Event ID into the approved list
-                count++;
+                ListOfEventID.add(event_ID);    // If it hasnt, add the Event ID into the approved list
             }
-
         }
-        if(ListOfEventID.length > 0){ //If there is 1 event
+
+        if(ListOfEventID.size() > 0){ //If there is 1 event
             String query2 = "Select * from Event where Event_ID = "; // Modifying the Select SQL statement to add the entire list of events allowed
 
+            while (!ListOfEventID.isEmpty()) {
 
-            for (int i = 0; i < ListOfEventID.length; i++) {
+                query2 += ListOfEventID.get(0); // adds the Event ID to the where clause
+                ListOfEventID.remove(0);
 
-                query2 += ListOfEventID[i]; // adds the Event ID to the where clause
-
-                if( i != ListOfEventID.length-1) // Checks if this is the last event
+                if(ListOfEventID.size()>=1) // Checks if this is the last event
                 {
-                    query2 += "OR Event_ID = "; // If it isnt the last event, add another Where clause
+                    query2 += " OR Event.Event_ID = "; // If it isnt the last event, add another Where clause
                 }
             }
+            Log.d("Retrieve Events", query2);
             n = db.rawQuery(query2,null);
-            db.close();
             return n;
         }
         else {
-            db.close();
             return n;
         }
     }// End of Retrieve Events
 
-    public Cursor retrieveFilteredEvents(int Event_Category_ID){ // Retrieve filtered Events base on Category
+    public Cursor retrieveFilteredEvents(SQLiteDatabase db, int Event_Category_ID){ // Retrieve filtered Events base on Category
         // If there isnt any it will return a null Cursor
-        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getWritableDatabase();
         String query = "Select * from Event";
         Cursor c = db.rawQuery(query,null); // Retrieve the entire Event List
-        c.moveToFirst();
         Cursor n = null;
-        int[] ListOfEventID = new int[Integer.MAX_VALUE];
-        int count = 0;
+        List<Integer> ListOfEventID = new ArrayList<>();
         while(c.moveToNext()){
             int index;
 
@@ -507,48 +503,41 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
             String Approval =  c.getString(index);
 
             int NumOfPeople = countRegistered(event_ID);
-            if(check > NumOfPeople && Category_ID == Event_Category_ID && Approval == "Approved"){  // Check if the number of people Registered has exceeded the number of people allowed
+            if(check > NumOfPeople && Category_ID == Event_Category_ID && Approval.equals("Approved")){  // Check if the number of people Registered has exceeded the number of people allowed
                 // Also check if Category ID matches with the given Event Category ID
                 // Also check if Event has been approved
-
-                ListOfEventID[count] = event_ID;    // Add the Event ID into the approved list
-                count++;
+                ListOfEventID.add(event_ID);    // Add the Event ID into the approved list
             }
-
         }
-        if(ListOfEventID.length > 0){ //If there is more than 1 event
+        if(ListOfEventID.size() > 0){ //If there is 1 event
             String query2 = "Select * from Event where Event_ID = "; // Modifying the Select SQL statement to add the entire list of events allowed
 
+            while (!ListOfEventID.isEmpty()) {
 
-            for (int i = 0; i < ListOfEventID.length; i++) {
+                query2 += ListOfEventID.get(0); // adds the Event ID to the where clause
+                ListOfEventID.remove(0);
 
-                query2 += ListOfEventID[i]; // adds the Event ID to the where clause
-
-                if( i != ListOfEventID.length-1) // Checks if this is the last event
+                if(ListOfEventID.size()>=1) // Checks if this is the last event
                 {
-                    query2 += "OR Event_ID = "; // If it isnt the last event, add another Where clause
+                    query2 += " OR Event.Event_ID = "; // If it isnt the last event, add another Where clause
                 }
             }
+            Log.d("Retrieve Events", query2);
             n = db.rawQuery(query2,null);
-
-            db.close();
             return n;
         }
         else {
-            db.close();
             return n;
         }
     }// End of Retrieve Filtered Events
 
-    public Cursor viewPopularEvents(int Event_Category_ID){ // Retrieve Events that is sorted base on Popularity
+    public Cursor viewPopularEvents(SQLiteDatabase db){ // Retrieve Events that is sorted base on Popularity
         // If there isnt any it will return a null Cursor
-        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getWritableDatabase();
         String query = "Select * from Event";
         Cursor c = db.rawQuery(query,null); // Retrieve the entire Event List
-        c.moveToFirst();
         Cursor n = null;
-        int[] ListOfEventID = new int[Integer.MAX_VALUE];
-        int count = 0;
+        List<Integer> ListOfEventID = new ArrayList<>();
         while(c.moveToNext()){
             int index;
 
@@ -557,41 +546,37 @@ public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
             index = c.getColumnIndexOrThrow("Event_ID");
             int event_ID = c.getInt(index);
             index = c.getColumnIndexOrThrow("Event_Approval_Status");
-            String Approval =  c.getString(index);
+            String Approval = c.getString(index);
 
             int NumOfPeople = countRegistered(event_ID);
-            if(check > NumOfPeople && Approval == "Approved"){  // Check if the number of people Registered has exceeded the number of people allowed
+            if(check > NumOfPeople && Approval.equals("Approved")){  // Check if the number of people Registered has exceeded the number of people allowed
                 // Also check if Event has been approved
-
-                ListOfEventID[count] = event_ID;    // Add the Event ID into the approved list
-                count++;
+                ListOfEventID.add(event_ID);    // Add the Event ID into the approved list
+                Log.d("Popular Event_ID Added", Integer.toString(event_ID));
             }
-
         }
-        if(ListOfEventID.length > 0){ //If there is more than 1 event
+
+        if(ListOfEventID.size() > 0){ //If there is more than 1 event
             // Modifying the Select SQL statement to add the entire list of events allowed
-            String query2 = "Select Event.*,Count(Event.Event_ID) from Event Inner join Registered on Event.Event_ID = Registered.Event_ID WHERE EVENT.EVENT_ID = ";
+            String query2 = "Select * from (Select Distinct Event.Event_ID As Event_ID, Event.Event_Name As Event_Name, Count(Event.Event_ID) As Popularity from Event Inner join Registered on Event.Event_ID = Registered.Event_ID WHERE EVENT.EVENT_ID = ";
 
+            while (!ListOfEventID.isEmpty()) {
 
+                query2 += ListOfEventID.get(0); // adds the Event ID to the where clause
+                ListOfEventID.remove(0);
 
-            for (int i = 0; i < ListOfEventID.length; i++) {
-
-                query2 += ListOfEventID[i]; // adds the Event ID to the where clause
-
-                if( i != ListOfEventID.length-1) // Checks if this is the last event
+                if(ListOfEventID.size()>=1) // Checks if this is the last event
                 {
-                    query2 += "OR Event.Event_ID = "; // If it isnt the last event, add another Where clause
+                    query2 += " OR Event.Event_ID = "; // If it isnt the last event, add another Where clause
                 }
             }
-
-            query2 += " Group By Event.Event_ID Order by Count(Event.Event_ID) desc "; // Grouping the Events and sorting out in order base on the most popular events
+            query2 += ") Order by Popularity desc";// Grouping the Events and sorting out in order base on the most popular events
+            Log.d("Popular Events", query2);
             n = db.rawQuery(query2,null);
 
-            db.close();
             return n;
         }
         else {
-            db.close();
             return n;
         }
     }// End of View Popular Events

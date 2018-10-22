@@ -1,6 +1,7 @@
 package com.zy.helia.Activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -21,21 +22,26 @@ import java.util.List;
 
 public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.ViewHolder> {
 
-    private Context context;
+    private static Context context;
+    private int totalCount;
+    private ArrayList<String> EventName;
+    private List<Integer> EventID;
 
-    public EventListAdapter(Context adapterContext) {
-        context = adapterContext;
+    public EventListAdapter(Context context, ArrayList<String> EventName, List<Integer> EventID) {
+        this.context = context;
+        // get the number of EventName when the class is constructed
+        this.totalCount = EventName.size();
+        this.EventName = EventName;
+        this.EventID = EventID;
     }
 
-    private Cursor typeds = new DatabaseHelp(context).viewPopularEvents(0);
-    private ArrayList<String> EventName = new ArrayList<>();
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public Button button;
         public ViewHolder(View v) {
             super(v);
-            button = v.findViewById(R.id.button);
+            button = v.findViewById(R.id.eventButton);
         }
     }
 
@@ -48,21 +54,26 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull EventListAdapter.ViewHolder holder, int position) {
-
-
-        while (typeds.moveToNext())
-        {
-            int eventIndex = typeds.getColumnIndex("Event_Name");
-            String eventName = typeds.getString(eventIndex);
-            EventName.add(eventName);
-        }
-
+    public void onBindViewHolder(@NonNull EventListAdapter.ViewHolder holder, final int position) {
         holder.button.setText(EventName.get(position));
+
+        holder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // pass information to another activity started by click the button
+                Intent startNewActivity = new Intent(context,EventDetail.class);
+
+                startNewActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startNewActivity.putExtra("EventID", Integer.toString(EventID.get(position)));
+
+                context.startActivity(startNewActivity);
+
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return EventName.size();
+        return totalCount;
     }
 }

@@ -22,10 +22,9 @@ public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdap
     private ArrayList<String> EventName;
     private List<Integer> EventID;
 
-    private Button button;
 
     // two parameter for this class - context and an ArrayList containing the EventName to be in the recyclerView
-    public EventFragmentAdapter(Context context, ArrayList<String> EventName, List<Integer> EventID, ArrayList<String> EventDescription) {
+    public EventFragmentAdapter(Context context, ArrayList<String> EventName, List<Integer> EventID) {
         this.context = context;
         // get the number of EventName when the class is constructed
         this.totalCount = EventName.size();

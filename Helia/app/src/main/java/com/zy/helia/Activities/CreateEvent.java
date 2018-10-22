@@ -35,7 +35,7 @@ public class CreateEvent extends AppCompatActivity {
 
     Spinner etDropdownList;
     Spinner Array;
-    String eventtypes[]={"Soccer","Basketball","Badminton","Running","Swimming","Aerobics"};
+    String eventtypes[]={"Aerobics", "Badminton", "Basketball", "Running", "Soccer", "Swimming"};
     ArrayAdapter<String>arrayAdapter;
 
 

@@ -55,7 +55,12 @@ public class EventFragment extends Fragment implements View.OnClickListener {
 
     private ArrayList<String> EventName = new ArrayList<>();
     private List<Integer> EventID = new ArrayList<Integer>();
-    private ArrayList<String> EventDescription = new ArrayList<>();
+
+    private String popularName;
+    private int popularID;
+
+    private DatabaseHelp dbHelper;
+    private SQLiteDatabase db;
 
     public EventFragment() {
         // Required empty public constructor
@@ -92,6 +97,8 @@ public class EventFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        dbHelper = new DatabaseHelp(getContext());
+        db = dbHelper.getReadableDatabase();
         return inflater.inflate(R.layout.fragment_event, container, false);
     }
 
@@ -109,16 +116,15 @@ public class EventFragment extends Fragment implements View.OnClickListener {
         mRecyclerView_Type.setLayoutManager((mLayoutManager_Type));
 
         // Get all pending events
-        DatabaseHelp dbHelper = new DatabaseHelp(getContext());
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor eventCursor = dbHelper.viewPendingEvents(db);
+        Cursor eventCursor = dbHelper.retrieveEvents(db);
 
         EventName.clear();
         EventID.clear();
-        
+
         while (eventCursor.moveToNext())
         {
             int eventIndex = eventCursor.getColumnIndex("Event_Name");
+            Log.d("Event_Name index", Integer.toString(eventIndex));
             String eventName = eventCursor.getString(eventIndex);
             EventName.add(eventName);
 
@@ -128,7 +134,19 @@ public class EventFragment extends Fragment implements View.OnClickListener {
         }
         db.close();
 
-        mAdapter_Event = new EventFragmentAdapter(getActivity().getBaseContext(), EventName, EventID, EventDescription);
+        if (!EventName.isEmpty())
+        {
+            popularName = EventName.get(0);
+            EventName.remove(0);
+
+            popularID = EventID.get(0);
+            EventID.remove(0);
+
+            mostPopular.setText(popularName);
+            mostPopular.setOnClickListener(this);
+        }
+
+        mAdapter_Event = new EventFragmentAdapter(getActivity().getBaseContext(), EventName, EventID);
         mRecyclerView_Event.setAdapter(mAdapter_Event);
 
         // Block End
@@ -152,7 +170,6 @@ public class EventFragment extends Fragment implements View.OnClickListener {
         mRecyclerView_Type.setAdapter(mAdapter_Type);
 
         mostPopular = getView().findViewById(R.id.mostPopular);
-        mostPopular.setOnClickListener(this);
 
         create = getView().findViewById(R.id.create);
         create.setOnClickListener(this);
@@ -174,6 +191,8 @@ public class EventFragment extends Fragment implements View.OnClickListener {
 
             case R.id.mostPopular:
                 Intent startNewActivity = new Intent(getContext(),EventDetail.class);
+                startNewActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startNewActivity.putExtra("EventID", Integer.toString(popularID));
                 startActivity(startNewActivity);
                 break;
 
