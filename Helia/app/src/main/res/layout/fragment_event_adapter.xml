@@ -8,8 +8,9 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="246dp"
-        android:layout_height="wrap_content"
+        style="@android:style/Widget.Holo.Light.Button.Toggle"
+        android:layout_width="367dp"
+        android:layout_height="74dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"

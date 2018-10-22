@@ -18,6 +18,8 @@ public class eventDetailApproved extends AppCompatActivity {
     private int userID;
     private TextView eventName;
     private TextView eventDescription;
+    private TextView eventNumber;
+    private TextView eventDuration;
 
     private Button remove;
     private ImageView image;
@@ -48,7 +50,19 @@ public class eventDetailApproved extends AppCompatActivity {
         eventDescription= (TextView) findViewById(R.id.descprition);
         eventDescription.setText(description);
 
-        remove = (Button) findViewById(R.id.remove);
+        int durationIndex = eventCursor.getColumnIndex("Event_Duration");
+        String duration = "Duration: "+eventCursor.getString(durationIndex);
+
+        eventDuration= (TextView) findViewById(R.id.duration);
+        eventDuration.setText(duration);
+
+        int numberIndex = eventCursor.getColumnIndex("Number_Of_People");
+        String number = "Number of Participants: "+ dbHelper.countRegistered(eventID)+" / "+Integer.toString(eventCursor.getInt(numberIndex));
+
+        eventNumber= (TextView) findViewById(R.id.number);
+        eventNumber.setText(number);
+
+        remove = (Button) findViewById(R.id.interest);
         remove.setText("Remove event");
         remove.setOnClickListener(new View.OnClickListener() {
             @Override

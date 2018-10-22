@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.zy.helia.Activities.*;
 import com.zy.helia.Event_Data.DatabaseHelp;
@@ -42,7 +43,7 @@ public class EventFragment extends Fragment implements View.OnClickListener {
 
     private OnFragmentInteractionListener mListener;
 
-    private Button mostPopular;
+    private ImageButton mostPopular;
     private Button create;
     private Button more;
 
@@ -113,7 +114,7 @@ public class EventFragment extends Fragment implements View.OnClickListener {
     public void onResume() {
         super.onResume();
         mRecyclerView_Event.setAdapter(mAdapter_Event);
-        mRecyclerView_Type.setLayoutManager((mLayoutManager_Type));
+        //mRecyclerView_Type.setLayoutManager((mLayoutManager_Type));
 
         // Get all pending events
         Cursor eventCursor = dbHelper.retrieveEvents(db);
@@ -138,12 +139,7 @@ public class EventFragment extends Fragment implements View.OnClickListener {
         if (!EventName.isEmpty())
         {
             popularName = EventName.get(0);
-            EventName.remove(0);
-
             popularID = EventID.get(0);
-            EventID.remove(0);
-
-            mostPopular.setText(popularName);
             mostPopular.setOnClickListener(this);
         }
 
@@ -165,15 +161,15 @@ public class EventFragment extends Fragment implements View.OnClickListener {
         mLayoutManager_Event = new LinearLayoutManager(getContext());
         mRecyclerView_Event.setLayoutManager((mLayoutManager_Event));
 
-        mRecyclerView_Type = (RecyclerView) getView().findViewById(R.id.typerankingRV);
-        mRecyclerView_Type.setHasFixedSize(true);
-        mLayoutManager_Type = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        mRecyclerView_Type.setLayoutManager((mLayoutManager_Type));
+//        mRecyclerView_Type = (RecyclerView) getView().findViewById(R.id.typerankingRV);
+//        mRecyclerView_Type.setHasFixedSize(true);
+//        mLayoutManager_Type = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+//        mRecyclerView_Type.setLayoutManager((mLayoutManager_Type));
+//
+//        mAdapter_Type = new EventFragmentType();
+//        mRecyclerView_Type.setAdapter(mAdapter_Type);
 
-        mAdapter_Type = new EventFragmentType();
-        mRecyclerView_Type.setAdapter(mAdapter_Type);
-
-        mostPopular = getView().findViewById(R.id.mostPopular);
+        mostPopular = getView().findViewById(R.id.imageButton2);
 
         create = getView().findViewById(R.id.create);
         create.setOnClickListener(this);
@@ -193,7 +189,7 @@ public class EventFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
 
-            case R.id.mostPopular:
+            case R.id.imageButton2:
                 Intent startNewActivity = new Intent(getContext(),EventDetail.class);
                 startNewActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startNewActivity.putExtra("EventID", Integer.toString(popularID));

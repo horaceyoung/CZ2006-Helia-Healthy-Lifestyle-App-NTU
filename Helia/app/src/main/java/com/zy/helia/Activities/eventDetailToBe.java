@@ -18,6 +18,8 @@ public class eventDetailToBe extends AppCompatActivity {
     private int userID;
     private TextView eventName;
     private TextView eventDescription;
+    private TextView eventNumber;
+    private TextView eventDuration;
 
     private Button approve;
     private Button reject;
@@ -49,7 +51,19 @@ public class eventDetailToBe extends AppCompatActivity {
         eventDescription= (TextView) findViewById(R.id.descprition);
         eventDescription.setText(description);
 
-        approve = (Button) findViewById(R.id.approve);
+        int durationIndex = eventCursor.getColumnIndex("Event_Duration");
+        String duration = "Duration: "+eventCursor.getString(durationIndex);
+
+        eventDuration= (TextView) findViewById(R.id.duration);
+        eventDuration.setText(duration);
+
+        int numberIndex = eventCursor.getColumnIndex("Number_Of_People");
+        String number = "Number of Participants: "+ dbHelper.countRegistered(eventID)+" / "+Integer.toString(eventCursor.getInt(numberIndex));
+
+        eventNumber= (TextView) findViewById(R.id.number);
+        eventNumber.setText(number);
+
+        approve = (Button) findViewById(R.id.interest);
         approve.setText("Approve event");
         approve.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -63,7 +77,7 @@ public class eventDetailToBe extends AppCompatActivity {
             });
 
 
-        reject = (Button) findViewById(R.id.reject);
+        reject = (Button) findViewById(R.id.register);
         reject.setText("Reject event");
         reject.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -76,7 +90,7 @@ public class eventDetailToBe extends AppCompatActivity {
                 }
             });
 
-        image = (ImageView) findViewById(R.id.imageToBe);
+        image = (ImageView) findViewById(R.id.imageEvent);
         int typeIndex = eventCursor.getColumnIndex("Event_Category_ID");
         int typeID = eventCursor.getInt(typeIndex);
 

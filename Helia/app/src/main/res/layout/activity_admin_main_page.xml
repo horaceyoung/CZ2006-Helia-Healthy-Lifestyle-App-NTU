@@ -10,36 +10,36 @@
         android:id="@+id/toBeApprovedBut"
         style="@android:style/Widget.Holo.Light.Button.Toggle"
         android:layout_width="296dp"
-        android:layout_height="60dp"
+        android:layout_height="74dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="110dp"
-        android:text="To be approved" />
+        android:layout_marginBottom="121dp"
+        android:text="To Be Approved" />
 
     <Button
         android:id="@+id/approvedBut"
         style="@android:style/Widget.Holo.Light.Button.Toggle"
         android:layout_width="296dp"
-        android:layout_height="61dp"
+        android:layout_height="74dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="187dp"
+        android:layout_marginBottom="208dp"
         android:text="Approved" />
 
     <Button
         android:id="@+id/logOutBut"
         style="@android:style/Widget.Holo.Light.Button.Toggle"
         android:layout_width="296dp"
-        android:layout_height="60dp"
+        android:layout_height="74dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="33dp"
-        android:text="Log out" />
+        android:text="Log Out" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="243dp"
+        android:layout_height="272dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="21dp"
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Admin"
+        android:text="Administrator"
         android:textSize="24sp" />
 
 </RelativeLayout>

@@ -116,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(loginSuccessIntent);
             }
             else{
-                //Toast.makeText(this, "Username not found or username and password does not match.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Username not found or username and password does not match.", Toast.LENGTH_SHORT).show();
             }
         }
 
