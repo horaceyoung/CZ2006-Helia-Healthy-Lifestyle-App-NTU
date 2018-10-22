@@ -9,32 +9,54 @@
     <!-- TODO: Update blank fragment layout -->
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="407dp"
-        android:layout_height="623dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <Button
             android:id="@+id/IREvents"
+            style="@android:style/Widget.Holo.Light.Button.Toggle"
             android:layout_width="325dp"
-            android:layout_height="46dp"
+            android:layout_height="56dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="304dp"
-            android:text="interested and registered events"
+            android:layout_marginTop="8dp"
+            android:text="Interested and Registered Events"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.303"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.614" />
+
+        <Button
+            android:id="@+id/Personal"
+            style="@android:style/Widget.Holo.Light.Button.Toggle"
+            android:layout_width="325dp"
+            android:layout_height="56dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Change Personal"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.551"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.519" />
 
         <ImageView
             android:id="@+id/UserDp"
-            android:layout_width="155dp"
-            android:layout_height="124dp"
+            android:layout_width="187dp"
+            android:layout_height="172dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:src="@drawable/download"
+            app:layout_constraintBottom_toTopOf="@+id/UserId"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.084"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,55 +64,66 @@
             android:id="@+id/UserId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="200dp"
             android:text="userid"
-            app:layout_constraintStart_toEndOf="@+id/UserDp"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/UserEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="user_email_address"
-            app:layout_constraintStart_toEndOf="@+id/UserDp"
-            app:layout_constraintTop_toBottomOf="@+id/UserId" />
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/UserId"
+            app:layout_constraintVertical_bias="0.005" />
 
         <Button
             android:id="@+id/LogOut"
-            android:layout_width="86dp"
-            android:layout_height="42dp"
-            android:layout_marginBottom="80dp"
+            style="@android:style/Widget.Holo.Light.Button.Toggle"
+            android:layout_width="325dp"
+            android:layout_height="56dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:text="log_out"
+            android:layout_marginTop="8dp"
+            android:text="Log Out"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.455"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.879" />
 
         <Button
             android:id="@+id/MyEvents"
+            style="@android:style/Widget.Holo.Light.Button.Toggle"
             android:layout_width="325dp"
-            android:layout_height="46dp"
-            android:layout_marginTop="24dp"
-            android:text="my_events"
+            android:layout_height="56dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:text="My Events"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.325"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/IREvents" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.71" />
     </android.support.constraint.ConstraintLayout>
-
-    <Button
-        android:id="@+id/Personal"
-        android:layout_width="325dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="236dp"
-        android:text="change personal info"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </FrameLayout>

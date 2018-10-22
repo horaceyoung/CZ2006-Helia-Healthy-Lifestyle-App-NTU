@@ -20,6 +20,8 @@ public class EventDetail extends AppCompatActivity {
 
     private TextView eventName;
     private TextView eventDescription;
+    private TextView eventNumber;
+    private TextView eventDuration;
     private ImageView image;
 
     private Button register;
@@ -51,6 +53,18 @@ public class EventDetail extends AppCompatActivity {
 
         eventDescription= (TextView) findViewById(R.id.descprition);
         eventDescription.setText(description);
+
+        int durationIndex = eventCursor.getColumnIndex("Event_Duration");
+        String duration = "Duration: "+eventCursor.getString(durationIndex);
+
+        eventDuration= (TextView) findViewById(R.id.duration);
+        eventDuration.setText(duration);
+
+        int numberIndex = eventCursor.getColumnIndex("Number_Of_People");
+        String number = "Number of Participants: "+ dbHelper.countRegistered(eventID)+" / "+Integer.toString(eventCursor.getInt(numberIndex));
+
+        eventNumber= (TextView) findViewById(R.id.number);
+        eventNumber.setText(number);
 
         register = (Button) findViewById(R.id.register);
         if (dbHelper.isRegistered(eventID, userID)) {

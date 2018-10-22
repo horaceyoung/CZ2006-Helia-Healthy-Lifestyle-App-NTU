@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.TypeList">
+    tools:context=".Activities.EventList">
 
     <ScrollView
         android:id="@+id/ranking"
-        android:layout_width="272dp"
-        android:layout_height="460dp"
+        android:layout_width="367dp"
+        android:layout_height="499dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="8dp"
@@ -19,26 +19,52 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.961">
 
-        <view class="android.support.v7.widget.RecyclerView"
+        <view
             android:id="@+id/typeListRV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            class="android.support.v7.widget.RecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="21dp"
+            tools:layout_editor_absoluteY="205dp">
 
         </view>
     </ScrollView>
 
     <TextView
-        android:id="@+id/typelist"
+        android:id="@+id/eventlist"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/ranking"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="16dp"
-        android:text="Type List"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Category List"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/ranking"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView6"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="254dp"
+        android:layout_height="89dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/ranking"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.112"
+        app:srcCompat="@drawable/helia_green_horizontal" />
 
 </android.support.constraint.ConstraintLayout>

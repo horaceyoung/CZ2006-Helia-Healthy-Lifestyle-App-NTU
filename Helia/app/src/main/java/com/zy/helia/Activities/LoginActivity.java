@@ -102,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
             int currentAvatarChoice = cursor.getInt(avatarIndex);
             String currentEmail = cursor.getString(emailIndex);
             int currentUserID = cursor.getInt(userIDIndex);
-            Log.d(TAG, "current username is " + currentUsername + "current password is "+currentPassword);
+            Log.d(TAG, "current username is " + currentUsername + " current password is "+currentPassword);
 
 
             if (username.equals(currentUsername) && password.equals(currentPassword)) {
@@ -116,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(loginSuccessIntent);
             }
             else{
-                //Toast.makeText(this, "Username not found or username and password does not match.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Username not found or username and password does not match.", Toast.LENGTH_SHORT).show();
             }
         }
 

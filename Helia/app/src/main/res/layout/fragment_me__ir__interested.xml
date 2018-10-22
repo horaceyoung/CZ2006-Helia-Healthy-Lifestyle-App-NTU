@@ -19,7 +19,7 @@
 
     <ScrollView
         android:id="@+id/InterestedEventsList"
-        android:layout_width="match_parent"
+        android:layout_width="366dp"
         android:layout_height="match_parent"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -33,7 +33,7 @@
         <view
             android:id="@+id/InterestedEventListRV"
             class="android.support.v7.widget.RecyclerView"
-            android:layout_width="wrap_content"
+            android:layout_width="367dp"
             android:layout_height="wrap_content">
 
         </view>

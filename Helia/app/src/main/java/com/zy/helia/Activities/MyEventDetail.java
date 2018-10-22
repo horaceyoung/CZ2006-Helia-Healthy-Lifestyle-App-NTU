@@ -50,7 +50,8 @@ public class MyEventDetail extends AppCompatActivity {
         eventDescription= (TextView) findViewById(R.id.descprition);
         eventDescription.setText(description);
 
-        remove = (Button) findViewById(R.id.removeMy);
+        remove = (Button) findViewById(R.id.interest);
+        remove.setText("Remove This Event");
         remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +62,7 @@ public class MyEventDetail extends AppCompatActivity {
             }
         });
 
-        image = (ImageView) findViewById(R.id.imageMy);
+        image = (ImageView) findViewById(R.id.imageApproved);
         int typeIndex = eventCursor.getColumnIndex("Event_Category_ID");
         int typeID = eventCursor.getInt(typeIndex);
 
