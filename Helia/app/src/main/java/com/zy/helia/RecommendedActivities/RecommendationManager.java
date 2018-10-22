@@ -58,8 +58,19 @@ public class RecommendationManager {
         activitiesList.add(new RecommendedActivities("Cardio Workout", false, 35, 2, 8, 100,R.drawable.cardio_workout));
     }
 
-    public RecommendedActivities GetRandomAvailableActivity(){
-        int activityIndex = rand.nextInt(activitiesList.size());
+    public RecommendedActivities GetRandomAvailableActivity(float temperature, float UVLightIndex, float PSI){
+        int activityIndex;
+        boolean outdoor = true;
+        if(temperature>=35||UVLightIndex>=8||PSI>=100){
+            outdoor = false;
+        }
+
+        if(!outdoor){
+            activityIndex = rand.nextInt(7)+4;
+        }
+        else{
+            activityIndex = rand.nextInt(activitiesList.size());
+        }
         return activitiesList.get(activityIndex);
     }
 
