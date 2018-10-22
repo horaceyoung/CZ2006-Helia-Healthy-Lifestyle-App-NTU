@@ -121,16 +121,17 @@ public class EventFragment extends Fragment implements View.OnClickListener {
         EventName.clear();
         EventID.clear();
 
-        while (eventCursor!=null && eventCursor.moveToNext())
-        {
-            int eventIndex = eventCursor.getColumnIndex("Event_Name");
-            Log.d("Event_Name index", Integer.toString(eventIndex));
-            String eventName = eventCursor.getString(eventIndex);
-            EventName.add(eventName);
+        if (eventCursor!=null) {
+            while (eventCursor.moveToNext()) {
+                int eventIndex = eventCursor.getColumnIndex("Event_Name");
+                String eventName = eventCursor.getString(eventIndex);
+                Log.d("Event_Name", eventName);
+                EventName.add(eventName);
 
-            int IDIndex = eventCursor.getColumnIndex("Event_ID");
-            int eventID = eventCursor.getInt(IDIndex);
-            EventID.add(eventID);
+                int IDIndex = eventCursor.getColumnIndex("Event_ID");
+                int eventID = eventCursor.getInt(IDIndex);
+                EventID.add(eventID);
+            }
         }
         db.close();
 
@@ -145,6 +146,9 @@ public class EventFragment extends Fragment implements View.OnClickListener {
             mostPopular.setText(popularName);
             mostPopular.setOnClickListener(this);
         }
+
+        for (int i=0;i<EventName.size();i++)
+            Log.d("Event_Name", EventName.get(i));
 
         mAdapter_Event = new EventFragmentAdapter(getActivity().getBaseContext(), EventName, EventID);
         mRecyclerView_Event.setAdapter(mAdapter_Event);
