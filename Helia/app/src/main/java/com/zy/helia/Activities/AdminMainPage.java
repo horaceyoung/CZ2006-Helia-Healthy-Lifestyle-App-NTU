@@ -48,7 +48,7 @@ public class AdminMainPage extends AppCompatActivity {
         logOut.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent logOut = new Intent(AdminMainPage.this, adminLogOut.class);
+                Intent logOut = new Intent(AdminMainPage.this, LoginActivity.class);
                 startActivity(logOut);
             }
         });

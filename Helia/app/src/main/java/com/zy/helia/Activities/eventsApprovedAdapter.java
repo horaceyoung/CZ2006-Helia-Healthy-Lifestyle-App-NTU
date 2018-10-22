@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.EventLog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,18 +16,21 @@ import android.support.v7.widget.RecyclerView.Adapter;
 import com.zy.helia.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class eventsApprovedAdapter extends RecyclerView.Adapter<eventsApprovedAdapter.ViewHolder> {
 
     private static Context context;
     private int totalCount;
     private ArrayList<String> EventName;
+    private List<Integer> EventID;
 
-    public eventsApprovedAdapter(Context context,ArrayList<String> EventName) {
+    public eventsApprovedAdapter(Context context,ArrayList<String> EventName, List<Integer> EventID) {
         this.context = context;
         // get the number of EventName when the class is constructed
         this.totalCount = EventName.size();
         this.EventName = EventName;
+        this.EventID = EventID;
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
@@ -54,10 +58,10 @@ public class eventsApprovedAdapter extends RecyclerView.Adapter<eventsApprovedAd
             @Override
             public void onClick(View v) {
                 // pass information to another activity started by click the button
-                Intent startNewActivity = new Intent(context,EventDetail.class);
+                Intent startNewActivity = new Intent(context,eventDetailApproved.class);
 
                 startNewActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startNewActivity.putExtra("EventName", EventName.get(position));
+                startNewActivity.putExtra("EventID", Integer.toString(EventID.get(position)));
 
                 context.startActivity(startNewActivity);
 
@@ -67,5 +71,6 @@ public class eventsApprovedAdapter extends RecyclerView.Adapter<eventsApprovedAd
 
     @Override
     public int getItemCount() {
-        return totalCount;}
+        return totalCount;
     }
+}
