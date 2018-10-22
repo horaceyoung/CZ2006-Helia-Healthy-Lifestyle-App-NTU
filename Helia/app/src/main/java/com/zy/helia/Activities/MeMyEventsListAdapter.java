@@ -15,18 +15,21 @@ import android.support.v7.widget.RecyclerView.Adapter;
 import com.zy.helia.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MeMyEventsListAdapter extends RecyclerView.Adapter<MeMyEventsListAdapter.ViewHolder> {
 
     private static Context context;
     private int totalCount;
     private ArrayList<String> EventName;
+    private List<Integer> EventID;
 
-    public MeMyEventsListAdapter(Context context,ArrayList<String> EventName) {
+    public MeMyEventsListAdapter(Context context,ArrayList<String> EventName, List<Integer> EventID) {
         this.context = context;
         // get the number of EventName when the class is constructed
         this.totalCount = EventName.size();
         this.EventName = EventName;
+        this.EventID = EventID;
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
@@ -54,10 +57,10 @@ public class MeMyEventsListAdapter extends RecyclerView.Adapter<MeMyEventsListAd
             @Override
             public void onClick(View v) {
                 // pass information to another activity started by click the button
-                Intent startNewActivity = new Intent(context,EventDetail.class);
+                Intent startNewActivity = new Intent(context,MyEventDetail.class);
 
                 startNewActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startNewActivity.putExtra("EventName", EventName.get(position));
+                startNewActivity.putExtra("EventID", Integer.toString(EventID.get(position)));
 
                 context.startActivity(startNewActivity);
 

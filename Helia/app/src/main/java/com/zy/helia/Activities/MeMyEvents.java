@@ -14,14 +14,16 @@ import com.zy.helia.Event_Data.DatabaseHelp;
 import com.zy.helia.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MeMyEvents extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private Cursor eventds;
+
     private ArrayList<String> EventName = new ArrayList<>();
+    private List<Integer> EventID = new ArrayList<Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,28 +31,29 @@ public class MeMyEvents extends AppCompatActivity {
         setContentView(R.layout.activity_me__my_events);
 
 
-//for RV from ziang+++++++++++++++++++++++++++++++++++++++++++++++=
-
         DatabaseHelp dbHelper = new DatabaseHelp(this);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor eventCursor = dbHelper.viewMyEvent(LoginActivity.getUserID());
 
-        Log.d("EventActivity", "This is called" );
         while (eventCursor.moveToNext())
         {
             int eventIndex = eventCursor.getColumnIndex("Event_Name");
-            String eventName = eventCursor.getString(eventIndex);
-            Log.d("EventActivity", "Event name 1233" +eventName);
+            int statusIndex = eventCursor.getColumnIndex("Event_Approval_Status");
+            String eventName = eventCursor.getString(eventIndex)+" ("+eventCursor.getString(statusIndex)+")";
             EventName.add(eventName);
+
+            int IDIndex = eventCursor.getColumnIndex("Event_ID");
+            int eventID = eventCursor.getInt(IDIndex);
+            EventID.add(eventID);
         }
         db.close();
-//block end+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
         mRecyclerView = (RecyclerView) findViewById(R.id.MeEventListRV);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager((mLayoutManager));
 
-        mAdapter = new MeMyEventsListAdapter(getBaseContext(), EventName);
+        mAdapter = new MeMyEventsListAdapter(getBaseContext(), EventName, EventID);
         mRecyclerView.setAdapter(mAdapter);
 
 

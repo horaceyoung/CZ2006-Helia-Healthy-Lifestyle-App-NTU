@@ -112,7 +112,6 @@ public class EventFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(View v, Bundle savedInstanceState) {
         super.onViewCreated(v, savedInstanceState);
-        Log.d(TAG, "Event name");
 
         // Get all pending events
         DatabaseHelp dbHelper = new DatabaseHelp(getContext());

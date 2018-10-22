@@ -12,7 +12,6 @@ import com.zy.helia.Event_Data.DatabaseHelp;
 import com.zy.helia.R;
 
 
-
 public class EventDetail extends AppCompatActivity {
 
     private int eventID;

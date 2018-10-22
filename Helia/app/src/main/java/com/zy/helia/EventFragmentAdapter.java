@@ -1,6 +1,6 @@
-        package com.zy.helia;
+package com.zy.helia;
 
-        import android.content.Context;
+import android.content.Context;
         import android.content.Intent;
         import android.support.annotation.NonNull;
         import android.support.v7.widget.RecyclerView;;
@@ -15,14 +15,12 @@
         import java.util.ArrayList;
         import java.util.List;
 
-
-        public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdapter.ViewHolder> {
+public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdapter.ViewHolder> {
 
     private static Context context;
     private int totalCount;
     private ArrayList<String> EventName;
     private List<Integer> EventID;
-    private ArrayList<String> EventDescription;
 
     private Button button;
 
@@ -33,7 +31,6 @@
         this.totalCount = EventName.size();
         this.EventName = EventName;
         this.EventID = EventID;
-        this.EventDescription = EventDescription;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
