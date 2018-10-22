@@ -134,7 +134,7 @@ public class CreateEvent extends AppCompatActivity {
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent test = new Intent(CreateEvent.this, AdminMainPage.class);
+                Intent test = new Intent(CreateEvent.this, MainActivity.class);
                 startActivity(test);
             }
         });
