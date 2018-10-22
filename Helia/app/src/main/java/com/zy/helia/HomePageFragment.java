@@ -1,5 +1,6 @@
 package com.zy.helia;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.zy.helia.Activities.HealthierEatActivity;
 import com.zy.helia.RecommendedActivities.RecommendationManager;
+import com.zy.helia.RecommendedActivities.RecommendedActivities;
 
 
 /**
@@ -40,6 +42,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
     private RecommendationManager ma;
 
+    private TextView recommendationText;
     private TextView UVLightIndexText;
     private TextView UVLightStatusText;
     private TextView temperatureText;
@@ -99,6 +102,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
 
         home_btnHealthierEateries = getView().findViewById(R.id.button_healthier_eateries);
+        recommendationText = getView().findViewById(R.id.recommend);
         UVLightIndexText  = getView().findViewById(R.id.UVLightIndex);
         UVLightStatusText = getView().findViewById(R.id.UVLightStatus);
         temperatureText = getView().findViewById(R.id.temperatureText);
@@ -118,8 +122,10 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 UpdateEnvrionment(recommendationManager);
-                activityImage.setImageResource(recommendationManager.GetRandomAvailableActivity(Float.valueOf(temperatureText.getText().toString().trim()),
-                        Float.valueOf(UVLightIndexText.getText().toString().trim()), Float.valueOf(PSIText.getText().toString().trim())).getImageReference());
+                RecommendedActivities getActivity = recommendationManager.GetRandomAvailableActivity(Float.valueOf(temperatureText.getText().toString().trim()),
+                        Float.valueOf(UVLightIndexText.getText().toString().trim()), Float.valueOf(PSIText.getText().toString().trim()));
+                activityImage.setImageResource(getActivity.getImageReference());
+                recommendationText.setText("Today is a fine day for " + getActivity.getName());
             }
         });
     }

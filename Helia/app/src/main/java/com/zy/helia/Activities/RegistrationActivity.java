@@ -58,7 +58,7 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private boolean checkUsername(String Username){          //returns 0 if Username doesnt exist, returns 1 if it does
-        if(!InputManager.ValidateUserNameInput(Username)&&Username.length()<=8){
+        if(!InputManager.ValidateUserNameInput(Username)&&Username.length()<=0){
             Toast.makeText(this, "Error: the Username is not valid, it should contain alphabets and numbers only", Toast.LENGTH_LONG).show();
             return false;
         }
@@ -80,7 +80,7 @@ public class RegistrationActivity extends AppCompatActivity {
     } //end
 
     private boolean checkPassword(String password){
-        if(!InputManager.ValidatePasswordInput(password) && password.length()<=12){
+        if(!InputManager.ValidatePasswordInput(password) && password.length()<=0){
             Toast.makeText(this, "Error: the password is not valid, it should contain non-space characters with length longer than 12", Toast.LENGTH_LONG).show();
             return false;
         }
@@ -88,7 +88,7 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private boolean checkEmail(String Email){          //returns 0 if Email doesnt exist, returns 1 if it does
-        if(!InputManager.ValidateEmailInput(Email) && Email.length()<10){
+        if(!InputManager.ValidateEmailInput(Email) && Email.length()<=0){
             Toast.makeText(this, "Error: the email is not valid", Toast.LENGTH_LONG).show();
             return false;
         }

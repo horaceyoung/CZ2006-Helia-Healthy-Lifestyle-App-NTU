@@ -29,7 +29,9 @@ public class RecommendedActivities {
     public boolean getOutdoorOrIndoor(){
         return outdoor;
     }
-
+    public String getName() {
+        return name;
+    }
     public int getImageReference() { return imageReference;}
 
     public boolean isOutdoorTemperatureApproprieate(float currentTemperature){
