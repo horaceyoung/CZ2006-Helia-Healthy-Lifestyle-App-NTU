@@ -53,9 +53,9 @@ public class eventDetailApproved extends AppCompatActivity {
             public void onClick(View v) {
 
                 DatabaseHelp DBHelper = new DatabaseHelp(getBaseContext());
-                DBHelper.approveEvent(eventID);
+                DBHelper.removeEvent(eventID);
                 remove.setClickable(false);
-                remove.setText("Event approved");
+                remove.setText("Event removed");
             }
         });
 

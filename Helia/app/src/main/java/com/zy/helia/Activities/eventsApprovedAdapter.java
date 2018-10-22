@@ -58,7 +58,7 @@ public class eventsApprovedAdapter extends RecyclerView.Adapter<eventsApprovedAd
             @Override
             public void onClick(View v) {
                 // pass information to another activity started by click the button
-                Intent startNewActivity = new Intent(context,eventDetailToBe.class);
+                Intent startNewActivity = new Intent(context,eventDetailApproved.class);
 
                 startNewActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startNewActivity.putExtra("EventID", Integer.toString(EventID.get(position)));
