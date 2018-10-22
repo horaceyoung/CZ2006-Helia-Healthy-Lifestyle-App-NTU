@@ -1,6 +1,7 @@
 package com.zy.helia.Activities;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 
 import com.zy.helia.Account_Data.AccountContract.AccountEntry;
 import com.zy.helia.Account_Data.AccountDBHelper;
+import com.zy.helia.Event_Data.DatabaseHelp;
+import com.zy.helia.Input_Manager.InputManager;
 import com.zy.helia.R;
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -19,6 +22,8 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText mEmail;
     private Button mRegiterSubmitBtn;
     private Button mCancelBtn;
+    private AccountDBHelper mDbHelper;
+    private DatabaseHelp dbHelper = new DatabaseHelp(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +35,7 @@ public class RegistrationActivity extends AppCompatActivity {
         mRegiterSubmitBtn = findViewById(R.id.registerButton);
         mCancelBtn = findViewById(R.id.cancelButton);
 
+        mDbHelper = new AccountDBHelper(this);
 
         mRegiterSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,9 +43,8 @@ public class RegistrationActivity extends AppCompatActivity {
                 String username = mUsername.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
                 String email = mEmail.getText().toString().trim();
-                if(checkAccountInfoEligibility(username, password, email)){
-                    createNewAccount(username, password, email);
-                }
+                createNewAccount(username, password, email);
+
             }
         });
 
@@ -51,14 +56,66 @@ public class RegistrationActivity extends AppCompatActivity {
         });
     }
 
-    private boolean checkAccountInfoEligibility(String username, String password, String email){
-        //To be completed later (for now don't check is duplicate usernames exist)
+    private boolean checkUsername(String Username){          //returns 0 if Username doesnt exist, returns 1 if it does
+        if(!InputManager.ValidateUserNameInput(Username)){
+            Toast.makeText(this, "Error: the Username is not valid, it should contain alphabets and numbers only", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+        String query = "Select * from User Where Username = '"+ Username +"'";
+        Cursor c = db.rawQuery(query,null);
+        if (c.getCount() <= 0) {
+            c.close();
+            db.close();
+            Toast.makeText(this, "Error: the Username already Exits, pleasae try another one", Toast.LENGTH_LONG).show();
+        }
+        else{
+            c.close();
+            db.close();
+            return false;
+        }
+        return true;
+    } //end
+
+    private boolean checkPassword(String password){
+        if(!InputManager.ValidatePasswordInput(password) && password.length()<=16){
+            Toast.makeText(this, "Error: the password is not valid, it should contain non-space characters with length longer than 16", Toast.LENGTH_LONG).show();
+            return false;
+        }
         return true;
     }
 
+    private boolean checkEmail(String Email){          //returns 0 if Email doesnt exist, returns 1 if it does
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+        String query = "Select * from User Where Email = '"+ Email +"'";
+        Cursor c = db.rawQuery(query,null);
+        if (c.getCount() <= 0) {
+            c.close();
+            db.close();
+            Toast.makeText(this, "Error: the email has already been used, pleasae try another one", Toast.LENGTH_LONG).show();
+        }
+        else{
+            c.close();
+            db.close();
+            return false;
+        }
+        return true;
+    } //end
+
+    private boolean checkAccountInfoEligibility(String username, String password, String email){
+        //To be completed later (for now don't check is duplicate usernames exist)
+        if (checkUsername(username) && checkPassword(password)&&checkEmail(email)){
+            return true;
+        }
+        return false;
+    }
+
     private void createNewAccount(String username, String password, String email){
+        if(!checkAccountInfoEligibility(username, password, email))
+            return;
         // Create database helper
-        AccountDBHelper mDbHelper = new AccountDBHelper(this);
+
 
         // Gets the database in write mode
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
@@ -79,7 +136,7 @@ public class RegistrationActivity extends AppCompatActivity {
             Toast.makeText(this, "Error with Account Creating", Toast.LENGTH_SHORT).show();
         } else {
             // Otherwise, the insertion was successful and we can display a toast with the row ID.
-            Toast.makeText(this, "Account Created with row id: " + newRowId, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Account Successfully Created", Toast.LENGTH_SHORT).show();
         }
     }
 }
