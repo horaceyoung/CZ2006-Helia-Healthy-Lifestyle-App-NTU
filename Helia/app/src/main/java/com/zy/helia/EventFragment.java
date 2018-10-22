@@ -121,7 +121,7 @@ public class EventFragment extends Fragment implements View.OnClickListener {
         EventName.clear();
         EventID.clear();
 
-        while (eventCursor.moveToNext())
+        while (eventCursor!=null && eventCursor.moveToNext())
         {
             int eventIndex = eventCursor.getColumnIndex("Event_Name");
             Log.d("Event_Name index", Integer.toString(eventIndex));

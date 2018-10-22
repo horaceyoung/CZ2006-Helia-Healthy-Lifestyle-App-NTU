@@ -102,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
             int currentAvatarChoice = cursor.getInt(avatarIndex);
             String currentEmail = cursor.getString(emailIndex);
             int currentUserID = cursor.getInt(userIDIndex);
-            Log.d(TAG, "current username is " + currentUsername + "current password is "+currentPassword);
+            Log.d(TAG, "current username is " + currentUsername + " current password is "+currentPassword);
 
 
             if (username.equals(currentUsername) && password.equals(currentPassword)) {

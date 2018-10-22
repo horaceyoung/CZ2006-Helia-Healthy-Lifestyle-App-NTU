@@ -38,7 +38,7 @@
 
     <ImageView
         android:id="@+id/imageMy"
-        android:layout_width="250dp"
+        android:layout_width="442dp"
         android:layout_height="307dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
