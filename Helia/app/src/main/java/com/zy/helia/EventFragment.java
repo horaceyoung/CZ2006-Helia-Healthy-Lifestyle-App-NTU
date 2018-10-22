@@ -120,7 +120,7 @@ public class EventFragment extends Fragment implements View.OnClickListener {
 
         EventName.clear();
         EventID.clear();
-
+        if (eventCursor != null && eventCursor.getCount() > 0) {
         while (eventCursor.moveToNext())
         {
             int eventIndex = eventCursor.getColumnIndex("Event_Name");
@@ -131,6 +131,7 @@ public class EventFragment extends Fragment implements View.OnClickListener {
             int IDIndex = eventCursor.getColumnIndex("Event_ID");
             int eventID = eventCursor.getInt(IDIndex);
             EventID.add(eventID);
+        }
         }
         db.close();
 
