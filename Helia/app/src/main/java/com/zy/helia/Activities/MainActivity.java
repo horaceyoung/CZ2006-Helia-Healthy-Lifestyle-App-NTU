@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.zy.helia.EventFragment;
+import com.zy.helia.HomePageFragment;
 import com.zy.helia.MainPageAdapter;
 import com.zy.helia.MeFragment;
 import com.zy.helia.R;
@@ -107,6 +108,18 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onResume() {
         int id = getIntent().getIntExtra("id", 0);
+        if (id == 0){
+            Fragment fragmen = new HomePageFragment();
+            FragmentManager fmanger = getSupportFragmentManager();
+            FragmentTransaction transaction = fmanger.beginTransaction();
+            transaction.replace(R.id.main_view_pager, fragmen);
+            transaction.commit();
+            mainViewPager.setCurrentItem(0);//
+            //帮助跳转到指定子fragment
+            Intent i=new Intent();
+            i.setClass(MainActivity.this,HomePageFragment.class);
+            i.putExtra("id",0);
+        }
         if (id == 1){
             Fragment fragmen = new EventFragment();
             FragmentManager fmanger = getSupportFragmentManager();

@@ -12,8 +12,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zy.helia.Activities.HealthierEatActivity;
+import com.zy.helia.Activities.RecommendedVenue;
 import com.zy.helia.RecommendedActivities.RecommendationManager;
 import com.zy.helia.RecommendedActivities.RecommendedActivities;
 
@@ -39,6 +41,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     private OnFragmentInteractionListener mListener;
     private Button home_btnHealthierEateries;
     private ImageView swimming;
+    private Button home_btnRecommendedVenue;
 
     private RecommendationManager ma;
 
@@ -74,11 +77,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
-
-
-
     }
 
     @Override
@@ -102,6 +100,14 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
 
         home_btnHealthierEateries = getView().findViewById(R.id.button_healthier_eateries);
+        home_btnRecommendedVenue = getView().findViewById(R.id.button_recommended_venue);
+        home_btnRecommendedVenue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent recommendedVenue = new Intent(getContext(), RecommendedVenue.class);
+                startActivity(recommendedVenue);
+            }
+        });
         recommendationText = getView().findViewById(R.id.recommend);
         UVLightIndexText  = getView().findViewById(R.id.UVLightIndex);
         UVLightStatusText = getView().findViewById(R.id.UVLightStatus);
@@ -141,6 +147,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         Intent healthierEateriesIntent = new Intent(getContext(), HealthierEatActivity.class);
         startActivity(healthierEateriesIntent);
+
     }
 
     private void UpdateEnvrionment(RecommendationManager ma){
