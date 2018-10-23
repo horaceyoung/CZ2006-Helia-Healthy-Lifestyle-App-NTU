@@ -18637,54 +18637,10 @@
 </Point>
 </Placemark>
 <Placemark id="kml_268">
-<name>kml_268</name>
+<name>McDonald's - Nanyang Technological University</name>
 <snippet> </snippet>
-<description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSBLOCKHOUSENUMBER</th>
-<td>76</td>
-</tr><tr bgcolor="">
-<th>ADDRESSBUILDINGNAME</th>
-<td>Nanyang Technological University (NTU), Blk N2.1</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSPOSTALCODE</th>
-<td>637331</td>
-</tr><tr bgcolor="">
-<th>ADDRESSSTREETNAME</th>
-<td>Nanyang Drive</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSTYPE</th>
-<td>Q</td>
-</tr><tr bgcolor="">
-<th>DESCRIPTION</th>
-<td>Choose healthier options from F&B outlets under HPB's Healthier Dining Programme</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>HYPERLINK</th>
-<td></td>
-</tr><tr bgcolor="">
-<th>LANDXADDRESSPOINT</th>
-<td>0</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>LANDYADDRESSPOINT</th>
-<td>0</td>
-</tr><tr bgcolor="">
-<th>NAME</th>
-<td>McDonald's - Nanyang Technological University</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>PHOTOURL</th>
-<td></td>
-</tr><tr bgcolor="">
-<th>ADDRESSFLOORNUMBER</th>
-<td>1</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>INC_CRC</th>
-<td>CCEEDA3E851A1B1C</td>
-</tr><tr bgcolor="">
-<th>FMEL_UPD_D</th>
-<td>20171108150025</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSUNITNUMBER</th>
-<td>8</td>
-</tr></table></center>]]></description>
+<description><![CDATA[Nanyang Technological University (NTU), Blk N2.1
+McDonald's - Nanyang Technological University]]></description>
 <ExtendedData>
 <SchemaData schemaUrl="#kml_schema_ft_HEALTHIERDINING">
 <SimpleData name="ADDRESSBLOCKHOUSENUMBER">76</SimpleData>
@@ -22106,54 +22062,10 @@
 </Point>
 </Placemark>
 <Placemark id="kml_318">
-<name>kml_318</name>
+<name>Pizza Hut - NTU (EXP)</name>
 <snippet> </snippet>
-<description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSBLOCKHOUSENUMBER</th>
-<td>76</td>
-</tr><tr bgcolor="">
-<th>ADDRESSBUILDINGNAME</th>
-<td>NTU</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSPOSTALCODE</th>
-<td>637331</td>
-</tr><tr bgcolor="">
-<th>ADDRESSSTREETNAME</th>
-<td>Nanyang Drive blk N2.1</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSTYPE</th>
-<td>R</td>
-</tr><tr bgcolor="">
-<th>DESCRIPTION</th>
-<td>Choose healthier options from F&B outlets under HPB's Healthier Dining Programme</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>HYPERLINK</th>
-<td></td>
-</tr><tr bgcolor="">
-<th>LANDXADDRESSPOINT</th>
-<td>0</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>LANDYADDRESSPOINT</th>
-<td>0</td>
-</tr><tr bgcolor="">
-<th>NAME</th>
-<td>Pizza Hut - NTU (EXP)</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>PHOTOURL</th>
-<td></td>
-</tr><tr bgcolor="">
-<th>ADDRESSFLOORNUMBER</th>
-<td>1</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>INC_CRC</th>
-<td>CCEEDA3E5BA95956</td>
-</tr><tr bgcolor="">
-<th>FMEL_UPD_D</th>
-<td>20171108150025</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSUNITNUMBER</th>
-<td>4</td>
-</tr></table></center>]]></description>
+<description><![CDATA[Nanyang Drive blk N2.1
+Pizza Hut - NTU (EXP)]]></description>
 <ExtendedData>
 <SchemaData schemaUrl="#kml_schema_ft_HEALTHIERDINING">
 <SimpleData name="ADDRESSBLOCKHOUSENUMBER">76</SimpleData>
@@ -38157,54 +38069,10 @@
 </Point>
 </Placemark>
 <Placemark id="kml_549">
-<name>kml_549</name>
+<name>Subway - NTU</name>
 <snippet> </snippet>
-<description><![CDATA[<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSBLOCKHOUSENUMBER</th>
-<td>76</td>
-</tr><tr bgcolor="">
-<th>ADDRESSBUILDINGNAME</th>
-<td>Nanyang Technological University (NTU), Blk N2.1</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSPOSTALCODE</th>
-<td>637331</td>
-</tr><tr bgcolor="">
-<th>ADDRESSSTREETNAME</th>
-<td>Nanyang Drive</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSTYPE</th>
-<td>Q</td>
-</tr><tr bgcolor="">
-<th>DESCRIPTION</th>
-<td>Choose healthier options from F&B outlets under HPB's Healthier Dining Programme</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>HYPERLINK</th>
-<td></td>
-</tr><tr bgcolor="">
-<th>LANDXADDRESSPOINT</th>
-<td>0</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>LANDYADDRESSPOINT</th>
-<td>0</td>
-</tr><tr bgcolor="">
-<th>NAME</th>
-<td>Subway - NTU</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>PHOTOURL</th>
-<td></td>
-</tr><tr bgcolor="">
-<th>ADDRESSFLOORNUMBER</th>
-<td>1</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>INC_CRC</th>
-<td>CCEEDA3EB57DF5C2</td>
-</tr><tr bgcolor="">
-<th>FMEL_UPD_D</th>
-<td>20171108150025</td>
-</tr><tr bgcolor="#E3E3F3">
-<th>ADDRESSUNITNUMBER</th>
-<td>7</td>
-</tr></table></center>]]></description>
+<description><![CDATA[Nanyang Technological University (NTU), Blk N2.1
+Subway - NTU]]></description>
 <ExtendedData>
 <SchemaData schemaUrl="#kml_schema_ft_HEALTHIERDINING">
 <SimpleData name="ADDRESSBLOCKHOUSENUMBER">76</SimpleData>

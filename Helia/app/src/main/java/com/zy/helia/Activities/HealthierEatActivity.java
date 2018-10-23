@@ -179,7 +179,7 @@ public class HealthierEatActivity extends AppCompatActivity implements OnMapRead
 
             init();
             try {
-                KmlLayer layer = new KmlLayer(mMap, com.zy.helia.R.raw.healthier_eateries_kml, getApplicationContext());
+                KmlLayer layer = new KmlLayer(mMap, R.raw.healthier_eateries_kml1, getApplicationContext());
                 layer.addLayerToMap();
             }
             catch (XmlPullParserException e){}

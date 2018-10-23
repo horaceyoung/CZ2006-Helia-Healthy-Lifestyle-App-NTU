@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zy.helia.Event_Data.DatabaseHelp;
@@ -16,8 +17,12 @@ public class EventDetail extends AppCompatActivity {
 
     private int eventID;
     private int userID;
+
     private TextView eventName;
     private TextView eventDescription;
+    private TextView eventNumber;
+    private TextView eventDuration;
+    private ImageView image;
 
     private Button register;
     private Button interested;
@@ -48,6 +53,18 @@ public class EventDetail extends AppCompatActivity {
 
         eventDescription= (TextView) findViewById(R.id.descprition);
         eventDescription.setText(description);
+
+        int durationIndex = eventCursor.getColumnIndex("Event_Duration");
+        String duration = "Duration: "+eventCursor.getString(durationIndex);
+
+        eventDuration= (TextView) findViewById(R.id.duration);
+        eventDuration.setText(duration);
+
+        int numberIndex = eventCursor.getColumnIndex("Number_Of_People");
+        String number = "Number of Participants: "+ dbHelper.countRegistered(eventID)+" / "+Integer.toString(eventCursor.getInt(numberIndex));
+
+        eventNumber= (TextView) findViewById(R.id.number);
+        eventNumber.setText(number);
 
         register = (Button) findViewById(R.id.register);
         if (dbHelper.isRegistered(eventID, userID)) {
@@ -101,5 +118,32 @@ public class EventDetail extends AppCompatActivity {
             });
         }
 
+        image = (ImageView) findViewById(R.id.imageEvent);
+        int typeIndex = eventCursor.getColumnIndex("Event_Category_ID");
+        int typeID = eventCursor.getInt(typeIndex);
+
+        switch (typeID){
+            case 1:
+                image.setImageResource(R.drawable.type_soccer);
+                break;
+            case 2:
+                image.setImageResource(R.drawable.type_basketball);
+                break;
+            case 3:
+                image.setImageResource(R.drawable.type_badminton);
+                break;
+            case 4:
+                image.setImageResource(R.drawable.type_running);
+                break;
+            case 5:
+                image.setImageResource(R.drawable.type_swimming);
+                break;
+            case 6:
+                image.setImageResource(R.drawable.type_aerobics);
+                break;
+            default:
+                image.setImageResource(R.drawable.helia_white);
+                break;
+        }
     }
 }
