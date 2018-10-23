@@ -33,6 +33,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.HealthierEatActivity" />
+        <activity android:name=".Activities.RecommendedVenue" />
         <activity android:name=".Activities.RegistrationActivity" />
         <activity android:name=".Activities.adminLogOut" />
         <activity android:name=".Activities.AdminMainPage" />
