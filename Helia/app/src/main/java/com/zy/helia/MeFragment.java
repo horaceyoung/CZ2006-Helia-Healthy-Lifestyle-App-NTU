@@ -176,10 +176,10 @@ public class MeFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onResume() {
-        int id = getActivity().getIntent().getIntExtra("id", 0);
+/*        int id = getActivity().getIntent().getIntExtra("id", 0);
         if(id==2){
             MainActivity.mainViewPager.setCurrentItem(2);
-        }
+        }*/
         super.onResume();
     }
 

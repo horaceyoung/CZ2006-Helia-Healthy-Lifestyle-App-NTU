@@ -3,6 +3,7 @@ package com.zy.helia.Activities;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -20,6 +21,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -89,7 +91,7 @@ public class HealthierEatActivity extends AppCompatActivity implements OnMapRead
     private GoogleApiClient mGoogleApiClient;
     private PlaceInfo mPlace;
     private Marker mMarker;
-
+    private Button backButton;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,6 +100,15 @@ public class HealthierEatActivity extends AppCompatActivity implements OnMapRead
         mGps = (ImageView) findViewById(R.id.ic_gps);
         mInfo = (ImageView) findViewById(R.id.place_info);
         getLocationPermission();
+
+        backButton = findViewById(R.id.toDiscover2);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent goBack = new Intent(HealthierEatActivity.this, MainActivity.class);
+                goBack.putExtra("id", 0);
+                startActivity(goBack);
+            }
+        });
 
     }
 
