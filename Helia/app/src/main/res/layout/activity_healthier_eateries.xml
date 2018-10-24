@@ -103,10 +103,12 @@
 
     <Button
         android:id="@+id/toDiscover2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@android:style/Widget.Holo.Light.Button.Toggle"
+        android:layout_width="276dp"
+        android:layout_height="66dp"
         android:layout_marginBottom="8dp"
         android:text="Back"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
