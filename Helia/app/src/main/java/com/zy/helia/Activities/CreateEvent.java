@@ -123,8 +123,9 @@ public class CreateEvent extends AppCompatActivity {
 
                 createNewEvent(str_eventname, str_eventdescription, ce_EventCategoryID, str_eventlocation, int_numberofpeople, str_eventduration, 2,LoginActivity.getUserID());
 
-
-                onBackPressed();
+                Intent goBack = new Intent(CreateEvent.this, MainActivity.class);
+                goBack.putExtra("id", 1);
+                startActivity(goBack);
             }
         });
 
@@ -132,7 +133,10 @@ public class CreateEvent extends AppCompatActivity {
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+
+                Intent goBack = new Intent(CreateEvent.this, MainActivity.class);
+                goBack.putExtra("id", 1);
+                startActivity(goBack);
             }
         });
 

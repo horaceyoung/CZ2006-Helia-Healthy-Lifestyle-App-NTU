@@ -101,6 +101,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.232" />
 
+    <Button
+        android:id="@+id/toDiscover2"
+        style="@android:style/Widget.Holo.Light.Button.Toggle"
+        android:layout_width="276dp"
+        android:layout_height="66dp"
+        android:layout_marginBottom="8dp"
+        android:text="Back"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>
