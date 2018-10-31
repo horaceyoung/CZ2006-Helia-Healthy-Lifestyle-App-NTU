@@ -142,6 +142,11 @@ public class CreateEvent extends AppCompatActivity {
 
 
     }
+    public void onBackPressed() {
+        Intent goBack = new Intent(CreateEvent.this, MainActivity.class);
+        goBack.putExtra("id", 1);
+        startActivity(goBack);
+    }
 
 
     private void createNewEvent(String Event_Name, String Event_Description, int Category_Id, String Event_Location, int Number_Of_People, String Event_Duration, int Event_Picture,int User_Id){
