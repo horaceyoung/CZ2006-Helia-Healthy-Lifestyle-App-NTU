@@ -1,5 +1,6 @@
 package com.zy.helia.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +12,7 @@ public class eventTypes extends AppCompatActivity {
     private RecyclerView etmRecyclerView;
     private RecyclerView.Adapter etmAdapter;
     private RecyclerView.LayoutManager etmLayoutManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,4 +28,10 @@ public class eventTypes extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent goBack = new Intent(eventTypes.this, MainActivity.class);
+        goBack.putExtra("id", 1);
+        startActivity(goBack);
+    }
 }

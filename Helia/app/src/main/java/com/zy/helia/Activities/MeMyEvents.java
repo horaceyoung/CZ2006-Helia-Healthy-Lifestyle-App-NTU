@@ -1,5 +1,6 @@
 package com.zy.helia.Activities;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.util.Log;
 
 import com.zy.helia.Activities.MeMyEventsListAdapter;
 import com.zy.helia.Event_Data.DatabaseHelp;
+import com.zy.helia.MeIREvents;
 import com.zy.helia.R;
 
 import java.util.ArrayList;
@@ -24,7 +26,12 @@ public class MeMyEvents extends AppCompatActivity {
 
     private ArrayList<String> EventName = new ArrayList<>();
     private List<Integer> EventID = new ArrayList<Integer>();
-
+    @Override
+    public void onBackPressed() {
+        Intent goBack = new Intent(MeMyEvents.this, MainActivity.class);
+        goBack.putExtra("id", 2);
+        startActivity(goBack);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
