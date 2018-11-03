@@ -30,12 +30,12 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
 
         mainViewPager = findViewById(R.id.main_view_pager);
-        MainPageAdapter mainPageAdapter = new MainPageAdapter(getSupportFragmentManager());
+        final MainPageAdapter mainPageAdapter = new MainPageAdapter(getSupportFragmentManager());
         mainViewPager.setAdapter(mainPageAdapter);
 
         mainNav = findViewById(R.id.main_navigation);
         mainNav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        toggleHideyBar();
+        //toggleHideyBar();
 
     }
 
