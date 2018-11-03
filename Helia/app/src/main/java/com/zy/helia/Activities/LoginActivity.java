@@ -69,59 +69,59 @@ public class LoginActivity extends AppCompatActivity {
             Intent adminLoginSuccessIntent = new Intent(this, AdminMainPage.class);
             startActivity(adminLoginSuccessIntent);
         }
+        else{
 
-        SQLiteDatabase accountDB = mAccountHelper.getReadableDatabase();
+            SQLiteDatabase accountDB = mAccountHelper.getReadableDatabase();
 
-        String[] accountProjection = {
-                AccountEntry._ID,
-                AccountEntry.COLUMN_USERNAME,
-                AccountEntry.COLUMN_PASSWORD,
-                AccountEntry.COLUMN_AVATAR,
-                AccountEntry.COLUMN_EMAIL
-        };
+            String[] accountProjection = {
+                    AccountEntry._ID,
+                    AccountEntry.COLUMN_USERNAME,
+                    AccountEntry.COLUMN_PASSWORD,
+                    AccountEntry.COLUMN_AVATAR,
+                    AccountEntry.COLUMN_EMAIL
+            };
 
-        Cursor cursor = accountDB.query(
-                AccountEntry.TABLE_NAME,
-                accountProjection,
-                null,
-                null,
-                null,
-                null,
-                null
-        );
+            Cursor cursor = accountDB.query(
+                    AccountEntry.TABLE_NAME,
+                    accountProjection,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+            );
 
-        int usernameIndex = cursor.getColumnIndex(AccountEntry.COLUMN_USERNAME);
-        int passwordIndex = cursor.getColumnIndex(AccountEntry.COLUMN_PASSWORD);
-        int emailIndex = cursor.getColumnIndex(AccountEntry.COLUMN_EMAIL);
-        int avatarIndex = cursor.getColumnIndex(AccountEntry.COLUMN_AVATAR);
-        int userIDIndex = cursor.getColumnIndex(AccountEntry._ID);
+            int usernameIndex = cursor.getColumnIndex(AccountEntry.COLUMN_USERNAME);
+            int passwordIndex = cursor.getColumnIndex(AccountEntry.COLUMN_PASSWORD);
+            int emailIndex = cursor.getColumnIndex(AccountEntry.COLUMN_EMAIL);
+            int avatarIndex = cursor.getColumnIndex(AccountEntry.COLUMN_AVATAR);
+            int userIDIndex = cursor.getColumnIndex(AccountEntry._ID);
 
-        while (cursor.moveToNext()) {
-            String currentUsername = cursor.getString(usernameIndex);
-            String currentPassword = cursor.getString(passwordIndex);
-            int currentAvatarChoice = cursor.getInt(avatarIndex);
-            String currentEmail = cursor.getString(emailIndex);
-            int currentUserID = cursor.getInt(userIDIndex);
-            Log.d(TAG, "current username is " + currentUsername + " current password is "+currentPassword);
+            while (cursor.moveToNext()) {
+                String currentUsername = cursor.getString(usernameIndex);
+                String currentPassword = cursor.getString(passwordIndex);
+                int currentAvatarChoice = cursor.getInt(avatarIndex);
+                String currentEmail = cursor.getString(emailIndex);
+                int currentUserID = cursor.getInt(userIDIndex);
+                Log.d(TAG, "current username is " + currentUsername + " current password is "+currentPassword);
 
 
-            if (username.equals(currentUsername) && password.equals(currentPassword)) {
-                mCurrentUsername = currentUsername;
-                mCurrentPassword = currentPassword;
-                mCurrentAvatarChoice = currentAvatarChoice;
-                mCurrentEmail = currentEmail;
-                mCurrentUserID = currentUserID;
-                Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
-                Intent loginSuccessIntent = new Intent(this, MainActivity.class);
-                startActivity(loginSuccessIntent);
-            }
-            else{
-                Toast.makeText(this, "Username not found or username and password does not match.", Toast.LENGTH_SHORT).show();
+                if (username.equals(currentUsername) && password.equals(currentPassword)) {
+                    mCurrentUsername = currentUsername;
+                    mCurrentPassword = currentPassword;
+                    mCurrentAvatarChoice = currentAvatarChoice;
+                    mCurrentEmail = currentEmail;
+                    mCurrentUserID = currentUserID;
+                    Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    Intent loginSuccessIntent = new Intent(this, MainActivity.class);
+                    startActivity(loginSuccessIntent);
+                }
+                else{
+                    Toast.makeText(this, "Username not found or username and password does not match.", Toast.LENGTH_SHORT).show();
+                }
             }
         }
-
-
-
+        
     }
 
     public static void UpdateUserInfo(String updateType, String updateValue){
