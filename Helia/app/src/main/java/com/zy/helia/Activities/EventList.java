@@ -94,4 +94,11 @@ public class EventList extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent goBack = new Intent(EventList.this, MainActivity.class);
+        goBack.putExtra("id", 1);
+        startActivity(goBack);
+    }
+
 }
