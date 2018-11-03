@@ -63,5 +63,11 @@ public class eventsToBeApproved extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent goBack = new Intent(eventsToBeApproved.this, AdminMainPage.class);
+        startActivity(goBack);
+    }
+
 
 }
