@@ -1,6 +1,5 @@
 package com.zy.helia.Event_Data;
 
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -11,8 +10,6 @@ import com.zy.helia.Interface_classes.DatabaseInterface;
 import java.io.Closeable;
 import java.util.ArrayList;
 import java.util.List;
-
-
 public class DatabaseHelp extends SQLiteOpenHelper implements Closeable, DatabaseInterface{
 
     public static final String DATABASE_NAME = "Helia.db";
