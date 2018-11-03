@@ -110,6 +110,11 @@ public class RecommendedVenue extends AppCompatActivity implements OnMapReadyCal
             }
         });
     }
+    public void onBackPressed() {
+        Intent goBack = new Intent(RecommendedVenue.this, MainActivity.class);
+        goBack.putExtra("id", 0);
+        startActivity(goBack);
+    }
 
     private void init() {
         Log.d(TAG, "init: initializing");

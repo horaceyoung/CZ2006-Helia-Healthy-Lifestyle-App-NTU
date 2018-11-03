@@ -147,6 +147,11 @@ public class CreateEvent extends AppCompatActivity {
 
 
     }
+    public void onBackPressed() {
+        Intent goBack = new Intent(CreateEvent.this, MainActivity.class);
+        goBack.putExtra("id", 1);
+        startActivity(goBack);
+    }
 
 
     public boolean isNumeric(String str_numberofpeople)
