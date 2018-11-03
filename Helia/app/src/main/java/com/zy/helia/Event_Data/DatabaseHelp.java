@@ -7,13 +7,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
+import com.zy.helia.Interface_classes.DatabaseInterface;
 import java.io.Closeable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class DatabaseHelp extends SQLiteOpenHelper implements Closeable{
+public class DatabaseHelp extends SQLiteOpenHelper implements Closeable, DatabaseInterface{
 
     public static final String DATABASE_NAME = "Helia.db";
 
