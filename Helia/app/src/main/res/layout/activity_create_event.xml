@@ -137,7 +137,7 @@
                 android:layout_height="wrap_content"
                 android:paddingEnd="10dp"
                 android:paddingTop="10dp"
-                android:text="Duration estimated"
+                android:text="Date and Time"
                 android:textSize="16dp" />
 
             <EditText
