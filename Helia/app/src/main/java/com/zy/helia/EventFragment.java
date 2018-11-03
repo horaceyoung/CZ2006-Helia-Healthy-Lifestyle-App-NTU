@@ -113,41 +113,41 @@ public class EventFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        mRecyclerView_Event.setAdapter(mAdapter_Event);
-        //mRecyclerView_Type.setLayoutManager((mLayoutManager_Type));
 
-        // Get all pending events
-        Cursor eventCursor = dbHelper.retrieveEvents(db);
+            mRecyclerView_Event.setAdapter(mAdapter_Event);
+            //mRecyclerView_Type.setLayoutManager((mLayoutManager_Type));
 
-        EventName.clear();
-        EventID.clear();
+            // Get all pending events
+            Cursor eventCursor = dbHelper.retrieveEvents(db);
 
-        if (eventCursor!=null) {
-            while (eventCursor.moveToNext()) {
-                int eventIndex = eventCursor.getColumnIndex("Event_Name");
-                String eventName = eventCursor.getString(eventIndex);
-                Log.d("Event_Name", eventName);
-                EventName.add(eventName);
+            EventName.clear();
+            EventID.clear();
 
-                int IDIndex = eventCursor.getColumnIndex("Event_ID");
-                int eventID = eventCursor.getInt(IDIndex);
-                EventID.add(eventID);
+            if (eventCursor != null) {
+                while (eventCursor.moveToNext()) {
+                    int eventIndex = eventCursor.getColumnIndex("Event_Name");
+                    String eventName = eventCursor.getString(eventIndex);
+                    Log.d("Event_Name", eventName);
+                    EventName.add(eventName);
+
+                    int IDIndex = eventCursor.getColumnIndex("Event_ID");
+                    int eventID = eventCursor.getInt(IDIndex);
+                    EventID.add(eventID);
+                }
             }
-        }
-        db.close();
+            db.close();
 
-        if (!EventName.isEmpty())
-        {
-            popularName = EventName.get(0);
-            popularID = EventID.get(0);
-            mostPopular.setOnClickListener(this);
-        }
+            if (!EventName.isEmpty()) {
+                popularName = EventName.get(0);
+                popularID = EventID.get(0);
+                mostPopular.setOnClickListener(this);
+            }
 
-        for (int i=0;i<EventName.size();i++)
-            Log.d("Event_Name", EventName.get(i));
+            for (int i = 0; i < EventName.size(); i++)
+                Log.d("Event_Name", EventName.get(i));
 
-        mAdapter_Event = new EventFragmentAdapter(getActivity().getBaseContext(), EventName, EventID);
-        mRecyclerView_Event.setAdapter(mAdapter_Event);
+            mAdapter_Event = new EventFragmentAdapter(getActivity().getBaseContext(), EventName, EventID);
+            mRecyclerView_Event.setAdapter(mAdapter_Event);
 
         // Block End
     }
@@ -225,4 +225,5 @@ public class EventFragment extends Fragment implements View.OnClickListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
 }
