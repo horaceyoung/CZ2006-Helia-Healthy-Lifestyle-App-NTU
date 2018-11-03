@@ -11,16 +11,17 @@
         style="@android:style/Widget.Holo.Light.Button.Toggle"
         android:layout_width="267dp"
         android:layout_height="66dp"
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="95dp"
+        android:layout_marginTop="8dp"
         android:background="#e6e6e6"
         android:text="Healthier Eateries"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.938" />
+        app:layout_constraintVertical_bias="0.663" />
 
     <Button
         android:id="@+id/button_recommended_venue"
@@ -36,7 +37,7 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.771" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -67,7 +68,7 @@
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="193dp"
-        android:layout_marginTop="196dp"
+        android:layout_marginTop="48dp"
         android:background="#9cffffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -89,8 +90,8 @@
             android:id="@+id/UVLightIndex"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginStart="20dp"
             android:text="0"
             android:textColor="@android:color/black"
             android:textSize="18sp"
@@ -130,8 +131,8 @@
             android:id="@+id/temperatureText"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginStart="20dp"
             android:text="0"
             android:textColor="@android:color/black"
             android:textSize="18sp"
