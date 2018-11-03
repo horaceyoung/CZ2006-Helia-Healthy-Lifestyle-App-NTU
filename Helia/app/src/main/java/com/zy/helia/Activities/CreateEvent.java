@@ -1,6 +1,7 @@
 package com.zy.helia.Activities;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,8 +14,10 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 
+import com.zy.helia.Account_Data.AccountDBHelper;
 import com.zy.helia.Event_Data.DatabaseHelp;
 import com.zy.helia.Activities.LoginActivity;
+import com.zy.helia.Input_Manager.InputManager;
 import com.zy.helia.R;
 
 public class CreateEvent extends AppCompatActivity {
@@ -28,6 +31,7 @@ public class CreateEvent extends AppCompatActivity {
     private EditText ce_EventDuration;
     //  private EditText ce_EventPhoto;
     private EditText ce_UserID;
+    private AccountDBHelper mDbHelper;
 
     private Button submitBut;
     private Button test;
@@ -88,11 +92,11 @@ public class CreateEvent extends AppCompatActivity {
                 String str_eventname = ce_Event_name.getText().toString().trim();
                 String str_eventdescription = ce_EventDescription.getText().toString().trim();
                 String str_numberofpeople = ce_NumberOfPeople.getText().toString();
-                int int_numberofpeople=Integer.parseInt(str_numberofpeople);
+                int int_numberofpeople = toInteger(str_numberofpeople);
+
                 String str_eventlocation = ce_EventLocation.getText().toString().trim();
                 String str_eventduration = ce_EventDuration.getText().toString().trim();
-                //String str_email = ce_UserID.getText().toString().trim();
-
+                String str_email = ce_UserID.getText().toString().trim();
 
 
                 etDropdownList=(Spinner)findViewById(R.id.events_dl);
@@ -121,8 +125,9 @@ public class CreateEvent extends AppCompatActivity {
                         break;
                 }
 
-                createNewEvent(str_eventname, str_eventdescription, ce_EventCategoryID, str_eventlocation, int_numberofpeople, str_eventduration, 2,LoginActivity.getUserID());
-
+                if(int_numberofpeople!=-1&&checkEmail(str_email)) {
+                    createNewEvent(str_eventname, str_eventdescription, ce_EventCategoryID, str_eventlocation, int_numberofpeople, str_eventduration, 2, LoginActivity.getUserID());
+                }
                 Intent goBack = new Intent(CreateEvent.this, MainActivity.class);
                 goBack.putExtra("id", 1);
                 startActivity(goBack);
@@ -142,7 +147,45 @@ public class CreateEvent extends AppCompatActivity {
 
 
     }
+    public void onBackPressed() {
+        Intent goBack = new Intent(CreateEvent.this, MainActivity.class);
+        goBack.putExtra("id", 1);
+        startActivity(goBack);
+    }
 
+
+    public boolean isNumeric(String str_numberofpeople)
+    {
+        try
+        {
+            int d = Integer.parseInt(str_numberofpeople);
+        }
+        catch(NumberFormatException nfe)
+        {
+            Toast.makeText(this, "Error: the input should be an integer",Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
+    }
+
+    public int toInteger(String str_numberofpeople)
+    {
+        if(isNumeric(str_numberofpeople)){
+            int int_numberofpeople=Integer.parseInt(str_numberofpeople);
+            return int_numberofpeople;
+        }
+        else{
+            return -1;
+        }
+    }
+
+    private boolean checkEmail(String Email){          //returns 0 if Email doesnt exist, returns 1 if it does
+        if(!InputManager.ValidateEmailInput(Email) && Email.length()<=0){
+            Toast.makeText(this, "Error: the email is not valid", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
+    } //end
 
     private void createNewEvent(String Event_Name, String Event_Description, int Category_Id, String Event_Location, int Number_Of_People, String Event_Duration, int Event_Picture,int User_Id){
 

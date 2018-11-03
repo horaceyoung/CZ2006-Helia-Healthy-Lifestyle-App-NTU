@@ -1,6 +1,7 @@
 package com.zy.helia;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -14,7 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.zy.helia.Activities.LoginActivity;
+import com.zy.helia.Activities.MainActivity;
 import com.zy.helia.Activities.MeInterestedEventListAdapter;
+import com.zy.helia.Activities.eventTypes;
 import com.zy.helia.Event_Data.DatabaseHelp;
 
 import java.util.ArrayList;

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.EventLog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -26,6 +27,13 @@ public class EventDetail extends AppCompatActivity {
 
     private Button register;
     private Button interested;
+
+    @Override
+    public void onBackPressed() {
+        Intent goBack = new Intent(EventDetail.this, MainActivity.class);
+        goBack.putExtra("id", 1);
+        startActivity(goBack);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

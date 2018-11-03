@@ -30,7 +30,12 @@ public class MeChangePersonalInfo extends AppCompatActivity {
     private String newEmail;
     //private DatabaseHelp db = new DatabaseHelp(this);
 
-
+    @Override
+    public void onBackPressed() {
+        Intent goBack = new Intent(MeChangePersonalInfo.this, MainActivity.class);
+        goBack.putExtra("id", 2);
+        startActivity(goBack);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
