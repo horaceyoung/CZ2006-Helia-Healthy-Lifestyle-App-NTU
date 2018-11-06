@@ -22,7 +22,7 @@
 
     <EditText
         android:id="@+id/passwordLogin"
-        android:layout_width="318dp"
+        android:layout_width="322dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -53,7 +53,7 @@
 
     <EditText
         android:id="@+id/usernameLogin"
-        android:layout_width="319dp"
+        android:layout_width="322dp"
         android:layout_height="48dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"

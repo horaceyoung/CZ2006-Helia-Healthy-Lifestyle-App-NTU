@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.zy.helia.Activities.MainActivity;
 import com.zy.helia.Event_Data.DatabaseHelp;
@@ -79,8 +80,10 @@ public class MeChangePersonalInfo extends AppCompatActivity {
                 if(InputManager.ValidateEmailInput(newEmail))
                     LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_EMAIL,newEmail);
 
-                if(!newPassword.equals(""))
-                    LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_PASSWORD,newPassword);
+                if(InputManager.ValidatePasswordInput(newPassword)) {
+                    Toast.makeText(getBaseContext(), "password changed", Toast.LENGTH_LONG).show();
+                    LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_PASSWORD, newPassword);
+                }
 
                 Intent goBack = new Intent(MeChangePersonalInfo.this, MainActivity.class);
                 goBack.putExtra("id", 2);
