@@ -86,6 +86,15 @@ public class EventDetail extends AppCompatActivity {
                     DBHelper.removeRegistered(eventID, userID);
                     register.setClickable(false);
                     register.setText("Removal Successful");
+
+                    Cursor eventCursor = DBHelper.viewEvent(eventID);
+                    eventCursor.moveToNext();
+
+                    int numberIndex = eventCursor.getColumnIndex("Number_Of_People");
+                    String number = "Number of Participants: "+ (DBHelper.countRegistered(eventID))+" / "+Integer.toString(eventCursor.getInt(numberIndex));
+
+                    eventNumber= (TextView) findViewById(R.id.number);
+                    eventNumber.setText(number);
                 }
             });
         }
@@ -98,6 +107,14 @@ public class EventDetail extends AppCompatActivity {
                     register.setClickable(false);
                     register.setText("Successfully Registered");
 
+                    Cursor eventCursor = DBHelper.viewEvent(eventID);
+                    eventCursor.moveToNext();
+
+                    int numberIndex = eventCursor.getColumnIndex("Number_Of_People");
+                    String number = "Number of Participants: "+ (DBHelper.countRegistered(eventID))+" / "+Integer.toString(eventCursor.getInt(numberIndex));
+
+                    eventNumber= (TextView) findViewById(R.id.number);
+                    eventNumber.setText(number);
                 }
             });
         }
