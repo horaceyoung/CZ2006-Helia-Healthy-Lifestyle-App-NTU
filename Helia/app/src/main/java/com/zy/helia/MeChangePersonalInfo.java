@@ -79,7 +79,7 @@ public class MeChangePersonalInfo extends AppCompatActivity {
                 if(InputManager.ValidateEmailInput(newEmail))
                     LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_EMAIL,newEmail);
 
-                if(InputManager.ValidatePasswordInput(newPassword))
+                if(!newPassword.equals(""))
                     LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_PASSWORD,newPassword);
 
                 Intent goBack = new Intent(MeChangePersonalInfo.this, MainActivity.class);
