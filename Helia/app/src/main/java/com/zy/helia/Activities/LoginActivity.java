@@ -121,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         }
-
+        
     }
 
     public static void UpdateUserInfo(String updateType, String updateValue){

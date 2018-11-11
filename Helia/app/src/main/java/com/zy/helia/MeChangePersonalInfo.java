@@ -19,7 +19,6 @@ import com.zy.helia.Activities.AdminMainPage;
 import com.zy.helia.Activities.UpdateAvatar;
 import com.zy.helia.Activities.eventsToBeApproved;
 import com.zy.helia.Event_Data.DatabaseHelp;
-import com.zy.helia.Input_Manager.InputManager;
 
 public class MeChangePersonalInfo extends AppCompatActivity {
 
@@ -77,13 +76,18 @@ public class MeChangePersonalInfo extends AppCompatActivity {
                 newPassword  =  Password.getText().toString();
                 newEmail = Email.getText().toString();
 
-                if(InputManager.ValidateEmailInput(newEmail))
+                if(!newEmail.equals(""))
                     LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_EMAIL,newEmail);
+
+
+                if(!newPassword.equals(""))
+                    LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_PASSWORD,newPassword);
 
                 if(InputManager.ValidatePasswordInput(newPassword)) {
                     Toast.makeText(getBaseContext(), "password changed", Toast.LENGTH_LONG).show();
                     LoginActivity.UpdateUserInfo(AccountEntry.COLUMN_PASSWORD, newPassword);
                 }
+
 
                 Intent goBack = new Intent(MeChangePersonalInfo.this, MainActivity.class);
                 goBack.putExtra("id", 2);
