@@ -4,8 +4,10 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -66,17 +68,20 @@ public class RegistrationActivity extends AppCompatActivity {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
         String query = "Select * from User Where Username = '"+ Username +"'";
         Cursor c = db.rawQuery(query,null);
-        if (c.getCount() <= 0) {
+
+
+        if (c.getCount() > 0) {
+            Log.d("Register counts", String.valueOf(c.getCount()));
             c.close();
             db.close();
             Toast.makeText(this, "Error: the Username already Exits, pleasae try another one", Toast.LENGTH_LONG).show();
+            return false;
         }
         else{
             c.close();
             db.close();
-            return false;
+            return true;
         }
-        return true;
     } //end
 
     private boolean checkPassword(String password){
@@ -95,17 +100,17 @@ public class RegistrationActivity extends AppCompatActivity {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
         String query = "Select * from User Where Email = '"+ Email +"'";
         Cursor c = db.rawQuery(query,null);
-        if (c.getCount() <= 0) {
+        if (c.getCount() > 0) {
             c.close();
             db.close();
             Toast.makeText(this, "Error: the email has already been used, pleasae try another one", Toast.LENGTH_LONG).show();
+            return false;
         }
         else{
             c.close();
             db.close();
-            return false;
+            return true;
         }
-        return true;
     } //end
 
     private boolean checkAccountInfoEligibility(String username, String password, String email){
