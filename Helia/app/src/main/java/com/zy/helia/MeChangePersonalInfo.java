@@ -19,6 +19,7 @@ import com.zy.helia.Activities.AdminMainPage;
 import com.zy.helia.Activities.UpdateAvatar;
 import com.zy.helia.Activities.eventsToBeApproved;
 import com.zy.helia.Event_Data.DatabaseHelp;
+import com.zy.helia.Input_Manager.InputManager;
 
 public class MeChangePersonalInfo extends AppCompatActivity {
 
