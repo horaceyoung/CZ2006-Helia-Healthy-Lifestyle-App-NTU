@@ -85,7 +85,7 @@ public class RegistrationActivity extends AppCompatActivity {
     } //end
 
     private boolean checkPassword(String password){
-        if(!(InputManager.ValidatePasswordInput(password) && password.length() >= 6)){
+        if(!InputManager.ValidatePasswordInput(password) && password.length() <= 6){
             Toast.makeText(this, "Error: the password is not valid, it should contain non-space characters with length longer than 6, and it should not contain spaces", Toast.LENGTH_LONG).show();
             return false;
         }
