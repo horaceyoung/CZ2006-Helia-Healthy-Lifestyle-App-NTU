@@ -246,10 +246,15 @@ public class HealthierEatActivity extends AppCompatActivity implements OnMapRead
                         if (task.isSuccessful()) {
                             Log.d(TAG, "onComplete: found location!");
                             Location currentLocation = (Location) task.getResult();
+                            try {
+                                moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
+                                        DEFAULT_ZOOM,
+                                        "My Location");
+                            }
+                            catch (NullPointerException e){
+                                Log.d(TAG, "Null Pointer Exception when calling getLatitude()");
+                            }
 
-                            moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
-                                    DEFAULT_ZOOM,
-                                    "My Location");
 
                         } else {
                             Log.d(TAG, "onComplete: current location is null");
