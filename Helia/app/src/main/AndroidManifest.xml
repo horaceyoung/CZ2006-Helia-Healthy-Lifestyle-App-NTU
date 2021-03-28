@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Design.Light.NoActionBar">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAXUpsuvol5jJ2g5HgZ3ppw55UMyL-_5W8" />
+            android:value="AIzaSyDrfEjfvZoYxyWLjQYPXn-x3N5Qc1My3mg" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
