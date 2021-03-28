@@ -106,19 +106,23 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d(TAG, "current username is " + currentUsername + " current password is "+currentPassword);
 
 
-                if (username.equals(currentUsername) && password.equals(currentPassword)) {
-                    mCurrentUsername = currentUsername;
-                    mCurrentPassword = currentPassword;
-                    mCurrentAvatarChoice = currentAvatarChoice;
-                    mCurrentEmail = currentEmail;
-                    mCurrentUserID = currentUserID;
-                    Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
-                    Intent loginSuccessIntent = new Intent(this, MainActivity.class);
-                    startActivity(loginSuccessIntent);
+                if (username.equals(currentUsername)) {
+                    if (password.equals(currentPassword)){
+                        mCurrentUsername = currentUsername;
+                        mCurrentPassword = currentPassword;
+                        mCurrentAvatarChoice = currentAvatarChoice;
+                        mCurrentEmail = currentEmail;
+                        mCurrentUserID = currentUserID;
+                        Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
+                        Intent loginSuccessIntent = new Intent(this, MainActivity.class);
+                        startActivity(loginSuccessIntent);
+                    }
+                    else{
+                        Toast.makeText(this, "Username not found or username and password does not match.", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
-                else{
-                    Toast.makeText(this, "Username not found or username and password does not match.", Toast.LENGTH_SHORT).show();
-                }
+
             }
         }
         
